@@ -1,39 +1,18 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { DynamicBottomSheet } from "@coderoycc/bottom-sheet-wrappers";
-const open = ref(false)
+import DocLayout from "./layouts/DocLayout.vue";
+import HomeDoc from "./pages/HomeDoc.vue";
+import DynamicBottomSheetDoc from "./pages/DynamicBottomSheetDoc.vue";
+import FixedBottomSheetDoc from "./pages/FixedBottomSheetDoc.vue";
 </script>
 
 <template>
-  <div style="display: flex; align-items: center; justify-content: center; height: 100vh;">
-    <button @click="open = true">Open</button>
-  </div>
-  <div>
-    <dynamic-bottom-sheet v-model="open">
-      <template #header>
-        <div class="header-custom">
-          <span>Hola mundo</span>
-          <button @click="open = false">X</button>
-        </div>
-      </template>
-      <div class="border">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, voluptate.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, voluptate.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, voluptate.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, voluptate.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, voluptate.</p>
-      </div>
-    </dynamic-bottom-sheet>
-  </div>
+  <DocLayout v-slot="{ currentTab, setTab }">
+    <HomeDoc v-if="currentTab === 'home'" @navigate="setTab" />
+    <DynamicBottomSheetDoc v-if="currentTab === 'dynamic'" />
+    <FixedBottomSheetDoc v-if="currentTab === 'fixed'" />
+  </DocLayout>
 </template>
 
 <style scoped>
-.border {
-  border: 1px solid red;
-}
-.header-custom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+/* App styles are handled globally globally in style.css or locally in components */
 </style>
