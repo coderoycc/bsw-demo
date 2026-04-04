@@ -1,124 +1,115 @@
 <template>
   <div class="doc-page">
-    <h1>Dynamic Bottom Sheet</h1>
-    <p class="description">
-      Un panel inferior (bottom sheet) dinámico que ajusta su tamaño mediante gestos o interacciones. 
-      Soporta tamaños iniciales, arrastre y animaciones fluidas, ideal para vistas ricas en contenido móvil o web.
-    </p>
-
-    <div class="doc-section">
-      <h2>🛠 Uso</h2>
-      
-      <h3>Cómo Importar</h3>
-      <div class="code-block">
-        <pre><code>import { DynamicBottomSheet } from "@coderoycc/bottom-sheet-wrappers";
-import "@coderoycc/bottom-sheet-wrappers/dist/bottom-sheet-wrappers.css";</code></pre>
-      </div>
-
-      <h3>Simple</h3>
-      <p>
-        Este componente está diseñado con 3 posiciones (<code>collapsed</code>, <code>half</code>, y <code>full</code>). 
-        El usuario puede expandir el contenido deslizando (swipe upward), y minimizarlo deslizando hacia abajo.
+    <div class="header-banner">
+      <h1>Dynamic Bottom Sheet</h1>
+      <p class="description">
+        Un panel inferior dinámico que ajusta su tamaño interactuando para interfaces móviles o web modernas.
       </p>
-
-      <h3>Código</h3>
-      <div class="code-block">
-        <pre><code>&lt;script setup&gt;
-import { ref } from "vue";
-import { DynamicBottomSheet } from "@coderoycc/bottom-sheet-wrappers";
-
-const isOpen = ref(false);
-&lt;/script&gt;
-
-&lt;template&gt;
-  &lt;DynamicBottomSheet 
-    v-model="isOpen" 
-    initial-size="half" 
-    half="45dvh" 
-    full="95dvh"
-  &gt;
-    &lt;p&gt;Desliza hacia arriba para redimensionar el contenido&lt;/p&gt;
-  &lt;/DynamicBottomSheet&gt;
-&lt;/template&gt;</code></pre>
-      </div>
     </div>
 
+    <!-- ===== SECCIÓN DE USO ===== -->
     <div class="doc-section">
-      <h2>💡 Ejemplo de Usos</h2>
-      <div class="doc-card showcase">
-        <div class="controls">
-          <div class="form-group">
-            <label>Tamaño Inicial</label>
-            <select v-model="initialSize" class="form-control">
-              <option value="collapsed">Collapsed</option>
-              <option value="half">Half</option>
-              <option value="full">Full</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Mostrar Backdrop</label>
-            <input type="checkbox" v-model="showBackdrop" />
-          </div>
-          <div class="form-group" style="text-align: center; margin-top: 1.5rem;">
-            <button class="btn-primary" @click="isOpen = true">Abrir Bottom Sheet</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="doc-section">
-      <h2>API</h2>
+      <h2>Uso en el Proyecto</h2>
       
-      <!-- Props -->
+      <h3>Instalación e Importación</h3>
+      <CodeHighlight 
+        code='import { DynamicBottomSheet } from "@coderoycc/bottom-sheet-wrappers";
+import "@coderoycc/bottom-sheet-wrappers/dist/bottom-sheet-wrappers.css";' 
+        language="javascript" 
+      />
+    </div>
+
+    <!-- ===== SECCIÓN DE API ===== -->
+    <div class="doc-section">
+      <h2>API de Propiedades</h2>
       <ApiTable title="Props" :columns="propsColumns" :rows="propsData" />
-
-      <!-- Events -->
       <ApiTable title="Eventos" :columns="eventsColumns" :rows="eventsData" />
-
-      <!-- Slots -->
       <ApiTable title="Slots" :columns="slotsColumns" :rows="slotsData" />
     </div>
 
-    <!-- El Modal DynamicBottomSheet -->
-    <dynamic-bottom-sheet
-      v-model="isOpen"
-      :initial-size="initialSize"
-      :show-backdrop="showBackdrop"
-      title="Ejemplo Activo"
-      close-on-backdrop
-    >
-      <template #header>
-        <div class="custom-header">
-          <h3>{{ sheetTitle }}</h3>
-          <span class="badge">Nuevo</span>
-        </div>
-      </template>
+    <!-- ===== SECCIÓN DE EJEMPLOS ===== -->
+    <div class="doc-section">
+      <h2>Módulos y Ejemplos de Uso</h2>
 
-      <div class="content-example">
-        <p>Este es el contenido principal del Bottom Sheet.</p>
-        <p>Puedes arrastrar el panel hacia arriba o abajo, o usar el contenido colapsado si lo configuras.</p>
-        
-        <div class="dummy-blocks">
-          <div v-for="i in 10" :key="i" class="dummy-block">Item de ejemplo {{ i }}</div>
-        </div>
-      </div>
-    </dynamic-bottom-sheet>
+      <h3>Uso Simple</h3>
+      <p>Un bottom sheet básico con solo el contenido y el comportamiento de cerrado predeterminado. Utiliza la altura configurada.</p>
+      <DocExample :codeString="simpleExampleCode">
+        <template #result>
+          <SimpleExample />
+        </template>
+      </DocExample>
+
+      <h3>Uso con Backdrop</h3>
+      <p>Habilita la aparición de una capa oscura en el fondo agregando la propiedad <code>show-backdrop</code>. Adicionalmente, <code>close-on-backdrop</code> permite cerrarlo al tocar fuera.</p>
+      <DocExample :codeString="backdropExampleCode">
+        <template #result>
+          <BackdropExample />
+        </template>
+      </DocExample>
+
+      <h3>Customización de Bordes y Colores (Local)</h3>
+      <p>Puedes sobreescribir las variables CSS pasándole una clase a componente. Las variables afectarán localmente a este sheet. Nota el uso de color de fondo rosado y bordes totalmente cuadrados.</p>
+      <DocExample :codeString="customBorderExampleCode">
+        <template #result>
+          <CustomBorderExample />
+        </template>
+      </DocExample>
+
+      <h3>Uso en Modo Oscuro Integrado</h3>
+      <p>Inyectando variables para aplicar el respectivo tema oscuro local directamente a un bottom sheet.</p>
+      <DocExample :codeString="darkModeExampleCode">
+        <template #result>
+          <DarkModeExample />
+        </template>
+      </DocExample>
+
+      <h3>Slots Complejos (Header y Collapsed)</h3>
+      <p>Muestra una vista interactiva que permite iniciar el panel minimizado pero expandirlo revelando contenido oculto.</p>
+      <DocExample :codeString="complexSlotsExampleCode">
+        <template #result>
+          <ComplexSlotsExample />
+        </template>
+      </DocExample>
+      
+      <h3>Tematización y Customización Global (Recomendado)</h3>
+      <p>Dado que los Bottom Sheets se montan mediante <code>Teleport</code> al final del cuerpo de la app, inyectar clases de sistema global de temas a nivel de <code>&lt;body&gt;</code> es la manera más robusta de crear múltiples variaciones (redondeados, dark-mode general, combinaciones soft) escalables en tu aplicación completa.</p>
+      <DocExample :codeString="themeExampleCodeRaw">
+        <template #result>
+          <!-- Se envuelve con style width 100% para que ocupe todo el panel -->
+          <ThemeCustomizationExample style="width: 100%;" />
+        </template>
+      </DocExample>
+    </div>
+
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { DynamicBottomSheet } from '@coderoycc/bottom-sheet-wrappers';
 import ApiTable from '../components/ApiTable.vue';
-import type { DynamicSize } from '@coderoycc/bottom-sheet-wrappers';
+import DocExample from '../components/DocExample.vue';
+import CodeHighlight from '../components/CodeHighlight.vue';
 
-// Estado del ejemplo
-const isOpen = ref(false);
-const initialSize = ref<DynamicSize>('half');
-const showBackdrop = ref(true);
-const sheetTitle = ref('Mi Componente Dinámico');
+// ===== IMPORTACIÓN DE COMPONENTES DE EJEMPLO AISLADOS =====
+import SimpleExample from '../examples/SimpleExample.vue';
+import simpleExampleCode from '../examples/SimpleExample.vue?raw';
 
-// Datos para las tablas de API
+import BackdropExample from '../examples/BackdropExample.vue';
+import backdropExampleCode from '../examples/BackdropExample.vue?raw';
+
+import CustomBorderExample from '../examples/CustomBorderExample.vue';
+import customBorderExampleCode from '../examples/CustomBorderExample.vue?raw';
+
+import DarkModeExample from '../examples/DarkModeExample.vue';
+import darkModeExampleCode from '../examples/DarkModeExample.vue?raw';
+
+import ComplexSlotsExample from '../examples/ComplexSlotsExample.vue';
+import complexSlotsExampleCode from '../examples/ComplexSlotsExample.vue?raw';
+
+import ThemeCustomizationExample from '../examples/ThemeCustomizationExample.vue';
+import themeExampleCodeRaw from '../examples/ThemeCustomizationExample.vue?raw';
+
+
+// ======================== API TABLES DATA ========================
 const propsColumns = [
   { key: 'name', label: 'Nombre', isCode: true },
   { key: 'type', label: 'Tipo', isCode: true },
@@ -127,16 +118,16 @@ const propsColumns = [
 ];
 
 const propsData = [
-  { name: 'modelValue (v-model)', type: 'boolean', default: 'false', desc: 'Controla la visibilidad del componente.' },
-  { name: 'title', type: 'string', default: "''", desc: 'Título básico que se muestra en el header.' },
-  { name: 'initialSize', type: 'DynamicSize', default: "'half'", desc: "Tamaño inicial al abrirse. Valores: 'collapsed', 'half', 'full'." },
-  { name: 'half', type: 'string', default: "'45dvh'", desc: 'Alto del tamaño "half". Usa unidades CSS (px, %, dvh).' },
-  { name: 'full', type: 'string', default: "'95dvh'", desc: 'Alto del tamaño "full". Usa unidades CSS.' },
-  { name: 'showCloseButton', type: 'boolean', default: 'true', desc: 'Muestra u oculta el botón de cerrar por defecto.' },
-  { name: 'showBackdrop', type: 'boolean', default: 'false', desc: 'Muestra un fondo oscuro detrás del panel.' },
-  { name: 'closeOnBackdrop', type: 'boolean', default: 'false', desc: 'Permite cerrar el panel al hacer clic en el backdrop.' },
-  { name: 'persistent', type: 'boolean', default: 'false', desc: 'Si es true, no se podrá cerrar ni arrastrando ni clickeando fuera.' },
-  { name: 'zIndex', type: 'number', default: '1', desc: 'Base del z-index (se suma a 9000 internamente).' }
+  { name: 'modelValue (v-model)', type: 'boolean', default: 'false', desc: 'Controla la visibilidad del modal dinámico.' },
+  { name: 'title', type: 'string', default: "''", desc: 'Título básico que se imprime en el header nativo.' },
+  { name: 'initialSize', type: 'DynamicSize', default: "'half'", desc: "Tamaño inicial a mostrar: 'collapsed', 'half', 'full'." },
+  { name: 'half', type: 'string', default: "'45dvh'", desc: 'Dimensión en alto para el estado "half".' },
+  { name: 'full', type: 'string', default: "'95dvh'", desc: 'Dimensión en alto para el estado máximo "full".' },
+  { name: 'showCloseButton', type: 'boolean', default: 'true', desc: 'Mostrar u ocultar botón con cruz de cierre.' },
+  { name: 'showBackdrop', type: 'boolean', default: 'false', desc: 'Saca y muestra un overlay oscuro semitransparente.' },
+  { name: 'closeOnBackdrop', type: 'boolean', default: 'false', desc: 'Click en parte sobrante fuera de modal para cerrar.' },
+  { name: 'persistent', type: 'boolean', default: 'false', desc: 'Bloquea forzadamente el cierre interactivo al entorno.' },
+  { name: 'zIndex', type: 'number', default: '1', desc: 'Índice de elevación (es baseada sobre suma a 9000).' }
 ];
 
 const eventsColumns = [
@@ -146,11 +137,11 @@ const eventsColumns = [
 ];
 
 const eventsData = [
-  { name: 'update:modelValue', params: 'value: boolean', desc: 'Emitido cuando cambia el estado de visibilidad.' },
-  { name: 'close', params: '-', desc: 'Emitido cuando se inicia el proceso de cerrado.' },
-  { name: 'opened', params: '-', desc: 'Emitido cuando el panel termina la animación de apertura.' },
-  { name: 'closed', params: '-', desc: 'Emitido cuando el panel termina la animación de cerrado.' },
-  { name: 'size-change', params: 'size: DynamicSize', desc: 'Emitido cuando el panel cambia de tamaño (collapsed/half/full).' }
+  { name: 'update:modelValue', params: 'value: boolean', desc: 'Cambia estado de componente y sync bidireccional.' },
+  { name: 'close', params: '-', desc: 'Se gatilla al inicio del pedido de cerrado.' },
+  { name: 'opened', params: '-', desc: 'Se dispara cuando acaba la animación visual de entrada CSS.' },
+  { name: 'closed', params: '-', desc: 'Se dispara cuando acaba la animación visual de retirada CSS.' },
+  { name: 'size-change', params: 'size: DynamicSize', desc: 'Avisa cambios internos en variables colapsables visuales.' }
 ];
 
 const slotsColumns = [
@@ -159,108 +150,40 @@ const slotsColumns = [
 ];
 
 const slotsData = [
-  { name: 'default', desc: 'Contenido principal del bottom sheet.' },
-  { name: 'header', desc: 'Reemplaza el contenido completo del header. Recibe el botón de cerrar y la barra de arrastre por defecto, pero el contenido del texto se reemplaza.' },
-  { name: 'collapsed-content', desc: 'Contenido que solo se muestra cuando el estado es `collapsed`.' }
+  { name: 'default', desc: 'Pinta el cuerpo completo sin control del header.' },
+  { name: 'header', desc: 'Toma el control entero del título del header limitando componentes.' },
+  { name: 'collapsed-content', desc: 'Burbuja de contenido flotante en vista mini tamaño `collapsed`.' }
 ];
 
 </script>
 
 <style scoped>
+.header-banner {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 1.5rem;
+}
+h1 {
+  font-size: 2.2rem;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+h2 {
+  font-size: 1.5rem;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+h3 {
+  font-size: 1.25rem;
+  color: #334155;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
 .description {
   font-size: 1.1rem;
-  color: var(--text-muted);
-  margin-bottom: 2rem;
-  max-width: 800px;
-}
-
-.showcase {
-  background-color: var(--bg-muted);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 3rem;
-}
-
-.controls {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  min-width: 300px;
-}
-
-.form-group {
-  margin-bottom: 1.25rem;
-}
-
-.form-group:last-child {
-  margin-bottom: 0;
-  display: flex;
-  justify-content: center;
-  margin-top: 1.5rem;
-}
-
-/* Custom header for the modal */
-.custom-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  width: 100%;
-}
-
-.custom-header h3 {
-  margin: 0;
-  font-size: 1.1rem;
-}
-
-.badge {
-  background-color: #10b981;
-  color: white;
-  font-size: 0.75rem;
-  padding: 0.1rem 0.5rem;
-  border-radius: 999px;
-  font-weight: 600;
-}
-
-/* Content Example */
-.content-example {
-  padding: 1rem;
-}
-
-.dummy-blocks {
-  margin-top: 1.5rem;
-}
-
-.dummy-block {
-  background-color: #f1f5f9;
-  border: 1px dashed #cbd5e1;
-  padding: 1rem;
-  margin-bottom: 0.75rem;
-  border-radius: 6px;
-  text-align: center;
   color: #64748b;
 }
 
-.code-block {
-  background: #1e293b;
-  color: #f8fafc;
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-  overflow-x: auto;
-}
-
-.code-block pre {
-  margin: 0;
-}
-
-.code-block code {
-  background: transparent;
-  color: inherit;
-  padding: 0;
-  font-family: 'Fira Code', monospace;
-  font-size: 0.9rem;
-}
 </style>

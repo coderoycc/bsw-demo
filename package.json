@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@coderoycc/bottom-sheet-wrappers": "file:../bottom-sheet-wrappers/coderoycc-bottom-sheet-wrappers-1.0.0.tgz",
+    "highlight.js": "^11.11.1",
     "vue": "^3.5.25"
   },
   "devDependencies": {
