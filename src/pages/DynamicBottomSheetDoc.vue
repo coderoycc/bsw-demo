@@ -79,6 +79,14 @@ import "@coderoycc/bottom-sheet-wrappers/dist/bottom-sheet-wrappers.css";'
           <ThemeCustomizationExample style="width: 100%;" />
         </template>
       </DocExample>
+
+      <h3>Apilamiento con zIndex</h3>
+      <p>El prop <code>zIndex</code> permite manejar el orden visual cuando varios panels están abiertos al mismo tiempo. El valor final efectivo es <code>9000 + zIndex</code>, lo que asegura que los sheets siempre estén por encima del contenido normal de la app. Asigna valores crecientes para definir cuál panel queda al frente.</p>
+      <DocExample :codeString="zIndexExampleCode">
+        <template #result>
+          <ZIndexExample />
+        </template>
+      </DocExample>
     </div>
 
   </div>
@@ -107,6 +115,9 @@ import complexSlotsExampleCode from '../examples/ComplexSlotsExample.vue?raw';
 
 import ThemeCustomizationExample from '../examples/ThemeCustomizationExample.vue';
 import themeExampleCodeRaw from '../examples/ThemeCustomizationExample.vue?raw';
+
+import ZIndexExample from '../examples/ZIndexExample.vue';
+import zIndexExampleCode from '../examples/ZIndexExample.vue?raw';
 
 
 // ======================== API TABLES DATA ========================
