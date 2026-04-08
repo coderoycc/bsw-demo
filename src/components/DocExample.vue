@@ -40,16 +40,18 @@ const activeTab = ref('result');
 
 <style scoped>
 .doc-example {
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-color, #e2e8f0);
   border-radius: 8px;
   margin-bottom: 2rem;
   overflow: hidden;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  transition: border-color 0.3s ease;
 }
 .example-tabs {
   display: flex;
-  background: #f8fafc;
-  border-bottom: 1px solid #e2e8f0;
+  background: var(--tab-bg, #f8fafc);
+  border-bottom: 1px solid var(--tab-border, #e2e8f0);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 .tab-btn {
   padding: 0.85rem 1.5rem;
@@ -58,23 +60,24 @@ const activeTab = ref('result');
   cursor: pointer;
   font-size: 0.95rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--tab-btn-color, #64748b);
   border-bottom: 2px solid transparent;
   transition: all 0.2s;
   display: flex;
   align-items: center;
 }
 .tab-btn:hover {
-  color: #334155;
-  background: #f1f5f9;
+  color: var(--tab-btn-hover-color, #334155);
+  background: var(--tab-btn-hover-bg, #f1f5f9);
 }
 .tab-btn.active {
-  color: #0f172a;
-  border-bottom-color: #3b82f6;
-  background: white;
+  color: var(--tab-btn-active-color, #0f172a);
+  border-bottom-color: var(--primary-color, #3b82f6);
+  background: var(--tab-btn-active-bg, white);
 }
 .tab-pane {
-  background: white;
+  background: var(--tab-pane-bg, white);
+  transition: background-color 0.3s ease;
 }
 .result-pane {
   padding: 2rem;

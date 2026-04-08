@@ -10,13 +10,10 @@
     <!-- ===== SECCIÓN DE USO ===== -->
     <div class="doc-section">
       <h2>Uso en el Proyecto</h2>
-      
+
       <h3>Instalación e Importación</h3>
-      <CodeHighlight 
-        code='import { DynamicBottomSheet } from "@coderoycc/bottom-sheet-wrappers";
-import "@coderoycc/bottom-sheet-wrappers/dist/bottom-sheet-wrappers.css";' 
-        language="javascript" 
-      />
+      <CodeHighlight code='import { DynamicBottomSheet } from "@coderoycc/bottom-sheet-wrappers";
+import "@coderoycc/bottom-sheet-wrappers/dist/bottom-sheet-wrappers.css";' language="javascript" />
     </div>
 
     <!-- ===== SECCIÓN DE API ===== -->
@@ -32,7 +29,8 @@ import "@coderoycc/bottom-sheet-wrappers/dist/bottom-sheet-wrappers.css";'
       <h2>Módulos y Ejemplos de Uso</h2>
 
       <h3>Uso Simple</h3>
-      <p>Un bottom sheet básico con solo el contenido y el comportamiento de cerrado predeterminado. Utiliza la altura configurada.</p>
+      <p>Un bottom sheet básico con solo el contenido y el comportamiento de cerrado predeterminado. Utiliza la altura
+        configurada.</p>
       <DocExample :codeString="simpleExampleCode">
         <template #result>
           <SimpleExample />
@@ -40,7 +38,8 @@ import "@coderoycc/bottom-sheet-wrappers/dist/bottom-sheet-wrappers.css";'
       </DocExample>
 
       <h3>Uso con Backdrop</h3>
-      <p>Habilita la aparición de una capa oscura en el fondo agregando la propiedad <code>show-backdrop</code>. Adicionalmente, <code>close-on-backdrop</code> permite cerrarlo al tocar fuera.</p>
+      <p>Habilita la aparición de una capa oscura en el fondo agregando la propiedad <code>show-backdrop</code>.
+        Adicionalmente, <code>close-on-backdrop</code> permite cerrarlo al tocar fuera.</p>
       <DocExample :codeString="backdropExampleCode">
         <template #result>
           <BackdropExample />
@@ -48,7 +47,9 @@ import "@coderoycc/bottom-sheet-wrappers/dist/bottom-sheet-wrappers.css";'
       </DocExample>
 
       <h3>Customización de Bordes y Colores (Local)</h3>
-      <p>Puedes sobreescribir las variables CSS pasándole una clase a componente. Las variables afectarán localmente a este sheet. Nota el uso de color de fondo rosado y bordes totalmente cuadrados.</p>
+      <p>Puedes sobreescribir las variables CSS pasándole una clase a componente. Las variables afectarán localmente a
+        este
+        sheet. Nota el uso de color de fondo rosado y bordes totalmente cuadrados.</p>
       <DocExample :codeString="customBorderExampleCode">
         <template #result>
           <CustomBorderExample />
@@ -64,24 +65,27 @@ import "@coderoycc/bottom-sheet-wrappers/dist/bottom-sheet-wrappers.css";'
       </DocExample>
 
       <h3>Slots Complejos (Header y Collapsed)</h3>
-      <p>Muestra una vista interactiva que permite iniciar el panel minimizado pero expandirlo revelando contenido oculto.</p>
+      <p>Muestra una vista interactiva que permite iniciar el panel minimizado pero expandirlo revelando contenido
+        oculto.</p>
       <DocExample :codeString="complexSlotsExampleCode">
         <template #result>
           <ComplexSlotsExample />
         </template>
       </DocExample>
-      
-      <h3>Tematización y Customización Global (Recomendado)</h3>
+
+      <!-- <h3>Tematización y Customización Global (Recomendado)</h3>
       <p>Dado que los Bottom Sheets se montan mediante <code>Teleport</code> al final del cuerpo de la app, inyectar clases de sistema global de temas a nivel de <code>&lt;body&gt;</code> es la manera más robusta de crear múltiples variaciones (redondeados, dark-mode general, combinaciones soft) escalables en tu aplicación completa.</p>
       <DocExample :codeString="themeExampleCodeRaw">
         <template #result>
-          <!-- Se envuelve con style width 100% para que ocupe todo el panel -->
           <ThemeCustomizationExample style="width: 100%;" />
         </template>
-      </DocExample>
+      </DocExample> -->
 
       <h3>Apilamiento con zIndex</h3>
-      <p>El prop <code>zIndex</code> permite manejar el orden visual cuando varios panels están abiertos al mismo tiempo. El valor final efectivo es <code>9000 + zIndex</code>, lo que asegura que los sheets siempre estén por encima del contenido normal de la app. Asigna valores crecientes para definir cuál panel queda al frente.</p>
+      <p>El prop <code>zIndex</code> permite manejar el orden visual cuando varios panels están abiertos al mismo
+        tiempo. El
+        valor final efectivo es <code>9000 + zIndex</code>, lo que asegura que los sheets siempre estén por encima del
+        contenido normal de la app. Asigna valores crecientes para definir cuál panel queda al frente.</p>
       <DocExample :codeString="zIndexExampleCode">
         <template #result>
           <ZIndexExample />
@@ -171,30 +175,33 @@ const slotsData = [
 <style scoped>
 .header-banner {
   margin-bottom: 2rem;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--border-color, #e2e8f0);
   padding-bottom: 1.5rem;
 }
+
 h1 {
   font-size: 2.2rem;
-  color: #0f172a;
+  color: var(--heading-h1, #0f172a);
   margin-bottom: 0.5rem;
 }
+
 h2 {
   font-size: 1.5rem;
-  color: #1e293b;
+  color: var(--heading-h2, #1e293b);
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid #e2e8f0;
+  border-bottom: 2px solid var(--heading-border, #e2e8f0);
 }
+
 h3 {
   font-size: 1.25rem;
-  color: #334155;
+  color: var(--heading-h3, #334155);
   margin-top: 2rem;
   margin-bottom: 0.75rem;
 }
+
 .description {
   font-size: 1.1rem;
-  color: #64748b;
+  color: var(--heading-description, #64748b);
 }
-
 </style>

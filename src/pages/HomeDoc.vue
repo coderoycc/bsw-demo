@@ -3,10 +3,10 @@
     <div class="hero-section">
       <h1>📱 Bottom Sheet Wrappers</h1>
       <p class="subtitle">
-        Una librería de Vue 3 flexible y poderosa diseñada específicamente para <b>dispositivos móviles</b> 
+        Una librería de Vue 3 flexible y poderosa diseñada específicamente para <b>dispositivos móviles</b>
         con soporte para gestos táctiles nativos y modos de visualización distintos.
       </p>
-      
+
       <div class="badges">
         <span class="badge badge-primary">Mobile-First</span>
         <span class="badge badge-success">Vue 3</span>
@@ -18,20 +18,22 @@
     <div class="doc-section row-2">
       <div class="card card-hover" @click="$emit('navigate', 'dynamic')">
         <h3>✨ DynamicBottomSheet</h3>
-        <p>Un panel redimensionable con soporte para estados (collapsed, half, full). Permite arrastre y comportamientos de mini-player.</p>
+        <p>Un panel redimensionable con soporte para estados (collapsed, half, full). Permite arrastre y comportamientos
+          de mini-player.</p>
         <div class="card-action">Ver Documentación ➔</div>
       </div>
-      
+
       <div class="card card-hover" @click="$emit('navigate', 'fixed')">
         <h3>📌 FixedBottomSheet</h3>
-        <p>Un panel de altura estática o que se ajusta automáticamente a su contenido. Perfecto para modales simples o menús fijos.</p>
+        <p>Un panel de altura estática o que se ajusta automáticamente a su contenido. Perfecto para modales simples o
+          menús fijos.</p>
         <div class="card-action">Ver Documentación ➔</div>
       </div>
     </div>
 
     <div class="doc-section">
       <h2>🚀 Inicio Rápido</h2>
-      
+
       <h3>1. Instalación</h3>
       <div class="code-block">
         <pre><code>npm install @coderoycc/bottom-sheet-wrappers</code></pre>
@@ -64,7 +66,7 @@ app.mount("#app");</code></pre>
     <div class="doc-section">
       <h2>🎨 Estilos y Temas</h2>
       <p>Puedes personalizar los estilos sobrescribiendo las variables CSS o apuntando directamente a las clases.</p>
-      
+
       <h3>Variables CSS y Clases</h3>
       <p>Por ejemplo, para cambiar la opacidad del fondo (backdrop) o el color de la manija de arrastre:</p>
       <div class="code-block">
@@ -116,12 +118,12 @@ defineEmits<{
   font-size: 2.5rem;
   letter-spacing: -0.05em;
   margin-bottom: 1rem;
-  color: #0f172a;
+  color: var(--heading-h1, #0f172a);
 }
 
 .subtitle {
   font-size: 1.25rem;
-  color: #475569;
+  color: var(--heading-description, #475569);
   max-width: 700px;
   margin: 0 auto 2rem auto;
   line-height: 1.6;
@@ -142,10 +144,22 @@ defineEmits<{
   color: white;
 }
 
-.badge-primary { background-color: #3b82f6; }
-.badge-success { background-color: #10b981; }
-.badge-warning { background-color: #f59e0b; color: #fff; }
-.badge-info { background-color: #0ea5e9; }
+.badge-primary {
+  background-color: #3b82f6;
+}
+
+.badge-success {
+  background-color: #10b981;
+}
+
+.badge-warning {
+  background-color: #f59e0b;
+  color: #fff;
+}
+
+.badge-info {
+  background-color: #0ea5e9;
+}
 
 .row-2 {
   display: grid;
@@ -155,7 +169,7 @@ defineEmits<{
 }
 
 .card {
-  background: white;
+  background: var(--doc-card-bg, white);
   border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 2rem;
@@ -166,20 +180,24 @@ defineEmits<{
   flex-direction: column;
 }
 
+html.dark .card {
+  background: var(--bg-muted);
+}
+
 .card-hover:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  border-color: #cbd5e1;
+  border-color: var(--primary-color);
 }
 
 .card h3 {
   font-size: 1.4rem;
   margin-bottom: 1rem;
-  color: #1e293b;
+  color: var(--heading-h3, #1e293b);
 }
 
 .card p {
-  color: #64748b;
+  color: var(--text-muted, #64748b);
   flex: 1;
 }
 
