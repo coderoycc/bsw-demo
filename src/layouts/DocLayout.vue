@@ -4,8 +4,8 @@
     <header class="toolbar">
       <div class="toolbar-content">
         <div class="toolbar-brand" @click="setTab('home')">
-          <span class="brand-icon">📱</span>
-          <h2>BSW</h2>
+          <span class="brand-short">BSW</span>
+          <span class="brand-full">Bottom Sheet Wrappers</span>
         </div>
         <nav class="toolbar-nav">
           <ul>
@@ -20,6 +20,8 @@
             </li>
           </ul>
         </nav>
+        <!-- Dark Mode Toggle -->
+        <DarkModeToggle />
       </div>
     </header>
 
@@ -34,6 +36,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import DarkModeToggle from '../components/DarkModeToggle.vue';
+import { useDarkMode } from '../composables/useDarkMode';
 
 const currentTab = ref('home');
 
@@ -41,6 +45,9 @@ const setTab = (tab: string) => {
   currentTab.value = tab;
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
+
+// Inicializar el dark mode globalmente desde el layout raíz
+useDarkMode();
 </script>
 
 <style scoped>
@@ -48,15 +55,18 @@ const setTab = (tab: string) => {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: var(--bg-main);
+  transition: background-color 0.3s ease;
 }
 
 .toolbar {
-  background-color: white;
-  border-bottom: 1px solid var(--border-color);
+  background-color: var(--toolbar-bg);
+  border-bottom: 1px solid var(--toolbar-border);
   position: sticky;
   top: 0;
   z-index: 50;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  box-shadow: var(--toolbar-shadow);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .toolbar-content {
@@ -67,6 +77,7 @@ const setTab = (tab: string) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
 }
 
 .toolbar-brand {
@@ -76,16 +87,39 @@ const setTab = (tab: string) => {
   cursor: pointer;
 }
 
-.toolbar-brand h2 {
+/* Estilos compartidos del texto de marca */
+.brand-short,
+.brand-full {
   margin: 0;
-  font-size: 1.25rem;
-  color: var(--text-main);
   font-weight: 700;
   letter-spacing: -0.025em;
+  color: var(--primary-color);
+  text-shadow: 0 0 2px var(--primary-color);
+  transition: color 0.3s ease;
+  white-space: nowrap;
 }
 
-.brand-icon {
-  font-size: 1.5rem;
+/* Versión corta: solo en mobile */
+.brand-short {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  text-shadow: 0 0 2px var(--primary-color);
+  display: none;
+  /* oculto por defecto (desktop) */
+}
+
+/* Versión larga: solo en desktop */
+.brand-full {
+  font-size: 1.25rem;
+  display: inline;
+  /* visible por defecto (desktop) */
+}
+
+.toolbar-nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .toolbar-nav ul {
@@ -105,7 +139,8 @@ const setTab = (tab: string) => {
   transition: all 0.2s;
 }
 
-.toolbar-nav a:hover, .toolbar-nav a.active {
+.toolbar-nav a:hover,
+.toolbar-nav a.active {
   color: var(--primary-color);
   text-decoration: none;
 }
@@ -116,7 +151,8 @@ const setTab = (tab: string) => {
 
 .main-content {
   flex: 1;
-  background-color: #fafafa;
+  background-color: var(--content-bg);
+  transition: background-color 0.3s ease;
 }
 
 .content-container {
@@ -129,9 +165,18 @@ const setTab = (tab: string) => {
   .toolbar-content {
     padding: 0 1rem;
   }
-  
-  .toolbar-nav gap {
+
+  .toolbar-nav ul {
     gap: 1rem;
+  }
+
+  /* En mobile: mostrar la versión corta, ocultar la larga */
+  .brand-short {
+    display: inline;
+  }
+
+  .brand-full {
+    display: none;
   }
 }
 </style>

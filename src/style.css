@@ -1,106 +1,280 @@
+/* =============================================
+   VARIABLES: MODO CLARO (por defecto)
+   ============================================= */
 :root {
-  --primary-color: #3b82f6;
-  --primary-hover: #2563eb;
-  --text-main: #1f2937;
-  --text-muted: #6b7280;
-  --bg-main: #ffffff;
-  --bg-muted: #f3f4f6;
-  --border-color: #e5e7eb;
-  --sidebar-w: 260px;
+	--primary-color: #3b82f6;
+	--primary-hover: #2563eb;
+	--text-main: #1f2937;
+	--text-muted: #6b7280;
+	--bg-main: #ffffff;
+	--bg-muted: #f3f4f6;
+	--border-color: #e5e7eb;
+	--sidebar-w: 260px;
+
+	/* Componentes de layout */
+	--toolbar-bg: #ffffff;
+	--toolbar-border: #e5e7eb;
+	--toolbar-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+	--content-bg: #fafafa;
+
+	/* Doc components */
+	--doc-card-bg: #ffffff;
+	--doc-card-border: #e5e7eb;
+
+	/* Tabs en DocExample */
+	--tab-bg: #f8fafc;
+	--tab-border: #e2e8f0;
+	--tab-btn-color: #64748b;
+	--tab-btn-hover-bg: #f1f5f9;
+	--tab-btn-hover-color: #334155;
+	--tab-btn-active-color: #0f172a;
+	--tab-btn-active-bg: #ffffff;
+	--tab-pane-bg: #ffffff;
+
+	/* Callout info */
+	--callout-bg: #f0f9ff;
+	--callout-border: #bae6fd;
+	--callout-border-left: #0ea5e9;
+	--callout-color: #0c4a6e;
+	--callout-code-bg: #e0f2fe;
+	--callout-code-color: #0369a1;
+
+	/* ApiTable */
+	--table-header-bg: #f8fafc;
+	--table-header-color: #475569;
+	--table-row-bg: #ffffff;
+	--table-row-alt-bg: #f8fafc;
+	--table-row-hover-bg: #f1f5f9;
+	--table-border: #e2e8f0;
+	--table-code-color: #db2777;
+	--table-code-bg: #fdf2f8;
+
+	/* Heading colors */
+	--heading-h1: #0f172a;
+	--heading-h2: #1e293b;
+	--heading-h3: #334155;
+	--heading-description: #64748b;
+	--heading-border: #e2e8f0;
+
+	/* Código inline */
+	--code-bg: #f3f4f6;
+	--code-color: #db2777;
+
+	/* Form */
+	--form-control-bg: #ffffff;
+	--form-control-border: #e5e7eb;
+	--form-control-color: #1f2937;
+
+	/* Transición suave */
+	color-scheme: light;
 }
 
+/* =============================================
+   VARIABLES: MODO OSCURO
+   ============================================= */
+html.dark {
+	--primary-color: #60a5fa;
+	--primary-hover: #3b82f6;
+	--text-main: #f1f5f9;
+	--text-muted: #94a3b8;
+	--bg-main: #0f172a;
+	--bg-muted: #1e293b;
+	--border-color: #334155;
+
+	/* Componentes de layout */
+	--toolbar-bg: #0f172a;
+	--toolbar-border: #1e293b;
+	--toolbar-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+	--content-bg: #0a0f1e;
+
+	/* Doc components */
+	--doc-card-bg: #1e293b;
+	--doc-card-border: #334155;
+
+	/* Tabs en DocExample */
+	--tab-bg: #1e293b;
+	--tab-border: #334155;
+	--tab-btn-color: #94a3b8;
+	--tab-btn-hover-bg: #0f172a;
+	--tab-btn-hover-color: #cbd5e1;
+	--tab-btn-active-color: #f1f5f9;
+	--tab-btn-active-bg: #0f172a;
+	--tab-pane-bg: #0f172a;
+
+	/* Callout info */
+	--callout-bg: #082f49;
+	--callout-border: #0369a1;
+	--callout-border-left: #38bdf8;
+	--callout-color: #bae6fd;
+	--callout-code-bg: #0c4a6e;
+	--callout-code-color: #7dd3fc;
+
+	/* ApiTable */
+	--table-header-bg: #1e293b;
+	--table-header-color: #94a3b8;
+	--table-row-bg: #0f172a;
+	--table-row-alt-bg: #1e293b;
+	--table-row-hover-bg: #1a2744;
+	--table-border: #334155;
+	--table-code-color: #f9a8d4;
+	--table-code-bg: #3b0764;
+
+	/* Heading colors */
+	--heading-h1: #f1f5f9;
+	--heading-h2: #e2e8f0;
+	--heading-h3: #cbd5e1;
+	--heading-description: #94a3b8;
+	--heading-border: #334155;
+
+	/* Código inline */
+	--code-bg: #1e293b;
+	--code-color: #f9a8d4;
+
+	/* Form */
+	--form-control-bg: #1e293b;
+	--form-control-border: #334155;
+	--form-control-color: #f1f5f9;
+
+	color-scheme: dark;
+}
+
+/* =============================================
+   RESET & BASE
+   ============================================= */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease;
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  color: var(--text-main);
-  background-color: var(--bg-main);
-  line-height: 1.6;
+	font-family:
+		"Inter",
+		-apple-system,
+		BlinkMacSystemFont,
+		"Segoe UI",
+		Roboto,
+		Helvetica,
+		Arial,
+		sans-serif;
+	color: var(--text-main);
+	background-color: var(--bg-main);
+	line-height: 1.6;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
-  color: var(--text-main);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: 600;
+	line-height: 1.2;
+	margin-bottom: 0.5rem;
+	color: var(--text-main);
 }
 
 p {
-  margin-bottom: 1rem;
+	margin-bottom: 1rem;
+	color: var(--heading-description, #64748b);
+	transition: color 0.3s ease;
 }
 
 a {
-  color: var(--primary-color);
-  text-decoration: none;
+	color: var(--primary-color);
+	text-decoration: none;
 }
 
 a:hover {
-  text-decoration: underline;
+	text-decoration: underline;
 }
 
 code {
-  font-family: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  background-color: var(--bg-muted);
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
-  font-size: 0.875em;
-  color: #db2777;
+	font-family:
+		"Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+		monospace;
+	background-color: var(--code-bg);
+	padding: 0.2rem 0.4rem;
+	border-radius: 4px;
+	font-size: 0.875em;
+	color: var(--code-color);
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease;
 }
 
+/* =============================================
+   UTILIDADES GLOBALES REUTILIZABLES
+   ============================================= */
 .doc-section {
-  margin-bottom: 3rem;
+	margin-bottom: 3rem;
 }
 
 .doc-section h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--border-color);
+	font-size: 1.8rem;
+	margin-bottom: 1.5rem;
+	padding-bottom: 0.5rem;
+	border-bottom: 1px solid var(--border-color);
 }
 
 .doc-card {
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1.5rem;
-  background: #fff;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+	border: 1px solid var(--doc-card-border);
+	border-radius: 8px;
+	padding: 1.5rem;
+	background: var(--doc-card-bg);
+	margin-bottom: 1.5rem;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+	transition:
+		background 0.3s ease,
+		border-color 0.3s ease;
 }
 
 .btn-primary {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  font-size: 0.95rem;
+	background-color: var(--primary-color);
+	color: white;
+	border: none;
+	padding: 0.6rem 1.2rem;
+	border-radius: 6px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: background-color 0.2s;
+	font-size: 0.95rem;
 }
 
 .btn-primary:hover {
-  background-color: var(--primary-hover);
+	background-color: var(--primary-hover);
 }
 
 .form-group {
-  margin-bottom: 1rem;
+	margin-bottom: 1rem;
 }
+
 .form-group label {
-  display: block;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
+	display: block;
+	font-weight: 500;
+	margin-bottom: 0.5rem;
+	font-size: 0.9rem;
 }
 
 .form-control {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  font-family: inherit;
+	width: 100%;
+	padding: 0.5rem;
+	border: 1px solid var(--form-control-border);
+	border-radius: 6px;
+	font-family: inherit;
+	background: var(--form-control-bg);
+	color: var(--form-control-color);
+	transition:
+		background 0.3s ease,
+		border-color 0.3s ease,
+		color 0.3s ease;
 }

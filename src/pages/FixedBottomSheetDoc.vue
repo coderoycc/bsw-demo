@@ -1,121 +1,144 @@
 <template>
   <div class="doc-page">
-    <h1>Fixed Bottom Sheet</h1>
-    <p class="description">
-      Un panel de altura estática o que se ajusta automáticamente a su contenido. Perfecto para modales simples, menús fijos o vistas donde no se necesita el redimensionamiento del usuario.
-    </p>
-
-    <div class="doc-section">
-      <h2>🛠 Uso</h2>
-      
-      <h3>Cómo Importar</h3>
-      <div class="code-block">
-        <pre><code>import { FixedBottomSheet } from "@coderoycc/bottom-sheet-wrappers";
-import "@coderoycc/bottom-sheet-wrappers/dist/bottom-sheet-wrappers.css";</code></pre>
-      </div>
-
-      <h3>Simple</h3>
-      <p>
-        El componente tiene dos comportamientos basados en si pasas la prop <code>height</code> o no:
-        <ul>
-          <li><strong>Altura estática (Fixed Height):</strong> Se define un height estricto. (Ej. <code>height="50dvh"</code>).</li>
-          <li><strong>Ajuste automático (Auto-fit):</strong> Si omites <code>height</code>, el sheet tomará la altura natural del contenido interno.</li>
-        </ul>
+    <div class="header-banner">
+      <h1>Fixed Bottom Sheet</h1>
+      <p class="description">
+        Un panel inferior que permanece <strong>fijo</strong> en pantalla, adaptándose al tamaño del contenido o a una
+        altura definida. No puede ser redimensionado por el usuario mediante scroll: su tamaño es estático y predecible.
       </p>
-
-      <h3>Código</h3>
-      <div class="code-block">
-        <pre><code>&lt;script setup&gt;
-import { ref } from "vue";
-import { FixedBottomSheet } from "@coderoycc/bottom-sheet-wrappers";
-
-const isOpen = ref(false);
-&lt;/script&gt;
-
-&lt;template&gt;
-  &lt;FixedBottomSheet v-model="isOpen" title="Mi Panel Fijo" height="50dvh"&gt;
-    &lt;p&gt;Contenido de altura fija.&lt;/p&gt;
-  &lt;/FixedBottomSheet&gt;
-&lt;/template&gt;</code></pre>
-      </div>
     </div>
 
-    <!-- Playground -->
+    <!-- ===== SECCIÓN DE USO ===== -->
     <div class="doc-section">
-      <h2>💡 Ejemplo de Usos</h2>
-      <div class="doc-card showcase">
-        <div class="controls">
-          <div class="form-group">
-            <label>Tipo de Altura (Modo)</label>
-            <select v-model="heightMode" class="form-control">
-              <option value="auto">Auto-Ajustable (Auto-fit)</option>
-              <option value="fixed">Fijo (50dvh)</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Mostrar Backdrop</label>
-            <input type="checkbox" v-model="showBackdrop" />
-          </div>
-          <div class="form-group" style="margin-top: 1.5rem; text-align: center;">
-            <button class="btn-primary" @click="isOpen = true">Abrir Fixed Sheet</button>
-          </div>
+      <h2>Uso en el Proyecto</h2>
+
+      <h3>Instalación e Importación</h3>
+      <CodeHighlight code='import { FixedBottomSheet } from "@coderoycc/bottom-sheet-wrappers";
+import "@coderoycc/bottom-sheet-wrappers/dist/bottom-sheet-wrappers.css";' language="javascript" />
+
+      <div class="info-callout">
+        <span class="callout-icon">📌</span>
+        <div>
+          <strong>Diferencia clave con el modo Dynamic:</strong> el panel Fixed <em>no se puede redimensionar ni cerrar
+            mediante gestos o swipe</em>. Su tamaño es determinado por el prop <code>height</code> o se ajusta
+          automáticamente al contenido, pero permanece fijo. Para cerrarlo, <strong>es obligatorio incluir un botón de
+            acción explícito</strong> dentro del contenido del panel que setee el <code>v-model</code> a
+          <code>false</code>.
         </div>
       </div>
     </div>
 
+    <!-- ===== SECCIÓN DE API ===== -->
     <div class="doc-section">
-      <h2>📚 API</h2>
-      
-      <!-- Props -->
+      <h2>API de Propiedades</h2>
       <ApiTable title="Props" :columns="propsColumns" :rows="propsData" />
-
-      <!-- Events -->
       <ApiTable title="Eventos" :columns="eventsColumns" :rows="eventsData" />
-
-      <!-- Slots -->
       <ApiTable title="Slots" :columns="slotsColumns" :rows="slotsData" />
     </div>
 
-    <!-- Modal FixedBottomSheet -->
-    <fixed-bottom-sheet
-      v-model="isOpen"
-      :show-backdrop="showBackdrop"
-      :height="computedHeight"
-      :title="heightMode === 'auto' ? 'Auto-Adjust Panel' : 'Fixed Panel'"
-    >
-      <div class="content-example">
-        <p v-if="heightMode === 'auto'">
-          Este panel toma automáticamente la altura de mi contenido. Como soy pequeño, ¡el panel también lo es!
-        </p>
-        <p v-else>
-          Este panel tiene una altura fija de 50%. Aunque el contenido sea poco, el panel respetará su límite.
-        </p>
+    <!-- ===== SECCIÓN DE EJEMPLOS ===== -->
+    <div class="doc-section">
+      <h2>Módulos y Ejemplos de Uso</h2>
 
-        <div style="margin-top: 1rem;" v-if="heightMode === 'auto'">
-          <div class="dummy-block">Elemento 1</div>
-          <div class="dummy-block">Elemento 2</div>
-        </div>
-      </div>
-    </fixed-bottom-sheet>
+      <h3>Uso Simple (Auto-Ajuste al Contenido)</h3>
+      <p>Cuando no se pasa el prop <code>height</code>, el panel se ajusta automáticamente a la altura natural del
+        contenido interno. Es perfecto para modales con información resumida o snackbars de acción.</p>
+      <DocExample :codeString="simpleExampleCode">
+        <template #result>
+          <FixedSimpleExample />
+        </template>
+      </DocExample>
+
+      <h3>Con Altura Fija y Backdrop</h3>
+      <p>Usando el prop <code>height</code> se establece una altura estricta. Aunque el contenido sea más pequeño o
+        grande, el
+        panel respetará ese límite. Habilitar <code>show-backdrop</code> añade la capa oscura de fondo.</p>
+      <DocExample :codeString="heightExampleCode">
+        <template #result>
+          <FixedHeightExample />
+        </template>
+      </DocExample>
+
+      <h3>Customización de Bordes y Colores (Local)</h3>
+      <p>Al igual que el modo Dynamic, puedes sobreescribir las variables CSS pasando una clase al componente. Las
+        variables
+        afectarán localmente a este panel sin tocar otros. Nota el fondo morado y esquinas cuadradas.</p>
+      <DocExample :codeString="customBorderExampleCode">
+        <template #result>
+          <FixedCustomBorderExample />
+        </template>
+      </DocExample>
+
+      <h3>Uso en Modo Oscuro Integrado</h3>
+      <p>Inyectando variables CSS oscuras directamente al componente mediante una clase global (sin
+        <code>scoped</code>), el
+        panel toma el tema oscuro localmente. El resto de la app no se ve afectado.
+      </p>
+      <DocExample :codeString="darkModeExampleCode">
+        <template #result>
+          <FixedDarkModeExample />
+        </template>
+      </DocExample>
+
+      <h3>Slot Header Personalizado</h3>
+      <p>El slot <code>header</code> reemplaza completamente la zona de encabezado nativa. Úsalo para agregar acciones
+        contextuales, badges, iconos o cualquier layout que necesite tu interfaz.</p>
+      <DocExample :codeString="customHeaderExampleCode">
+        <template #result>
+          <FixedCustomHeaderExample />
+        </template>
+      </DocExample>
+
+      <!-- <h3>Tematización y Customización Global (Recomendado)</h3> <p>Como los paneles se montan mediante <code>Teleport</code> al final del cuerpo de la app, inyectar clases de tema a nivel de <code>&lt;body&gt;</code> es la manera más robusta de crear múltiples variaciones escalables para toda la aplicación.</p>
+      <DocExample :codeString="themeExampleCode">
+        <template #result>
+          <FixedThemeExample style="width: 100%;" />
+        </template>
+      </DocExample> -->
+
+      <h3>Apilamiento con zIndex</h3>
+      <p>El prop <code>zIndex</code> controla el orden de apilamiento cuando varios paneles Fixed están abiertos
+        simultáneamente. El valor efectivo es <code>9000 + zIndex</code>. Cada panel puede abrirse desde dentro de otro,
+        y el
+        de mayor <code>zIndex</code> siempre quedará al frente. Dado que el modo Fixed no se puede redimensionar, este
+        patrón
+        es ideal para asistentes paso a paso o confirmaciones modales en cascada.</p>
+      <DocExample :codeString="zIndexExampleCode">
+        <template #result>
+          <FixedZIndexExample />
+        </template>
+      </DocExample>
+    </div>
 
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import { FixedBottomSheet } from '@coderoycc/bottom-sheet-wrappers';
 import ApiTable from '../components/ApiTable.vue';
+import DocExample from '../components/DocExample.vue';
+import CodeHighlight from '../components/CodeHighlight.vue';
 
-// Estado
-const isOpen = ref(false);
-const showBackdrop = ref(true);
-const heightMode = ref('auto');
+// ===== IMPORTACIÓN DE COMPONENTES DE EJEMPLO AISLADOS =====
+import FixedSimpleExample from '../examples/fixed/FixedSimpleExample.vue';
+import simpleExampleCode from '../examples/fixed/FixedSimpleExample.vue?raw';
 
-const computedHeight = computed(() => {
-  return heightMode.value === 'fixed' ? '50dvh' : undefined;
-});
+import FixedHeightExample from '../examples/fixed/FixedHeightExample.vue';
+import heightExampleCode from '../examples/fixed/FixedHeightExample.vue?raw';
 
-// API config
+import FixedCustomBorderExample from '../examples/fixed/FixedCustomBorderExample.vue';
+import customBorderExampleCode from '../examples/fixed/FixedCustomBorderExample.vue?raw';
+
+import FixedDarkModeExample from '../examples/fixed/FixedDarkModeExample.vue';
+import darkModeExampleCode from '../examples/fixed/FixedDarkModeExample.vue?raw';
+
+import FixedCustomHeaderExample from '../examples/fixed/FixedCustomHeaderExample.vue';
+import customHeaderExampleCode from '../examples/fixed/FixedCustomHeaderExample.vue?raw';
+
+import FixedZIndexExample from '../examples/fixed/FixedZIndexExample.vue';
+import zIndexExampleCode from '../examples/fixed/FixedZIndexExample.vue?raw';
+
+
+// ======================== API TABLES DATA ========================
 const propsColumns = [
   { key: 'name', label: 'Nombre', isCode: true },
   { key: 'type', label: 'Tipo', isCode: true },
@@ -124,12 +147,12 @@ const propsColumns = [
 ];
 
 const propsData = [
-  { name: 'modelValue (v-model)', type: 'boolean', default: 'false', desc: 'Controla la visibilidad del componente.' },
-  { name: 'title', type: 'string', default: "''", desc: 'Título básico que se muestra en el header.' },
-  { name: 'height', type: 'string | number', default: 'undefined', desc: 'Altura forzada del panel. Si se omite, se intentará ajustar al tamaño de su contenido.' },
-  { name: 'showBackdrop', type: 'boolean', default: 'false', desc: 'Muestra un fondo oscuro detrás del panel.' },
-  { name: 'zIndex', type: 'number', default: '0', desc: 'Base del z-index sumada a 9000.' },
-  { name: 'props', type: 'Record<string, any>', default: '{}', desc: 'Objeto adicional para vincular payloads extra si es necesario.' }
+  { name: 'modelValue (v-model)', type: 'boolean', default: 'false', desc: 'Controla la visibilidad del panel fijo.' },
+  { name: 'title', type: 'string', default: "''", desc: 'Título básico que se imprime en el header nativo.' },
+  { name: 'height', type: 'string | number', default: 'undefined', desc: 'Altura forzada del panel. Si se omite, el panel se ajusta automáticamente a la altura del contenido.' },
+  { name: 'showBackdrop', type: 'boolean', default: 'false', desc: 'Muestra un overlay oscuro semitransparente detrás del panel.' },
+  { name: 'zIndex', type: 'number', default: '0', desc: 'Índice de elevación (se suma a 9000 como base).' },
+  { name: 'props', type: 'Record<string, any>', default: '{}', desc: 'Objeto adicional para vincular payloads extra al componente si es necesario.' }
 ];
 
 const eventsColumns = [
@@ -139,10 +162,10 @@ const eventsColumns = [
 ];
 
 const eventsData = [
-  { name: 'update:modelValue', params: 'value: boolean', desc: 'Emitido cuando cambia la visibilidad.' },
-  { name: 'opened', params: '-', desc: 'Emitido cuando el panel ha sido cargado.' },
-  { name: 'closed', params: '-', desc: 'Emitido cuando el panel finaliza de ser borrado de la pantalla.' },
-  { name: 'before-close', params: '-', desc: 'Emitido justo antes de iniciar la secuencia de cierre.' }
+  { name: 'update:modelValue', params: 'value: boolean', desc: 'Sincronización bidireccional del estado de visibilidad.' },
+  { name: 'opened', params: '-', desc: 'Se dispara cuando el panel ha terminado de aparecer en pantalla.' },
+  { name: 'closed', params: '-', desc: 'Se dispara cuando el panel ha terminado de ocultarse y es removido del DOM.' },
+  { name: 'before-close', params: '-', desc: 'Se emite justo antes de iniciar la animación de cierre.' }
 ];
 
 const slotsColumns = [
@@ -151,67 +174,70 @@ const slotsColumns = [
 ];
 
 const slotsData = [
-  { name: 'default', desc: 'Contenido dinámico en el área principal de lectura.' },
-  { name: 'header', desc: 'Reemplaza la porción superior (incluyendo el título). Se mantiene el handler de cierre.' }
+  { name: 'default', desc: 'Pinta el cuerpo completo del panel sin control del header.' },
+  { name: 'header', desc: 'Reemplaza completamente el área del encabezado nativo, permitiendo layouts completamente personalizados.' }
 ];
 </script>
 
 <style scoped>
+.header-banner {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color, #e2e8f0);
+  padding-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: 2.2rem;
+  color: var(--heading-h1, #0f172a);
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: var(--heading-h2, #1e293b);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--heading-border, #e2e8f0);
+}
+
+h3 {
+  font-size: 1.25rem;
+  color: var(--heading-h3, #334155);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
 .description {
   font-size: 1.1rem;
-  color: var(--text-muted);
-  margin-bottom: 2rem;
-  max-width: 800px;
+  color: var(--heading-description, #64748b);
 }
 
-.code-block {
-  background: #1e293b;
-  color: #f8fafc;
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-  overflow-x: auto;
-}
-
-.code-block pre {
-  margin: 0;
-}
-
-.code-block code {
-  background: transparent;
-  color: inherit;
-  padding: 0;
-  font-family: 'Fira Code', monospace;
-  font-size: 0.9rem;
-}
-
-.showcase {
-  background-color: var(--bg-muted);
+.info-callout {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 3rem;
-}
-
-.controls {
-  background: white;
-  padding: 1.5rem;
+  gap: 0.75rem;
+  align-items: flex-start;
+  background: var(--callout-bg, #f0f9ff);
+  border: 1px solid var(--callout-border, #bae6fd);
+  border-left: 4px solid var(--callout-border-left, #0ea5e9);
   border-radius: 8px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  min-width: 300px;
+  padding: 1rem 1.25rem;
+  margin-top: 1.25rem;
+  font-size: 0.95rem;
+  color: var(--callout-color, #0c4a6e);
+  line-height: 1.6;
 }
 
-.dummy-block {
-  background-color: #f1f5f9;
-  border: 1px dashed #cbd5e1;
-  padding: 0.75rem;
-  margin-bottom: 0.5rem;
-  border-radius: 6px;
-  text-align: center;
-  color: #64748b;
+.callout-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 1px;
 }
 
-.content-example {
-  padding: 1.5rem;
+.info-callout code {
+  background: var(--callout-code-bg, #e0f2fe);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: var(--callout-code-color, #0369a1);
 }
 </style>
