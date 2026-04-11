@@ -18,15 +18,14 @@
     <div class="doc-section row-2">
       <div class="card card-hover" @click="$emit('navigate', 'dynamic')">
         <h3>✨ DynamicBottomSheet</h3>
-        <p>Un panel redimensionable con soporte para estados (collapsed, half, full). Permite arrastre y comportamientos
-          de mini-player.</p>
+        <p>Un panel redimensionable y colapsable, ideal para contenido dinámico que requiere interacción
+          táctil fluida.</p>
         <div class="card-action">Ver Documentación ➔</div>
       </div>
 
       <div class="card card-hover" @click="$emit('navigate', 'fixed')">
         <h3>📌 FixedBottomSheet</h3>
-        <p>Un panel de altura estática o que se ajusta automáticamente a su contenido. Perfecto para modales simples o
-          menús fijos.</p>
+        <p>Un panel de altura estática o que se ajusta automáticamente a su contenido.</p>
         <div class="card-action">Ver Documentación ➔</div>
       </div>
     </div>
@@ -40,25 +39,23 @@
       </div>
 
       <h3>2. Registro e Importación</h3>
-      <p>Puedes importar y usar los componentes directamente en tu archivo <code>.vue</code>:</p>
+      <p>Después de instalar solo necesitas importar la hoja de estilos y los componentes que deseas usar. Puedes importar y usar los componentes directamente en tu archivo <code>.vue</code>:</p>
       <div class="code-block">
         <pre><code>&lt;script setup&gt;
 import { ref } from "vue";
 import { DynamicBottomSheet } from "@coderoycc/bottom-sheet-wrappers";
-import "@coderoycc/bottom-sheet-wrappers/dist/bottom-sheet-wrappers.css";
+import "@coderoycc/bottom-sheet-wrappers/style.css";
 
 const isOpen = ref(false);
 &lt;/script&gt;</code></pre>
       </div>
-      <p>O registrarlo globalmente en <code>main.ts</code>:</p>
+      <p>O puedes importar la hoja de estilos en <code>main.ts</code> para que esté disponible globalmente:</p>
       <div class="code-block">
         <pre><code>import { createApp } from "vue";
 import App from "./App.vue";
-import BottomSheetPlugin from "@coderoycc/bottom-sheet-wrappers";
-import "@coderoycc/bottom-sheet-wrappers/dist/bottom-sheet-wrappers.css";
+import "@coderoycc/bottom-sheet-wrappers/style.css";
 
 const app = createApp(App);
-app.use(BottomSheetPlugin);
 app.mount("#app");</code></pre>
       </div>
     </div>
