@@ -3,20 +3,20 @@
     <!-- Top Toolbar -->
     <header class="toolbar">
       <div class="toolbar-content">
-        <div class="toolbar-brand" @click="setTab('home')">
+        <RouterLink class="toolbar-brand" to="/">
           <span class="brand-short">BSW</span>
           <span class="brand-full">Bottom Sheet Wrappers</span>
-        </div>
+        </RouterLink>
         <nav class="toolbar-nav">
           <ul>
             <li>
-              <a href="#" :class="{ active: currentTab === 'home' }" @click.prevent="setTab('home')">Inicio</a>
+              <RouterLink to="/" exact-active-class="active">Inicio</RouterLink>
             </li>
             <li>
-              <a href="#" :class="{ active: currentTab === 'dynamic' }" @click.prevent="setTab('dynamic')">Dynamic</a>
+              <RouterLink to="/dynamic" active-class="active">Dynamic</RouterLink>
             </li>
             <li>
-              <a href="#" :class="{ active: currentTab === 'fixed' }" @click.prevent="setTab('fixed')">Fixed</a>
+              <RouterLink to="/fixed" active-class="active">Fixed</RouterLink>
             </li>
           </ul>
         </nav>
@@ -28,23 +28,15 @@
     <!-- Main Content -->
     <main class="main-content">
       <div class="content-container">
-        <slot :currentTab="currentTab" :setTab="setTab"></slot>
+        <slot></slot>
       </div>
     </main>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import DarkModeToggle from '../components/DarkModeToggle.vue';
 import { useDarkMode } from '../composables/useDarkMode';
-
-const currentTab = ref('home');
-
-const setTab = (tab: string) => {
-  currentTab.value = tab;
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-};
 
 // Inicializar el dark mode globalmente desde el layout raíz
 useDarkMode();
@@ -85,6 +77,7 @@ useDarkMode();
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
+  text-decoration: none;
 }
 
 /* Estilos compartidos del texto de marca */

@@ -117,8 +117,7 @@ import darkModeExampleCode from '../examples/DarkModeExample.vue?raw';
 import ComplexSlotsExample from '../examples/ComplexSlotsExample.vue';
 import complexSlotsExampleCode from '../examples/ComplexSlotsExample.vue?raw';
 
-import ThemeCustomizationExample from '../examples/ThemeCustomizationExample.vue';
-import themeExampleCodeRaw from '../examples/ThemeCustomizationExample.vue?raw';
+// ThemeCustomizationExample (pendiente de activar - ver template comentado)
 
 import ZIndexExample from '../examples/ZIndexExample.vue';
 import zIndexExampleCode from '../examples/ZIndexExample.vue?raw';

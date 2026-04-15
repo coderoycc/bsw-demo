@@ -16,18 +16,18 @@
     </div>
 
     <div class="doc-section row-2">
-      <div class="card card-hover" @click="$emit('navigate', 'dynamic')">
+      <RouterLink class="card card-hover" to="/dynamic">
         <h3>✨ DynamicBottomSheet</h3>
         <p>Un panel redimensionable y colapsable, ideal para contenido dinámico que requiere interacción
           táctil fluida.</p>
         <div class="card-action">Ver Documentación ➔</div>
-      </div>
+      </RouterLink>
 
-      <div class="card card-hover" @click="$emit('navigate', 'fixed')">
+      <RouterLink class="card card-hover" to="/fixed">
         <h3>📌 FixedBottomSheet</h3>
         <p>Un panel de altura estática o que se ajusta automáticamente a su contenido.</p>
         <div class="card-action">Ver Documentación ➔</div>
-      </div>
+      </RouterLink>
     </div>
 
     <div class="doc-section">
@@ -98,9 +98,6 @@ app.mount("#app");</code></pre>
 </template>
 
 <script setup lang="ts">
-defineEmits<{
-  (e: 'navigate', tab: string): void
-}>()
 </script>
 
 <style scoped>
@@ -175,6 +172,8 @@ defineEmits<{
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
+  text-decoration: none;
+  color: inherit;
 }
 
 html.dark .card {
