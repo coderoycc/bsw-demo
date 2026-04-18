@@ -139,7 +139,6 @@ const propsData = [
   { name: 'full', type: 'string', default: "'95dvh'", desc: 'Dimensión en alto para el estado máximo "full".' },
   { name: 'showCloseButton', type: 'boolean', default: 'true', desc: 'Mostrar u ocultar botón con cruz de cierre.' },
   { name: 'showBackdrop', type: 'boolean', default: 'false', desc: 'Saca y muestra un overlay oscuro semitransparente.' },
-  { name: 'closeOnBackdrop', type: 'boolean', default: 'false', desc: 'Click en parte sobrante fuera de modal para cerrar.' },
   { name: 'persistent', type: 'boolean', default: 'false', desc: 'Bloquea forzadamente el cierre interactivo al entorno.' },
   { name: 'zIndex', type: 'number', default: '1', desc: 'Índice de elevación (es baseada sobre suma a 9000).' }
 ];

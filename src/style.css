@@ -2,6 +2,7 @@
    VARIABLES: MODO CLARO (por defecto)
    ============================================= */
 :root {
+	--bsw-handle-background: red;
 	--primary-color: #3b82f6;
 	--primary-hover: #2563eb;
 	--text-main: #1f2937;
@@ -60,6 +61,10 @@
 	/* Código inline */
 	--code-bg: #f3f4f6;
 	--code-color: #db2777;
+
+	/* Bloques de código */
+	--code-block-bg: #d8dde7;
+	--code-block-text: #abb2bf;
 
 	/* Form */
 	--form-control-bg: #ffffff;
@@ -130,6 +135,10 @@ html.dark {
 	/* Código inline */
 	--code-bg: #1e293b;
 	--code-color: #f9a8d4;
+
+	/* Bloques de código */
+	--code-block-bg: #0f172a;
+	--code-block-text: #f1f5f9;
 
 	/* Form */
 	--form-control-bg: #1e293b;

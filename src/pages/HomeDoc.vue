@@ -3,12 +3,12 @@
     <div class="hero-section">
       <h1>📱 Bottom Sheet Wrappers</h1>
       <p class="subtitle">
-        Una librería de Vue 3 flexible y poderosa diseñada específicamente para <b>dispositivos móviles</b>
+        Una librería de Vue 3 flexible diseñada específicamente para <b>dispositivos móviles</b>
         con soporte para gestos táctiles nativos y modos de visualización distintos.
       </p>
 
       <div class="badges">
-        <span class="badge badge-primary">Mobile-First</span>
+        <span class="badge badge-primary">Mobile</span>
         <span class="badge badge-success">Vue 3</span>
         <span class="badge badge-warning">TypeScript</span>
         <span class="badge badge-info">Zero Deps</span>
@@ -39,7 +39,8 @@
       </div>
 
       <h3>2. Registro e Importación</h3>
-      <p>Después de instalar solo necesitas importar la hoja de estilos y los componentes que deseas usar. Puedes importar y usar los componentes directamente en tu archivo <code>.vue</code>:</p>
+      <p>Después de instalar solo necesitas importar la hoja de estilos y los componentes que deseas usar. Puedes
+        importar y usar los componentes directamente en tu archivo <code>.vue</code>:</p>
       <div class="code-block">
         <pre><code>&lt;script setup&gt;
 import { ref } from "vue";
@@ -57,40 +58,6 @@ import "@coderoycc/bottom-sheet-wrappers/style.css";
 
 const app = createApp(App);
 app.mount("#app");</code></pre>
-      </div>
-    </div>
-
-    <div class="doc-section">
-      <h2>🎨 Estilos y Temas</h2>
-      <p>Puedes personalizar los estilos sobrescribiendo las variables CSS o apuntando directamente a las clases.</p>
-
-      <h3>Variables CSS y Clases</h3>
-      <p>Por ejemplo, para cambiar la opacidad del fondo (backdrop) o el color de la manija de arrastre:</p>
-      <div class="code-block">
-        <pre><code>/* Cambiar la opacidad del backdrop */
-.bsw-bottom-sheet-backdrop--visible {
-  background: rgba(0, 0, 0, 0.75) !important;
-}
-
-/* Cambiar el color de la manija de arrastre */
-.bsw-bottom-sheet-handle {
-  background: var(--tu-color-primario) !important;
-}</code></pre>
-      </div>
-
-      <h3>Modo Oscuro (Dark Mode)</h3>
-      <p>La librería se adapta fácilmente a configuraciones de temas o modo oscuro aislando las clases:</p>
-      <div class="code-block">
-        <pre><code>&lt;DynamicBottomSheet v-model="isOpen" class="my-dark-theme"&gt;
-  &lt;p&gt;Contenido...&lt;/p&gt;
-&lt;/DynamicBottomSheet&gt;
-
-&lt;style&gt;
-.my-dark-theme .bsw-bottom-sheet-panel {
-  background: #1a1a1a;
-  color: #ffffff;
-}
-&lt;/style&gt;</code></pre>
       </div>
     </div>
 
@@ -205,12 +172,13 @@ html.dark .card {
 }
 
 .code-block {
-  background: #1e293b;
-  color: #f8fafc;
+  background: var(--code-block-bg, #1e293b);
+  color: var(--code-block-text, #f8fafc);
   padding: 1rem 1.5rem;
   border-radius: 8px;
   margin-bottom: 1.5rem;
   overflow-x: auto;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .code-block pre {
