@@ -13,7 +13,8 @@
 
       <h3>Instalación e Importación</h3>
       <CodeHighlight code='import { DynamicBottomSheet } from "@coderoycc/bottom-sheet-wrappers";
-import "@coderoycc/bottom-sheet-wrappers/dist/bottom-sheet-wrappers.css";' language="javascript" />
+      // NO ES NECESARIO SI YA SE IMPORTO EN EL main.ts
+import "@coderoycc/bottom-sheet-wrappers/style.css";' language="javascript" />
     </div>
 
     <!-- ===== SECCIÓN DE API ===== -->
@@ -39,17 +40,29 @@ import "@coderoycc/bottom-sheet-wrappers/dist/bottom-sheet-wrappers.css";' langu
 
       <h3>Uso con Backdrop</h3>
       <p>Habilita la aparición de una capa oscura en el fondo agregando la propiedad <code>show-backdrop</code>.
-        Adicionalmente, <code>close-on-backdrop</code> permite cerrarlo al tocar fuera.</p>
+        Adicionalmente, cuando se hace click en el backdrop se colapsa el contendor.</p>
       <DocExample :codeString="backdropExampleCode">
         <template #result>
           <BackdropExample />
         </template>
       </DocExample>
 
+      <h3>Slots (Header y Collapsed)</h3>
+      <p>El slot <code>collapsed-content</code> muestra el contenido personalizado cuando el contenedor se encuentra en
+        estado <code>collapsed</code>.</p>
+      <p>El slot <code>header</code> muestra el contenido personalizado en el header del contenedor.</p>
+      <DocExample :codeString="complexSlotsExampleCode">
+        <template #result>
+          <ComplexSlotsExample />
+        </template>
+      </DocExample>
+
+      <div class="separator" />
+
       <h3>Customización de Bordes y Colores (Local)</h3>
       <p>Puedes sobreescribir las variables CSS pasándole una clase a componente. Las variables afectarán localmente a
         este
-        sheet. Nota el uso de color de fondo rosado y bordes totalmente cuadrados.</p>
+        sheet. Nota el uso de color de <b>fondo rosado</b> y <b>bordes cuadrados</b>.</p>
       <DocExample :codeString="customBorderExampleCode">
         <template #result>
           <CustomBorderExample />
@@ -64,22 +77,17 @@ import "@coderoycc/bottom-sheet-wrappers/dist/bottom-sheet-wrappers.css";' langu
         </template>
       </DocExample>
 
-      <h3>Slots Complejos (Header y Collapsed)</h3>
-      <p>Muestra una vista interactiva que permite iniciar el panel minimizado pero expandirlo revelando contenido
-        oculto.</p>
-      <DocExample :codeString="complexSlotsExampleCode">
+      <h3>Customización de Handle</h3>
+      <p>Puedes sobreescribir las variables CSS pasándole una clase a componente. Las variables afectarán localmente a
+        este
+        sheet.
+      </p>
+      <p><i>Nota: Mejor si los estilos se aplican globalmente o en un componente sin usar <code>scoped</code>.</i></p>
+      <DocExample :codeString="customHandleExampleCode">
         <template #result>
-          <ComplexSlotsExample />
+          <CustomHandleExample />
         </template>
       </DocExample>
-
-      <!-- <h3>Tematización y Customización Global (Recomendado)</h3>
-      <p>Dado que los Bottom Sheets se montan mediante <code>Teleport</code> al final del cuerpo de la app, inyectar clases de sistema global de temas a nivel de <code>&lt;body&gt;</code> es la manera más robusta de crear múltiples variaciones (redondeados, dark-mode general, combinaciones soft) escalables en tu aplicación completa.</p>
-      <DocExample :codeString="themeExampleCodeRaw">
-        <template #result>
-          <ThemeCustomizationExample style="width: 100%;" />
-        </template>
-      </DocExample> -->
 
       <h3>Apilamiento con zIndex</h3>
       <p>El prop <code>zIndex</code> permite manejar el orden visual cuando varios panels están abiertos al mismo
@@ -122,6 +130,8 @@ import complexSlotsExampleCode from '../examples/ComplexSlotsExample.vue?raw';
 import ZIndexExample from '../examples/ZIndexExample.vue';
 import zIndexExampleCode from '../examples/ZIndexExample.vue?raw';
 
+import CustomHandleExample from '../examples/CustomHandleExample.vue';
+import customHandleExampleCode from '../examples/CustomHandleExample.vue?raw';
 
 // ======================== API TABLES DATA ========================
 const propsColumns = [
@@ -139,7 +149,7 @@ const propsData = [
   { name: 'full', type: 'string', default: "'95dvh'", desc: 'Dimensión en alto para el estado máximo "full".' },
   { name: 'showCloseButton', type: 'boolean', default: 'true', desc: 'Mostrar u ocultar botón con cruz de cierre.' },
   { name: 'showBackdrop', type: 'boolean', default: 'false', desc: 'Saca y muestra un overlay oscuro semitransparente.' },
-  { name: 'persistent', type: 'boolean', default: 'false', desc: 'Bloquea forzadamente el cierre interactivo al entorno.' },
+  { name: 'hideDragHandle', type: 'boolean', default: 'false', desc: 'Oculta el handle de arrastre.' },
   { name: 'zIndex', type: 'number', default: '1', desc: 'Índice de elevación (es baseada sobre suma a 9000).' }
 ];
 
@@ -154,7 +164,7 @@ const eventsData = [
   { name: 'close', params: '-', desc: 'Se gatilla al inicio del pedido de cerrado.' },
   { name: 'opened', params: '-', desc: 'Se dispara cuando acaba la animación visual de entrada CSS.' },
   { name: 'closed', params: '-', desc: 'Se dispara cuando acaba la animación visual de retirada CSS.' },
-  { name: 'size-change', params: 'size: DynamicSize', desc: 'Avisa cambios internos en variables colapsables visuales.' }
+  { name: 'size-change', params: 'size: DynamicSize', desc: 'Avisa cuando se ha terminado de cambiar el tamaño. Los valores que se emiten son de DynamicSize: "collapsed" | "half" | "full".' }
 ];
 
 const slotsColumns = [
@@ -163,9 +173,9 @@ const slotsColumns = [
 ];
 
 const slotsData = [
-  { name: 'default', desc: 'Pinta el cuerpo completo sin control del header.' },
-  { name: 'header', desc: 'Toma el control entero del título del header limitando componentes.' },
-  { name: 'collapsed-content', desc: 'Burbuja de contenido flotante en vista mini tamaño `collapsed`.' }
+  { name: 'default', desc: 'Slot para el contenido del bottomsheet.' },
+  { name: 'header', desc: 'Slot para el header del bottomsheet. Si se usa este slot, se pierde el header por defecto.' },
+  { name: 'collapsed-content', desc: 'Slot para el contenido del bottomsheet en estado "collapsed".' }
 ];
 
 </script>
@@ -201,5 +211,10 @@ h3 {
 .description {
   font-size: 1.1rem;
   color: var(--heading-description, #64748b);
+}
+
+.separator {
+  margin: 2rem 0;
+  border-bottom: 1px solid var(--border-color, #e2e8f0);
 }
 </style>

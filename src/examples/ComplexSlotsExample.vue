@@ -10,7 +10,7 @@ const isOpen = ref(false);
   <div>
     <button class="btn-primary" @click="isOpen = true">Abrir Vista Compleja</button>
 
-    <DynamicBottomSheet v-model="isOpen" initial-size="collapsed">
+    <DynamicBottomSheet v-model="isOpen" initial-size="collapsed" hide-close-button>
       <!-- HEADER SLOT -->
       <template #header>
         <div class="custom-header">
@@ -18,14 +18,14 @@ const isOpen = ref(false);
           <span class="custom-badge">Info</span>
         </div>
       </template>
-      
+
       <!-- COLLAPSED SLOT -->
       <template #collapsed-content>
         <div class="hint-box">
           🔥 Desliza hacia arriba para más detalles e información.
         </div>
       </template>
-      
+
       <!-- MAIN CONTENT -->
       <ExampleContentLong />
     </DynamicBottomSheet>
@@ -42,6 +42,7 @@ const isOpen = ref(false);
   font-weight: 600;
   cursor: pointer;
 }
+
 .btn-primary:hover {
   background-color: #2563eb;
 }
@@ -52,23 +53,26 @@ const isOpen = ref(false);
   width: 100%;
   align-items: center;
 }
+
 .custom-title {
-  font-weight: bold; 
-  font-size: 1.2rem; 
+  font-weight: bold;
+  font-size: 1.2rem;
   color: #4f46e5;
 }
+
 .custom-badge {
-  background: #3b82f6; 
-  color: white; 
-  border-radius: 4px; 
-  padding: 3px 8px; 
+  background: #3b82f6;
+  color: white;
+  border-radius: 4px;
+  padding: 3px 8px;
   font-size: 0.8rem;
 }
+
 .hint-box {
-  padding: 15px; 
-  background: #fef08a; 
-  text-align: center; 
-  color: #854d0e; 
+  padding: 15px;
+  background: #fef08a;
+  text-align: center;
+  color: #854d0e;
   font-weight: 500;
   border-top: 1px solid #fde047;
 }

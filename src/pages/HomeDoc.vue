@@ -15,17 +15,22 @@
       </div>
     </div>
 
+    <div class="title-modes">
+      <h2>Wrappers</h2>
+    </div>
+
     <div class="doc-section row-2">
       <RouterLink class="card card-hover" to="/dynamic">
-        <h3>✨ DynamicBottomSheet</h3>
-        <p>Un panel redimensionable y colapsable, ideal para contenido dinámico que requiere interacción
+        <h3>✨ Dynamic</h3>
+        <p>Un <strong>panel redimensionable y colapsable</strong>, ideal para contenido que requiere
+          interacción
           táctil fluida.</p>
         <div class="card-action">Ver Documentación ➔</div>
       </RouterLink>
 
       <RouterLink class="card card-hover" to="/fixed">
-        <h3>📌 FixedBottomSheet</h3>
-        <p>Un panel de altura estática o que se ajusta automáticamente a su contenido.</p>
+        <h3>📌 Fixed</h3>
+        <p>Un <strong>panel de altura estática</strong> o que se ajusta automáticamente a su contenido.</p>
         <div class="card-action">Ver Documentación ➔</div>
       </RouterLink>
     </div>
@@ -34,30 +39,35 @@
       <h2>🚀 Inicio Rápido</h2>
 
       <h3>1. Instalación</h3>
-      <div class="code-block">
-        <pre><code>npm install @coderoycc/bottom-sheet-wrappers</code></pre>
+      <div style="margin-bottom: 1.5rem;">
+        <CodeHighlight :code="installCode" language="bash" />
       </div>
 
       <h3>2. Registro e Importación</h3>
-      <p>Después de instalar solo necesitas importar la hoja de estilos y los componentes que deseas usar. Puedes
+      <p>Paso <b>importante</b> para que el componente se vea y actúe correctamente en tu proyecto. Solo
+        necesitas
+        importar la hoja de estilos y los componentes que deseas usar. Puedes
         importar y usar los componentes directamente en tu archivo <code>.vue</code>:</p>
-      <div class="code-block">
-        <pre><code>&lt;script setup&gt;
-import { ref } from "vue";
-import { DynamicBottomSheet } from "@coderoycc/bottom-sheet-wrappers";
-import "@coderoycc/bottom-sheet-wrappers/style.css";
 
-const isOpen = ref(false);
-&lt;/script&gt;</code></pre>
+      <div style="margin-bottom: 1.5rem;">
+        <CodeHighlight :code="registerCode1" language="vue" />
       </div>
-      <p>O puedes importar la hoja de estilos en <code>main.ts</code> para que esté disponible globalmente:</p>
-      <div class="code-block">
-        <pre><code>import { createApp } from "vue";
-import App from "./App.vue";
-import "@coderoycc/bottom-sheet-wrappers/style.css";
 
-const app = createApp(App);
-app.mount("#app");</code></pre>
+      <p>O puedes importar la hoja de estilos en <code>main.ts</code> para que esté disponible globalmente:</p>
+
+      <div style="margin-bottom: 1.5rem;">
+        <CodeHighlight :code="registerCode2" language="typescript" />
+      </div>
+
+      <h3>3. Uso del componente</h3>
+      <p>Ahora puedes usar el componente en tu proyecto. En este ejemplo, uso simple para el modo
+        <strong>Dynamic</strong>
+      </p>
+      <div style="margin-bottom: 1.5rem; display: flex; justify-content: center;">
+        <SimpleExample />
+      </div>
+      <div style="margin-bottom: 1.5rem;">
+        <CodeHighlight :code="simpleExampleCode" language="vue" />
       </div>
     </div>
 
@@ -65,6 +75,27 @@ app.mount("#app");</code></pre>
 </template>
 
 <script setup lang="ts">
+import CodeHighlight from '../components/CodeHighlight.vue';
+
+import simpleExampleCode from '../examples/SimpleExample.vue?raw';
+import SimpleExample from '../examples/SimpleExample.vue';
+
+const installCode = `npm install @coderoycc/bottom-sheet-wrappers`;
+
+const registerCode1 = `<script setup>
+import { ref } from "vue";
+import { DynamicBottomSheet } from "@coderoycc/bottom-sheet-wrappers";
+import "@coderoycc/bottom-sheet-wrappers/style.css";
+
+const isOpen = ref(false);
+<\/script>`;
+
+const registerCode2 = `import { createApp } from "vue";
+import App from "./App.vue";
+import "@coderoycc/bottom-sheet-wrappers/style.css";
+
+const app = createApp(App);
+app.mount("#app");`;
 </script>
 
 <style scoped>
@@ -171,25 +202,18 @@ html.dark .card {
   font-size: 0.95rem;
 }
 
-.code-block {
-  background: var(--code-block-bg, #1e293b);
-  color: var(--code-block-text, #f8fafc);
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-  overflow-x: auto;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.code-block pre {
-  margin: 0;
-}
-
 .code-block code {
   background: transparent;
   color: inherit;
   padding: 0;
   font-family: 'Fira Code', monospace;
   font-size: 0.9rem;
+}
+
+.title-modes {
+  text-align: center;
+  margin-bottom: 0rem;
+  margin-top: 0rem;
+  color: inherit;
 }
 </style>

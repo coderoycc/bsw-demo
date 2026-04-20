@@ -11,6 +11,7 @@ import javascript from 'highlight.js/lib/languages/javascript';
 import typescript from 'highlight.js/lib/languages/typescript';
 import xml from 'highlight.js/lib/languages/xml';
 import css from 'highlight.js/lib/languages/css';
+import bash from 'highlight.js/lib/languages/bash';
 import { useDarkMode } from '../composables/useDarkMode';
 
 hljs.registerLanguage('javascript', javascript);
@@ -18,6 +19,7 @@ hljs.registerLanguage('typescript', typescript);
 hljs.registerLanguage('xml', xml);
 hljs.registerLanguage('vue', xml);
 hljs.registerLanguage('css', css);
+hljs.registerLanguage('bash', bash);
 
 const props = defineProps({
   code: { type: String, required: true },
@@ -30,22 +32,47 @@ const highlightedCode = computed(() => {
   return hljs.highlight(props.code, { language: props.language }).value;
 });
 
-// Función para cargar el tema de highlight.js dinámicamente
+// Keep track of loaded status globally so we don't recreate them on multiple instances
+let themesLoaded = false;
+
 function loadHighlightTheme(dark: boolean) {
-  const themeId = 'hljs-theme';
-  let existingLink = document.getElementById(themeId) as HTMLLinkElement;
+  const darkThemeId = 'hljs-theme-dark';
+  const lightThemeId = 'hljs-theme-light';
   
-  if (existingLink) {
-    existingLink.remove();
+  let darkLink = document.getElementById(darkThemeId) as HTMLLinkElement;
+  let lightLink = document.getElementById(lightThemeId) as HTMLLinkElement;
+  
+  // Agregar los enlaces solo una vez
+  if (!themesLoaded || !darkLink || !lightLink) {
+    if (!darkLink) {
+      darkLink = document.createElement('link');
+      darkLink.id = darkThemeId;
+      darkLink.rel = 'stylesheet';
+      darkLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css';
+      // Por defecto desactivamos temporalmente si no es su turno para evitar colisiones iniciales
+      darkLink.disabled = !dark; 
+      document.head.appendChild(darkLink);
+    }
+    
+    if (!lightLink) {
+      lightLink = document.createElement('link');
+      lightLink.id = lightThemeId;
+      lightLink.rel = 'stylesheet';
+      lightLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css';
+      lightLink.disabled = dark;
+      document.head.appendChild(lightLink);
+    }
+    themesLoaded = true;
   }
-  
-  const link = document.createElement('link');
-  link.id = themeId;
-  link.rel = 'stylesheet';
-  link.href = dark 
-    ? 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css'
-    : 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css';
-  document.head.appendChild(link);
+
+  // Activar/Desactivar instantáneamente sin hacer request nuevamente
+  if (dark) {
+    if (darkLink) darkLink.disabled = false;
+    if (lightLink) lightLink.disabled = true;
+  } else {
+    if (lightLink) lightLink.disabled = false;
+    if (darkLink) darkLink.disabled = true;
+  }
 }
 
 onMounted(() => {
@@ -68,7 +95,7 @@ watch(isDark, (newValue) => {
   background-color: var(--code-block-bg, #1e293b);
   border-radius: 8px;
   overflow-x: auto;
-  transition: background-color 0.3s ease;
+  /* IMPORTANTE: Remover las transiciones en CodeHighlight evita efecto de parpadeo durante el cambio de tema */
 }
 .code-highlight-wrapper code {
   font-family: 'Consolas', 'Monaco', 'Courier New', monospace;

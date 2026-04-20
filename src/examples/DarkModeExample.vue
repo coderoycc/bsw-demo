@@ -9,16 +9,12 @@ const isOpen = ref(false);
   <div>
     <button class="btn-dark" @click="isOpen = true">Abrir Dark Mode Local</button>
 
-    <DynamicBottomSheet 
-      class="dark-mode-sheet" 
-      v-model="isOpen" 
-      initial-size="half" 
-      show-backdrop 
-      close-on-backdrop
-    >
+    <DynamicBottomSheet class="dark-mode-sheet" v-model="isOpen" initial-size="half" show-backdrop close-on-backdrop
+      title="Modo oscuro">
       <div class="dark-content">
-        <h3 style="margin-top: 0;">Modo Oscuro Integrado</h3>
-        <p>Este sheet modificó localmente las variables CSS del fondo y sobrescribió colores de encabezados para modo noche.</p>
+        <h3>Modo Oscuro Integrado</h3>
+        <p>Este sheet modificó localmente las variables CSS del fondo y sobrescribió colores de encabezados para modo
+          noche.</p>
         <p>Nota: el estilo CSS variables "dark-mode-sheet" usa la etiqueta &lt;style&gt; global.</p>
       </div>
     </DynamicBottomSheet>
@@ -33,8 +29,8 @@ const isOpen = ref(false);
 .dark-mode-sheet {
   --bsw-background: #1e293b;
   --bsw-border-radius: 20px;
-  --bsw-close-btn-color: #cbd5e1;
-  --bsw-close-btn-hover-color: #ffffff;
+  --bsw-header-color: #f8fafc;
+  --bsw-close-btn-color: #f8fafc;
   --bsw-handle-background: #475569;
 }
 </style>
@@ -49,12 +45,18 @@ const isOpen = ref(false);
   font-weight: 600;
   cursor: pointer;
 }
+
 .btn-dark:hover {
   background-color: #0f172a;
 }
+
 /* El interior se mantiene en <style scoped> ya que pertenece a los slots hijos */
 .dark-content {
-  padding: 1.5rem; 
+  padding: 1.5rem;
+}
+
+.dark-content h3 {
+  margin-top: 0;
   color: #f8fafc;
 }
 </style>

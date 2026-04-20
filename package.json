@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@coderoycc/bottom-sheet-wrappers": "file:../bottom-sheet-wrappers/coderoycc-bottom-sheet-wrappers-1.0.1.tgz",
     "highlight.js": "^11.11.1",
     "vue": "^3.5.25",
     "vue-i18n": "^11.3.2",
