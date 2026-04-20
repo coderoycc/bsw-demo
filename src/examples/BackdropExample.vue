@@ -10,13 +10,7 @@ const isOpen = ref(false);
   <div>
     <button class="btn-primary" @click="isOpen = true">Abrir con Backdrop</button>
 
-    <DynamicBottomSheet 
-      v-model="isOpen" 
-      title="Con Backdrop"
-      initial-size="half" 
-      show-backdrop 
-      close-on-backdrop
-    >
+    <DynamicBottomSheet v-model="isOpen" title="Con Backdrop" initial-size="half" show-backdrop>
       <ExampleContentShort />
     </DynamicBottomSheet>
   </div>
@@ -33,6 +27,7 @@ const isOpen = ref(false);
   cursor: pointer;
   transition: filter 0.2s;
 }
+
 .btn-primary:hover {
   filter: brightness(0.9);
 }

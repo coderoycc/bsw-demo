@@ -27,6 +27,7 @@ const isOpen = ref(false);
   cursor: pointer;
   transition: filter 0.2s;
 }
+
 .btn-primary:hover {
   filter: brightness(0.9);
 }

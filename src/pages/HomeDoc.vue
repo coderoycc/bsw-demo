@@ -3,94 +3,71 @@
     <div class="hero-section">
       <h1>📱 Bottom Sheet Wrappers</h1>
       <p class="subtitle">
-        Una librería de Vue 3 flexible y poderosa diseñada específicamente para <b>dispositivos móviles</b>
+        Una librería de Vue 3 flexible diseñada específicamente para <b>dispositivos móviles</b>
         con soporte para gestos táctiles nativos y modos de visualización distintos.
       </p>
 
       <div class="badges">
-        <span class="badge badge-primary">Mobile-First</span>
+        <span class="badge badge-primary">Mobile</span>
         <span class="badge badge-success">Vue 3</span>
         <span class="badge badge-warning">TypeScript</span>
         <span class="badge badge-info">Zero Deps</span>
       </div>
     </div>
 
+    <div class="title-modes">
+      <h2>Wrappers</h2>
+    </div>
+
     <div class="doc-section row-2">
-      <div class="card card-hover" @click="$emit('navigate', 'dynamic')">
-        <h3>✨ DynamicBottomSheet</h3>
-        <p>Un panel redimensionable y colapsable, ideal para contenido dinámico que requiere interacción
+      <RouterLink class="card card-hover" to="/dynamic">
+        <h3>✨ Dynamic</h3>
+        <p>Un <strong>panel redimensionable y colapsable</strong>, ideal para contenido que requiere
+          interacción
           táctil fluida.</p>
         <div class="card-action">Ver Documentación ➔</div>
-      </div>
+      </RouterLink>
 
-      <div class="card card-hover" @click="$emit('navigate', 'fixed')">
-        <h3>📌 FixedBottomSheet</h3>
-        <p>Un panel de altura estática o que se ajusta automáticamente a su contenido.</p>
+      <RouterLink class="card card-hover" to="/fixed">
+        <h3>📌 Fixed</h3>
+        <p>Un <strong>panel de altura estática</strong> o que se ajusta automáticamente a su contenido.</p>
         <div class="card-action">Ver Documentación ➔</div>
-      </div>
+      </RouterLink>
     </div>
 
     <div class="doc-section">
       <h2>🚀 Inicio Rápido</h2>
 
       <h3>1. Instalación</h3>
-      <div class="code-block">
-        <pre><code>npm install @coderoycc/bottom-sheet-wrappers</code></pre>
+      <div style="margin-bottom: 1.5rem;">
+        <CodeHighlight :code="installCode" language="bash" />
       </div>
 
       <h3>2. Registro e Importación</h3>
-      <p>Después de instalar solo necesitas importar la hoja de estilos y los componentes que deseas usar. Puedes importar y usar los componentes directamente en tu archivo <code>.vue</code>:</p>
-      <div class="code-block">
-        <pre><code>&lt;script setup&gt;
-import { ref } from "vue";
-import { DynamicBottomSheet } from "@coderoycc/bottom-sheet-wrappers";
-import "@coderoycc/bottom-sheet-wrappers/style.css";
+      <p>Paso <b>importante</b> para que el componente se vea y actúe correctamente en tu proyecto. Solo
+        necesitas
+        importar la hoja de estilos y los componentes que deseas usar. Puedes
+        importar y usar los componentes directamente en tu archivo <code>.vue</code>:</p>
 
-const isOpen = ref(false);
-&lt;/script&gt;</code></pre>
+      <div style="margin-bottom: 1.5rem;">
+        <CodeHighlight :code="registerCode1" language="vue" />
       </div>
+
       <p>O puedes importar la hoja de estilos en <code>main.ts</code> para que esté disponible globalmente:</p>
-      <div class="code-block">
-        <pre><code>import { createApp } from "vue";
-import App from "./App.vue";
-import "@coderoycc/bottom-sheet-wrappers/style.css";
 
-const app = createApp(App);
-app.mount("#app");</code></pre>
-      </div>
-    </div>
-
-    <div class="doc-section">
-      <h2>🎨 Estilos y Temas</h2>
-      <p>Puedes personalizar los estilos sobrescribiendo las variables CSS o apuntando directamente a las clases.</p>
-
-      <h3>Variables CSS y Clases</h3>
-      <p>Por ejemplo, para cambiar la opacidad del fondo (backdrop) o el color de la manija de arrastre:</p>
-      <div class="code-block">
-        <pre><code>/* Cambiar la opacidad del backdrop */
-.bsw-bottom-sheet-backdrop--visible {
-  background: rgba(0, 0, 0, 0.75) !important;
-}
-
-/* Cambiar el color de la manija de arrastre */
-.bsw-bottom-sheet-handle {
-  background: var(--tu-color-primario) !important;
-}</code></pre>
+      <div style="margin-bottom: 1.5rem;">
+        <CodeHighlight :code="registerCode2" language="typescript" />
       </div>
 
-      <h3>Modo Oscuro (Dark Mode)</h3>
-      <p>La librería se adapta fácilmente a configuraciones de temas o modo oscuro aislando las clases:</p>
-      <div class="code-block">
-        <pre><code>&lt;DynamicBottomSheet v-model="isOpen" class="my-dark-theme"&gt;
-  &lt;p&gt;Contenido...&lt;/p&gt;
-&lt;/DynamicBottomSheet&gt;
-
-&lt;style&gt;
-.my-dark-theme .bsw-bottom-sheet-panel {
-  background: #1a1a1a;
-  color: #ffffff;
-}
-&lt;/style&gt;</code></pre>
+      <h3>3. Uso del componente</h3>
+      <p>Ahora puedes usar el componente en tu proyecto. En este ejemplo, uso simple para el modo
+        <strong>Dynamic</strong>
+      </p>
+      <div style="margin-bottom: 1.5rem; display: flex; justify-content: center;">
+        <SimpleExample />
+      </div>
+      <div style="margin-bottom: 1.5rem;">
+        <CodeHighlight :code="simpleExampleCode" language="vue" />
       </div>
     </div>
 
@@ -98,9 +75,27 @@ app.mount("#app");</code></pre>
 </template>
 
 <script setup lang="ts">
-defineEmits<{
-  (e: 'navigate', tab: string): void
-}>()
+import CodeHighlight from '../components/CodeHighlight.vue';
+
+import simpleExampleCode from '../examples/SimpleExample.vue?raw';
+import SimpleExample from '../examples/SimpleExample.vue';
+
+const installCode = `npm install @coderoycc/bottom-sheet-wrappers`;
+
+const registerCode1 = `<script setup>
+import { ref } from "vue";
+import { DynamicBottomSheet } from "@coderoycc/bottom-sheet-wrappers";
+import "@coderoycc/bottom-sheet-wrappers/style.css";
+
+const isOpen = ref(false);
+<\/script>`;
+
+const registerCode2 = `import { createApp } from "vue";
+import App from "./App.vue";
+import "@coderoycc/bottom-sheet-wrappers/style.css";
+
+const app = createApp(App);
+app.mount("#app");`;
 </script>
 
 <style scoped>
@@ -175,6 +170,8 @@ defineEmits<{
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
+  text-decoration: none;
+  color: inherit;
 }
 
 html.dark .card {
@@ -205,24 +202,18 @@ html.dark .card {
   font-size: 0.95rem;
 }
 
-.code-block {
-  background: #1e293b;
-  color: #f8fafc;
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-  overflow-x: auto;
-}
-
-.code-block pre {
-  margin: 0;
-}
-
 .code-block code {
   background: transparent;
   color: inherit;
   padding: 0;
   font-family: 'Fira Code', monospace;
   font-size: 0.9rem;
+}
+
+.title-modes {
+  text-align: center;
+  margin-bottom: 0rem;
+  margin-top: 0rem;
+  color: inherit;
 }
 </style>

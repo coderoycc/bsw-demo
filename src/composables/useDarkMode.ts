@@ -22,9 +22,10 @@ function applyDarkMode(value: boolean) {
 	// cambiar variables CSS para BSW
 	const body = document.body;
 	body.style.setProperty("--bsw-background", value ? "#1e293b" : "#ffffff");
+	body.style.setProperty("--bsw-header-color", value ? "#f8fafc" : "#1e293b");
 	body.style.setProperty(
 		"--bsw-close-btn-color",
-		value ? "#ffffff" : "#1e293b",
+		value ? "#f8fafc" : "#1e293b",
 	);
 
 	body.style.setProperty(

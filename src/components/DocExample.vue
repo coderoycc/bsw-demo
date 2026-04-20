@@ -88,14 +88,16 @@ const activeTab = ref('result');
 }
 .code-pane {
   padding: 0;
-  background-color: #1e293b; 
+  background-color: var(--code-block-bg, #1e293b);
+  transition: background-color 0.3s ease;
 }
 .code-block {
-  background: #1e293b;
-  color: #f8fafc;
+  background: var(--code-block-bg, #1e293b);
+  color: var(--code-block-text, #f8fafc);
   padding: 1.5rem;
   overflow-x: auto;
   margin: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 .code-block pre {
   margin: 0;
