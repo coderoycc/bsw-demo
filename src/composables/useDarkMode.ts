@@ -19,25 +19,29 @@ const isDark = ref<boolean>(getInitialValue());
 // Aplicar la clase al <html> inmediatamente, sin esperar al montaje
 function applyDarkMode(value: boolean) {
 	document.documentElement.classList.toggle("dark", value);
-	// cambiar variables CSS para BSW
+
+	// Cambiar variables CSS para BSW usando los pivotes del sistema
 	const body = document.body;
-	body.style.setProperty("--bsw-background", value ? "#1e293b" : "#ffffff");
-	body.style.setProperty("--bsw-header-color", value ? "#f8fafc" : "#1e293b");
+	body.style.setProperty("--bsw-background", value ? "#1e1e2e" : "#ffffff");
+	body.style.setProperty("--bsw-text-color", value ? "#cdd6f4" : "#111827");
 	body.style.setProperty(
-		"--bsw-close-btn-color",
-		value ? "#f8fafc" : "#1e293b",
+		"--bsw-muted-color",
+		value ? "rgba(255, 255, 255, 0.45)" : "rgba(0, 0, 0, 0.5)",
+	);
+	body.style.setProperty(
+		"--bsw-box-shadow",
+		value ? "0 -2px 20px rgba(0, 0, 0, 0.5)" : "0 -2px 20px rgba(0, 0, 0, 0.15)",
 	);
 
-	body.style.setProperty(
-		"--bsw-close-btn-hover-color",
-		value ? "#cfcfcf" : "#1e293b",
-	);
-
-	body.style.setProperty("--bsw-text-color", value ? "#ffffff" : "#1e293b");
-	body.style.setProperty(
-		"--bsw-handle-background",
-		value ? "#ffffff" : "#1e293b",
-	);
+	// Eliminamos overrides específicos redundantes para que usen los fallbacks:
+	// --bsw-header-color -> hereda de --bsw-text-color
+	// --bsw-content-color -> hereda de --bsw-text-color
+	// --bsw-handle-background -> hereda de --bsw-muted-color
+	// --bsw-close-btn-color -> hereda de --bsw-muted-color
+	body.style.removeProperty("--bsw-header-color");
+	body.style.removeProperty("--bsw-handle-background");
+	body.style.removeProperty("--bsw-close-btn-color");
+	body.style.removeProperty("--bsw-close-btn-hover-color");
 }
 
 // Aplicar en el arranque

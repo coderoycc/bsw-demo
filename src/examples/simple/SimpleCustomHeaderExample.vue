@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { FixedBottomSheet } from '@coderoycc/bottom-sheet-wrappers';
+import { SimpleBottomSheet } from '@coderoycc/bottom-sheet-wrappers';
 
 const isOpen = ref(false);
 </script>
@@ -9,7 +9,7 @@ const isOpen = ref(false);
   <div>
     <button class="btn-primary" @click="isOpen = true">Abrir con Header Personalizado</button>
 
-    <FixedBottomSheet v-model="isOpen" show-backdrop>
+    <simple-bottom-sheet v-model="isOpen" show-backdrop>
       <!-- HEADER SLOT: reemplaza completamente el encabezado nativo -->
       <template #header>
         <div class="custom-header">
@@ -33,7 +33,7 @@ const isOpen = ref(false);
       <div class="sheet-footer">
         <button class="btn-close" @click="isOpen = false">Cerrar panel</button>
       </div>
-    </FixedBottomSheet>
+    </simple-bottom-sheet>
   </div>
 </template>
 
@@ -48,6 +48,7 @@ const isOpen = ref(false);
   cursor: pointer;
   transition: filter 0.2s;
 }
+
 .btn-primary:hover {
   filter: brightness(0.9);
 }
@@ -58,11 +59,13 @@ const isOpen = ref(false);
   align-items: center;
   width: 100%;
 }
+
 .custom-title {
   font-weight: bold;
   font-size: 1.1rem;
   color: #1d4ed8;
 }
+
 .custom-badge {
   background: #3b82f6;
   color: white;
@@ -74,6 +77,7 @@ const isOpen = ref(false);
 .content-body {
   padding: 1.25rem 1.5rem 0.5rem;
 }
+
 .content-body code {
   background: #eff6ff;
   color: #1d4ed8;
@@ -81,12 +85,14 @@ const isOpen = ref(false);
   border-radius: 4px;
   font-size: 0.9rem;
 }
+
 .info-row {
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
   flex-wrap: wrap;
 }
+
 .info-item {
   background: #f1f5f9;
   border: 1px solid #e2e8f0;
@@ -102,6 +108,7 @@ const isOpen = ref(false);
   display: flex;
   justify-content: flex-end;
 }
+
 .btn-close {
   background: #f1f5f9;
   color: #334155;
@@ -112,6 +119,7 @@ const isOpen = ref(false);
   cursor: pointer;
   transition: background 0.2s;
 }
+
 .btn-close:hover {
   background: #e2e8f0;
 }

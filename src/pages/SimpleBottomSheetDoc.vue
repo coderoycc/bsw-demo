@@ -1,7 +1,7 @@
 <template>
   <div class="doc-page">
     <div class="header-banner">
-      <h1>Fixed Bottom Sheet</h1>
+      <h1>Simple Bottom Sheet</h1>
       <p class="description">
         Un panel inferior que permanece <strong>fijo</strong> en pantalla, adaptándose al tamaño del contenido o a una
         altura definida. No puede ser redimensionado por el usuario mediante scroll: su tamaño es estático y predecible.
@@ -13,13 +13,13 @@
       <h2>Uso en el Proyecto</h2>
 
       <h3>Instalación e Importación</h3>
-      <CodeHighlight code='import { FixedBottomSheet } from "@coderoycc/bottom-sheet-wrappers";
-import "@coderoycc/bottom-sheet-wrappers/dist/bottom-sheet-wrappers.css";' language="javascript" />
+      <CodeHighlight code='import { SimpleBottomSheet } from "@coderoycc/bottom-sheet-wrappers";
+import "@coderoycc/bottom-sheet-wrappers/dist/style.css";' language="javascript" />
 
       <div class="info-callout">
         <span class="callout-icon">📌</span>
         <div>
-          <strong>Diferencia clave con el modo Dynamic:</strong> el panel Fixed <em>no se puede redimensionar ni cerrar
+          <strong>Diferencia clave con el modo Dynamic:</strong> el panel Simple <em>no se puede redimensionar ni cerrar
             mediante gestos o swipe</em>. Su tamaño es determinado por el prop <code>height</code> o se ajusta
           automáticamente al contenido, pero permanece fijo. Para cerrarlo, <strong>es obligatorio incluir un botón de
             acción explícito</strong> dentro del contenido del panel que setee el <code>v-model</code> a
@@ -45,7 +45,7 @@ import "@coderoycc/bottom-sheet-wrappers/dist/bottom-sheet-wrappers.css";' langu
         contenido interno. Es perfecto para modales con información resumida o snackbars de acción.</p>
       <DocExample :codeString="simpleExampleCode">
         <template #result>
-          <FixedSimpleExample />
+          <SimpleSimpleExample />
         </template>
       </DocExample>
 
@@ -55,7 +55,7 @@ import "@coderoycc/bottom-sheet-wrappers/dist/bottom-sheet-wrappers.css";' langu
         panel respetará ese límite. Habilitar <code>show-backdrop</code> añade la capa oscura de fondo.</p>
       <DocExample :codeString="heightExampleCode">
         <template #result>
-          <FixedHeightExample />
+          <SimpleHeightExample />
         </template>
       </DocExample>
 
@@ -65,7 +65,7 @@ import "@coderoycc/bottom-sheet-wrappers/dist/bottom-sheet-wrappers.css";' langu
         afectarán localmente a este panel sin tocar otros. Nota el fondo morado y esquinas cuadradas.</p>
       <DocExample :codeString="customBorderExampleCode">
         <template #result>
-          <FixedCustomBorderExample />
+          <SimpleCustomBorderExample />
         </template>
       </DocExample>
 
@@ -76,7 +76,7 @@ import "@coderoycc/bottom-sheet-wrappers/dist/bottom-sheet-wrappers.css";' langu
       </p>
       <DocExample :codeString="darkModeExampleCode">
         <template #result>
-          <FixedDarkModeExample />
+          <SimpleDarkModeExample />
         </template>
       </DocExample>
 
@@ -85,27 +85,27 @@ import "@coderoycc/bottom-sheet-wrappers/dist/bottom-sheet-wrappers.css";' langu
         contextuales, badges, iconos o cualquier layout que necesite tu interfaz.</p>
       <DocExample :codeString="customHeaderExampleCode">
         <template #result>
-          <FixedCustomHeaderExample />
+          <SimpleCustomHeaderExample />
         </template>
       </DocExample>
 
       <!-- <h3>Tematización y Customización Global (Recomendado)</h3> <p>Como los paneles se montan mediante <code>Teleport</code> al final del cuerpo de la app, inyectar clases de tema a nivel de <code>&lt;body&gt;</code> es la manera más robusta de crear múltiples variaciones escalables para toda la aplicación.</p>
       <DocExample :codeString="themeExampleCode">
         <template #result>
-          <FixedThemeExample style="width: 100%;" />
+          <SimpleThemeExample style="width: 100%;" />
         </template>
       </DocExample> -->
 
       <h3>Apilamiento con zIndex</h3>
-      <p>El prop <code>zIndex</code> controla el orden de apilamiento cuando varios paneles Fixed están abiertos
+      <p>El prop <code>zIndex</code> controla el orden de apilamiento cuando varios paneles Simple están abiertos
         simultáneamente. El valor efectivo es <code>9000 + zIndex</code>. Cada panel puede abrirse desde dentro de otro,
         y el
-        de mayor <code>zIndex</code> siempre quedará al frente. Dado que el modo Fixed no se puede redimensionar, este
+        de mayor <code>zIndex</code> siempre quedará al frente. Dado que el modo Simple no se puede redimensionar, este
         patrón
         es ideal para asistentes paso a paso o confirmaciones modales en cascada.</p>
       <DocExample :codeString="zIndexExampleCode">
         <template #result>
-          <FixedZIndexExample />
+          <SimpleZIndexExample />
         </template>
       </DocExample>
     </div>
@@ -119,23 +119,23 @@ import DocExample from '../components/DocExample.vue';
 import CodeHighlight from '../components/CodeHighlight.vue';
 
 // ===== IMPORTACIÓN DE COMPONENTES DE EJEMPLO AISLADOS =====
-import FixedSimpleExample from '../examples/fixed/FixedSimpleExample.vue';
-import simpleExampleCode from '../examples/fixed/FixedSimpleExample.vue?raw';
+import SimpleSimpleExample from '../examples/simple/SimpleExample.vue';
+import simpleExampleCode from '../examples/simple/SimpleExample.vue?raw';
 
-import FixedHeightExample from '../examples/fixed/FixedHeightExample.vue';
-import heightExampleCode from '../examples/fixed/FixedHeightExample.vue?raw';
+import SimpleHeightExample from '../examples/simple/SimpleHeightExample.vue';
+import heightExampleCode from '../examples/simple/SimpleHeightExample.vue?raw';
 
-import FixedCustomBorderExample from '../examples/fixed/FixedCustomBorderExample.vue';
-import customBorderExampleCode from '../examples/fixed/FixedCustomBorderExample.vue?raw';
+import SimpleCustomBorderExample from '../examples/simple/SimpleCustomBorderExample.vue';
+import customBorderExampleCode from '../examples/simple/SimpleCustomBorderExample.vue?raw';
 
-import FixedDarkModeExample from '../examples/fixed/FixedDarkModeExample.vue';
-import darkModeExampleCode from '../examples/fixed/FixedDarkModeExample.vue?raw';
+import SimpleDarkModeExample from '../examples/simple/SimpleDarkModeExample.vue';
+import darkModeExampleCode from '../examples/simple/SimpleDarkModeExample.vue?raw';
 
-import FixedCustomHeaderExample from '../examples/fixed/FixedCustomHeaderExample.vue';
-import customHeaderExampleCode from '../examples/fixed/FixedCustomHeaderExample.vue?raw';
+import SimpleCustomHeaderExample from '../examples/simple/SimpleCustomHeaderExample.vue';
+import customHeaderExampleCode from '../examples/simple/SimpleCustomHeaderExample.vue?raw';
 
-import FixedZIndexExample from '../examples/fixed/FixedZIndexExample.vue';
-import zIndexExampleCode from '../examples/fixed/FixedZIndexExample.vue?raw';
+import SimpleZIndexExample from '../examples/simple/SimpleZIndexExample.vue';
+import zIndexExampleCode from '../examples/simple/SimpleZIndexExample.vue?raw';
 
 
 // ======================== API TABLES DATA ========================
