@@ -13,10 +13,10 @@
               <RouterLink to="/" exact-active-class="active">Inicio</RouterLink>
             </li>
             <li>
-              <RouterLink to="/dynamic" active-class="active">Dynamic</RouterLink>
+              <RouterLink to="/simple" active-class="active">Simple</RouterLink>
             </li>
             <li>
-              <RouterLink to="/fixed" active-class="active">Fixed</RouterLink>
+              <RouterLink to="/dynamic" active-class="active">Dynamic</RouterLink>
             </li>
           </ul>
         </nav>

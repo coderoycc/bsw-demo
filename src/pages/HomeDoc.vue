@@ -1,7 +1,7 @@
 <template>
   <div class="doc-page home-doc">
     <div class="hero-section">
-      <h1>📱 Bottom Sheet Wrappers</h1>
+      <h1>Bottom Sheet Wrappers</h1>
       <p class="subtitle">
         Una librería de Vue 3 flexible diseñada específicamente para <b>dispositivos móviles</b>
         con soporte para gestos táctiles nativos y modos de visualización distintos.
@@ -16,34 +16,34 @@
     </div>
 
     <div class="title-modes">
-      <h2>Wrappers</h2>
+      <h2 class="title-elegant">Wrappers</h2>
     </div>
 
     <div class="doc-section row-2">
+      <RouterLink class="card card-hover" to="/simple">
+        <h3 class="title-elegant">Simple</h3>
+        <p>Un <strong>panel de altura fija</strong> o que se ajusta al tamaño de su contenido. Simple de usar y para
+          cualquier tipo de componente.</p>
+        <div class="card-action">Ver Documentación ➔</div>
+      </RouterLink>
       <RouterLink class="card card-hover" to="/dynamic">
-        <h3>✨ Dynamic</h3>
+        <h3 class="title-elegant">Dynamic</h3>
         <p>Un <strong>panel redimensionable y colapsable</strong>, ideal para contenido que requiere
           interacción
           táctil fluida.</p>
         <div class="card-action">Ver Documentación ➔</div>
       </RouterLink>
-
-      <RouterLink class="card card-hover" to="/fixed">
-        <h3>📌 Fixed</h3>
-        <p>Un <strong>panel de altura estática</strong> o que se ajusta automáticamente a su contenido.</p>
-        <div class="card-action">Ver Documentación ➔</div>
-      </RouterLink>
     </div>
 
     <div class="doc-section">
-      <h2>🚀 Inicio Rápido</h2>
+      <h2 class="title-elegant">Inicio Rápido</h2>
 
-      <h3>1. Instalación</h3>
+      <h3 class="title-elegant">1. Instalación</h3>
       <div style="margin-bottom: 1.5rem;">
         <CodeHighlight :code="installCode" language="bash" />
       </div>
 
-      <h3>2. Registro e Importación</h3>
+      <h3 class="title-elegant">2. Registro e Importación</h3>
       <p>Paso <b>importante</b> para que el componente se vea y actúe correctamente en tu proyecto. Solo
         necesitas
         importar la hoja de estilos y los componentes que deseas usar. Puedes
@@ -59,7 +59,7 @@
         <CodeHighlight :code="registerCode2" language="typescript" />
       </div>
 
-      <h3>3. Uso del componente</h3>
+      <h3 class="title-elegant">3. Uso del componente</h3>
       <p>Ahora puedes usar el componente en tu proyecto. En este ejemplo, uso simple para el modo
         <strong>Dynamic</strong>
       </p>
@@ -68,6 +68,34 @@
       </div>
       <div style="margin-bottom: 1.5rem;">
         <CodeHighlight :code="simpleExampleCode" language="vue" />
+      </div>
+
+      <h2 class="title-elegant">Personalización</h2>
+      <p>La librería utiliza un sistema de <b>variables CSS</b> con prefijo <code>--bsw-</code> diseñado para ser flexible y fácil de tematizar mediante herencia.</p>
+
+      <div class="vars-grid">
+        <div class="var-card">
+          <h4>Principales (Base)</h4>
+          <p>Controlan múltiples elementos a la vez:</p>
+          <ul>
+            <li><code>--bsw-text-color</code>: Fallback para todo el texto.</li>
+            <li><code>--bsw-muted-color</code>: Fallback para elementos secundarios.</li>
+          </ul>
+        </div>
+        <div class="var-card">
+          <h4>Específicas</h4>
+          <p>Control detallado por propiedad:</p>
+          <ul>
+            <li><code>--bsw-background</code>: Fondo del panel.</li>
+            <li><code>--bsw-border-radius</code>: Radio de esquinas.</li>
+            <li><code>--bsw-box-shadow</code>: Sombra superior.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>Puedes aplicar estas variables globalmente en tu <code>:root</code> o específicamente en un contenedor para crear temas personalizados rápidamente:</p>
+      <div style="margin-bottom: 1.5rem;">
+        <CodeHighlight :code="customVarsCode" language="css" />
       </div>
     </div>
 
@@ -96,6 +124,12 @@ import "@coderoycc/bottom-sheet-wrappers/style.css";
 
 const app = createApp(App);
 app.mount("#app");`;
+const customVarsCode = `.mi-bottom-sheet {
+  --bsw-background: #1e1e2e;
+  --bsw-text-color: #cdd6f4;
+  --bsw-muted-color: rgba(255, 255, 255, 0.45);
+  --bsw-border-radius: 24px;
+}`;
 </script>
 
 <style scoped>
@@ -212,8 +246,60 @@ html.dark .card {
 
 .title-modes {
   text-align: center;
-  margin-bottom: 0rem;
-  margin-top: 0rem;
-  color: inherit;
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.title-elegant {
+  color: var(--heading-h1, #0f172a);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+}
+
+.card .title-elegant {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.vars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.var-card {
+  background: var(--bg-muted, #f8fafc);
+  padding: 1.25rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.var-card h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
+.var-card p {
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.var-card ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
+}
+
+.var-card li {
+  margin-bottom: 0.25rem;
+}
+
+html.dark .var-card {
+  background: rgba(255, 255, 255, 0.03);
 }
 </style>

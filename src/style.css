@@ -2,7 +2,7 @@
    VARIABLES: MODO CLARO (por defecto)
    ============================================= */
 :root {
-	--bsw-handle-background: red;
+	--bsw-handle-background: #6b7280;
 	--primary-color: #3b82f6;
 	--primary-hover: #2563eb;
 	--text-main: #1f2937;

@@ -27,11 +27,11 @@ const isOpen = ref(false);
   la directiva Teleport encuentre la clase válida desde el DOM raíz.
 */
 .dark-mode-sheet {
-  --bsw-background: #1e293b;
+  --bsw-background: #1e1e2e;
+  --bsw-text-color: #cdd6f4;
+  --bsw-muted-color: rgba(255, 255, 255, 0.45);
+  --bsw-box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.5);
   --bsw-border-radius: 20px;
-  --bsw-header-color: #f8fafc;
-  --bsw-close-btn-color: #f8fafc;
-  --bsw-handle-background: #475569;
 }
 </style>
 

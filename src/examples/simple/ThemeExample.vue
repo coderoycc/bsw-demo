@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watchEffect, onUnmounted } from 'vue';
-import { FixedBottomSheet } from '@coderoycc/bottom-sheet-wrappers';
+import { SimpleBottomSheet } from '@coderoycc/bottom-sheet-wrappers';
 
 type ThemeKey = 'default' | 'rounded' | 'dark' | 'soft';
 
@@ -34,22 +34,24 @@ onUnmounted(() => {
     </div>
   </div>
 
-  <FixedBottomSheet v-model="openFixed" title="Fixed con tema global">
+  <SimpleBottomSheet v-model="openFixed" title="Fixed con tema global">
     <div class="sheet-body">
       <h3>Tema global en Fixed</h3>
-      <p>Las variables CSS del tema se aplican al body, y por herencia del DOM, afectan al panel aunque esté en un Teleport.</p>
+      <p>Las variables CSS del tema se aplican al body, y por herencia del DOM, afectan al panel aunque esté en un
+        Teleport.</p>
       <p>Cambia el tema cerrando el panel y eligiendo otro.</p>
       <button class="secondary-btn" @click="openFixed = false">Cerrar</button>
     </div>
-  </FixedBottomSheet>
+  </SimpleBottomSheet>
 
-  <FixedBottomSheet v-model="openLocal" title="Override local" class="local-fixed-theme">
+  <SimpleBottomSheet v-model="openLocal" title="Override local" class="local-fixed-theme">
     <div class="sheet-body">
       <h3>Override local</h3>
       <p>Solo este panel modifica sus variables CSS. Ignora cualquier tema global activo en el body.</p>
-      <button class="secondary-btn" style="background: rgba(255,255,255,0.2);" @click="openLocal = false">Cerrar</button>
+      <button class="secondary-btn" style="background: rgba(255,255,255,0.2);"
+        @click="openLocal = false">Cerrar</button>
     </div>
-  </FixedBottomSheet>
+  </SimpleBottomSheet>
 </template>
 
 <style scoped>

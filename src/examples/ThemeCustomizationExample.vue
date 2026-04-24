@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ref, watchEffect, onUnmounted } from "vue";
 import { DynamicBottomSheet } from "@coderoycc/bottom-sheet-wrappers";
-// Si FixedBottomSheet estubiese exportado y quisiera usarlo se importaría aquí,
-// pero por ahora demostraremos con DynamicBottomSheet tal como acordamos (enfocados en DynamicBottomSheetDoc).
 
 type ThemeKey = "default" | "rounded" | "dark" | "soft";
 
@@ -16,7 +14,6 @@ watchEffect(() => {
   document.body.classList.add(`theme-${theme.value}`);
 });
 
-// Limpieza para evitar dejar el body oscurecido si se cambia de página
 onUnmounted(() => {
   document.body.classList.remove("theme-default", "theme-rounded", "theme-dark", "theme-soft");
 });
@@ -131,9 +128,8 @@ button {
   --bsw-background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
   --bsw-border-radius: 24px;
   --bsw-box-shadow: 0 -8px 28px rgba(8, 145, 178, 0.25);
-  --bsw-handle-background: rgba(8, 145, 178, 0.4);
-  --bsw-close-btn-color: rgba(8, 145, 178, 0.8);
-  --bsw-close-btn-hover-color: #0e7490;
+  --bsw-muted-color: rgba(8, 145, 178, 0.6);
+  --bsw-text-color: #0e7490;
 }
 </style>
 
@@ -143,10 +139,9 @@ button {
 body.theme-default {
   --bsw-background: #ffffff;
   --bsw-border-radius: 16px;
+  --bsw-text-color: #111827;
+  --bsw-muted-color: rgba(0, 0, 0, 0.5);
   --bsw-box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.15);
-  --bsw-handle-background: rgba(0, 0, 0, 0.2);
-  --bsw-close-btn-color: rgba(0, 0, 0, 0.5);
-  --bsw-close-btn-hover-color: rgba(0, 0, 0, 0.8);
   background-color: #f5f5f5;
   color: #111827;
 }
@@ -155,32 +150,28 @@ body.theme-rounded {
   --bsw-background: #ffffff;
   --bsw-border-radius: 28px;
   --bsw-box-shadow: 0 -10px 32px rgba(0, 0, 0, 0.18);
-  --bsw-handle-background: rgba(17, 24, 39, 0.35);
-  --bsw-handle-width: 56px;
-  --bsw-handle-height: 6px;
-  --bsw-handle-border-radius: 6px;
+  --bsw-muted-color: rgba(17, 24, 39, 0.35);
+  --bsw-text-color: #111827;
   background-color: #eef2ff;
   color: #111827;
 }
 
 body.theme-dark {
-  --bsw-background: #111827;
+  --bsw-background: #1e1e2e;
+  --bsw-text-color: #cdd6f4;
+  --bsw-muted-color: rgba(255, 255, 255, 0.45);
+  --bsw-box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.5);
   --bsw-border-radius: 14px;
-  --bsw-box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.5);
-  --bsw-handle-background: rgba(255, 255, 255, 0.2);
-  --bsw-close-btn-color: rgba(255, 255, 255, 0.7);
-  --bsw-close-btn-hover-color: #ffffff;
   background-color: #0b0f19;
   color: #f9fafb;
 }
 
 body.theme-soft {
   --bsw-background: #fff7ed;
-  --bsw-border-radius: 20px;
+  --bsw-text-color: #7c2d12;
+  --bsw-muted-color: rgba(124, 45, 18, 0.4);
   --bsw-box-shadow: 0 -6px 18px rgba(124, 45, 18, 0.2);
-  --bsw-handle-background: rgba(124, 45, 18, 0.35);
-  --bsw-close-btn-color: rgba(124, 45, 18, 0.7);
-  --bsw-close-btn-hover-color: #7c2d12;
+  --bsw-border-radius: 20px;
   background-color: #fff7ed;
   color: #7c2d12;
 }
