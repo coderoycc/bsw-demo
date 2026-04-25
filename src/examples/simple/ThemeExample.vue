@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watchEffect, onUnmounted } from 'vue';
-import { SimpleBottomSheet } from '@coderoycc/bottom-sheet-wrappers';
+import { BsSimple } from '@coderoycc/bottom-sheet-wrappers';
 
 type ThemeKey = 'default' | 'rounded' | 'dark' | 'soft';
 
@@ -34,7 +34,7 @@ onUnmounted(() => {
     </div>
   </div>
 
-  <SimpleBottomSheet v-model="openFixed" title="Fixed con tema global">
+  <bs-simple v-model="openFixed" title="Fixed con tema global">
     <div class="sheet-body">
       <h3>Tema global en Fixed</h3>
       <p>Las variables CSS del tema se aplican al body, y por herencia del DOM, afectan al panel aunque esté en un
@@ -42,16 +42,16 @@ onUnmounted(() => {
       <p>Cambia el tema cerrando el panel y eligiendo otro.</p>
       <button class="secondary-btn" @click="openFixed = false">Cerrar</button>
     </div>
-  </SimpleBottomSheet>
+  </bs-simple>
 
-  <SimpleBottomSheet v-model="openLocal" title="Override local" class="local-fixed-theme">
+  <bs-simple v-model="openLocal" title="Override local" class="local-fixed-theme">
     <div class="sheet-body">
       <h3>Override local</h3>
       <p>Solo este panel modifica sus variables CSS. Ignora cualquier tema global activo en el body.</p>
       <button class="secondary-btn" style="background: rgba(255,255,255,0.2);"
         @click="openLocal = false">Cerrar</button>
     </div>
-  </SimpleBottomSheet>
+  </bs-simple>
 </template>
 
 <style scoped>
@@ -113,7 +113,7 @@ button {
   gap: 12px;
 }
 
-/* Override local para este panel específico */
+/* Override local for this panel */
 .local-fixed-theme {
   --bsw-background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%);
   --bsw-border-radius: 24px;

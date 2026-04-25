@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { SimpleBottomSheet } from '@coderoycc/bottom-sheet-wrappers';
+import { BsSimple } from '@coderoycc/bottom-sheet-wrappers';
 
 const openSheet1 = ref(false);
 const openSheet2 = ref(false);
@@ -8,42 +8,39 @@ const openSheet2 = ref(false);
 
 <template>
   <div>
-    <button class="btn-primary" @click="openSheet1 = true">Abrir Panel Base (z-index: 1)</button>
+    <button class="btn-primary" @click="openSheet1 = true">Open (z-index: 1)</button>
 
-    <!-- Panel base: z-index 1 (por defecto) -->
-    <SimpleBottomSheet v-model="openSheet1" title="Panel Base · zIndex: 1" show-backdrop :z-index="1">
+    <bs-simple v-model="openSheet1" title="Base Panel · zIndex: 1" show-backdrop :z-index="1">
       <div class="sheet-content">
-        <p>Este panel Fixed tiene <code>:z-index="1"</code>. El valor efectivo es <strong>9001</strong> (se suma a la
-          base 9000 interna).</p>
-        <p>A diferencia del modo Dynamic, este panel no se puede expandir ni cerrar arrastrando. Usa los botones para
-          navegar entre paneles.</p>
+        <p>This Fixed panel has <code>:z-index="1"</code>. The effective value is <strong>9001</strong> (added to the
+          internal 9000 base).</p>
+        <p>Unlike Dynamic mode, this panel cannot be expanded or closed by dragging. Use the buttons to navigate
+          between panels.</p>
         <div class="action-row">
           <button class="btn-secondary" @click="openSheet2 = true">
-            Abrir Panel Superpuesto (z-index: 2)
+            Open Overlaid Panel (z-index: 2)
           </button>
-          <!-- El modo Fixed no se cierra por gestos: se necesita un botón explícito -->
-          <button class="btn-close" @click="openSheet1 = false">Cerrar panel</button>
+          <button class="btn-close" @click="openSheet1 = false">Close panel</button>
         </div>
       </div>
-    </SimpleBottomSheet>
+    </bs-simple>
 
-    <!-- Panel superpuesto: z-index 2 (aparece sobre el anterior) -->
-    <SimpleBottomSheet v-model="openSheet2" title="Panel Superpuesto · zIndex: 2" show-backdrop :z-index="2">
+    <bs-simple v-model="openSheet2" title="Overlaid Panel · zIndex: 2" show-backdrop :z-index="2">
       <div class="sheet-content sheet-content--top">
-        <p>Este panel usa <code>:z-index="2"</code> (9002 efectivo). Se muestra por encima del panel anterior sin
-          importar el orden en el DOM.</p>
-        <p>Ciérralo con el botón para volver al panel base. El Panel Fixed <strong>no se cierra con gestos</strong>.</p>
+        <p>This panel uses <code>:z-index="2"</code> (9002 effective). It is shown above the previous panel regardless
+          of its order in the DOM.</p>
+        <p>Close it with the button or with gestures to return to the base panel.
+        </p>
         <div class="stack-viz">
-          <div class="stack-layer stack-layer--2">Panel Fixed zIndex: 2 ← estás aquí</div>
-          <div class="stack-layer stack-layer--1">Panel Fixed zIndex: 1</div>
-          <div class="stack-layer stack-layer--0">App / Página</div>
+          <div class="stack-layer stack-layer--2">Fixed Panel zIndex: 2 ← you are here</div>
+          <div class="stack-layer stack-layer--1">Fixed Panel zIndex: 1</div>
+          <div class="stack-layer stack-layer--0">App / Page</div>
         </div>
-        <!-- El modo Fixed no se cierra por gestos: se necesita un botón explícito -->
         <div class="action-row">
-          <button class="btn-close btn-close--cyan" @click="openSheet2 = false">Cerrar panel</button>
+          <button class="btn-close btn-close--cyan" @click="openSheet2 = false">Close panel</button>
         </div>
       </div>
-    </SimpleBottomSheet>
+    </bs-simple>
   </div>
 </template>
 

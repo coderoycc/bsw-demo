@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { SimpleBottomSheet } from '@coderoycc/bottom-sheet-wrappers';
+import { BsSimple } from '@coderoycc/bottom-sheet-wrappers';
 import ExampleContentMedium from '../../components/ExampleContentMedium.vue';
 
 const isOpen = ref(false);
@@ -8,34 +8,15 @@ const isOpen = ref(false);
 
 <template>
   <div>
-    <button class="btn-primary" @click="isOpen = true">Abrir con Altura Fija (50dvh)</button>
+    <button class="btn-primary" @click="isOpen = true">Open Panel (50dvh)</button>
 
-    <SimpleBottomSheet v-model="isOpen" title="Altura Definida" height="50dvh" show-backdrop>
+    <bs-simple v-model="isOpen" title="Height Panel" height="30dvh" show-backdrop>
       <ExampleContentMedium />
-      <!-- El modo Fixed no se cierra por gestos: se necesita un botón explícito -->
-      <div class="sheet-footer">
-        <button class="btn-close" @click="isOpen = false">Cerrar panel</button>
-      </div>
-    </SimpleBottomSheet>
+    </bs-simple>
   </div>
 </template>
 
 <style scoped>
-.btn-primary {
-  background-color: #3b82f6;
-  color: white;
-  border: 1px solid transparent;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: filter 0.2s;
-}
-
-.btn-primary:hover {
-  filter: brightness(0.9);
-}
-
 .sheet-footer {
   padding: 0.75rem 1rem 1.25rem;
   display: flex;

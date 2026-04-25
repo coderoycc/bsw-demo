@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { DynamicBottomSheet } from '@coderoycc/bottom-sheet-wrappers';
+import { BsDynamic } from '@coderoycc/bottom-sheet-wrappers';
 import ExampleContentLong from '../components/ExampleContentLong.vue';
 
 const isOpen = ref(false);
@@ -10,7 +10,7 @@ const isOpen = ref(false);
   <div>
     <button class="btn-primary" @click="isOpen = true">Abrir Vista Compleja</button>
 
-    <DynamicBottomSheet v-model="isOpen" initial-size="collapsed" hide-close-button>
+    <bs-dynamic v-model="isOpen" initial-size="collapsed" hide-close-button>
       <!-- HEADER SLOT -->
       <template #header>
         <div class="custom-header">
@@ -28,7 +28,7 @@ const isOpen = ref(false);
 
       <!-- MAIN CONTENT -->
       <ExampleContentLong />
-    </DynamicBottomSheet>
+    </bs-dynamic>
   </div>
 </template>
 

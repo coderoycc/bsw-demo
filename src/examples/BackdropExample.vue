@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { DynamicBottomSheet } from '@coderoycc/bottom-sheet-wrappers';
+import { BsDynamic } from '@coderoycc/bottom-sheet-wrappers';
 import ExampleContentShort from '../components/ExampleContentShort.vue';
 
 const isOpen = ref(false);
@@ -10,9 +10,9 @@ const isOpen = ref(false);
   <div>
     <button class="btn-primary" @click="isOpen = true">Abrir con Backdrop</button>
 
-    <DynamicBottomSheet v-model="isOpen" title="Con Backdrop" initial-size="half" show-backdrop>
+    <bs-dynamic v-model="isOpen" title="Con Backdrop" initial-size="half" show-backdrop>
       <ExampleContentShort />
-    </DynamicBottomSheet>
+    </bs-dynamic>
   </div>
 </template>
 

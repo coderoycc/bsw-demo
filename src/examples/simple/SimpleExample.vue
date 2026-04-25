@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { SimpleBottomSheet } from '@coderoycc/bottom-sheet-wrappers';
+import { BsSimple } from '@coderoycc/bottom-sheet-wrappers';
 import ExampleContentShort from '../../components/ExampleContentShort.vue';
 
 const isOpen = ref(false);
@@ -8,15 +8,11 @@ const isOpen = ref(false);
 
 <template>
   <div>
-    <button class="btn-primary" @click="isOpen = true">Abrir Fixed Simple</button>
+    <button class="btn-primary" @click="isOpen = true">Open</button>
 
-    <SimpleBottomSheet v-model="isOpen" title="Panel Fijo Simple">
+    <bs-simple v-model="isOpen" title="Panel Fijo Simple">
       <ExampleContentShort />
-      <!-- El modo Fixed no se cierra por gestos: se necesita un botón explícito -->
-      <div class="sheet-footer">
-        <button class="btn-close" @click="isOpen = false">Cerrar panel</button>
-      </div>
-    </SimpleBottomSheet>
+    </bs-simple>
   </div>
 </template>
 

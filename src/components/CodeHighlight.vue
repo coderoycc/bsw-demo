@@ -32,28 +32,25 @@ const highlightedCode = computed(() => {
   return hljs.highlight(props.code, { language: props.language }).value;
 });
 
-// Keep track of loaded status globally so we don't recreate them on multiple instances
 let themesLoaded = false;
 
 function loadHighlightTheme(dark: boolean) {
   const darkThemeId = 'hljs-theme-dark';
   const lightThemeId = 'hljs-theme-light';
-  
+
   let darkLink = document.getElementById(darkThemeId) as HTMLLinkElement;
   let lightLink = document.getElementById(lightThemeId) as HTMLLinkElement;
-  
-  // Agregar los enlaces solo una vez
+
   if (!themesLoaded || !darkLink || !lightLink) {
     if (!darkLink) {
       darkLink = document.createElement('link');
       darkLink.id = darkThemeId;
       darkLink.rel = 'stylesheet';
       darkLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css';
-      // Por defecto desactivamos temporalmente si no es su turno para evitar colisiones iniciales
-      darkLink.disabled = !dark; 
+      darkLink.disabled = !dark;
       document.head.appendChild(darkLink);
     }
-    
+
     if (!lightLink) {
       lightLink = document.createElement('link');
       lightLink.id = lightThemeId;
@@ -65,7 +62,6 @@ function loadHighlightTheme(dark: boolean) {
     themesLoaded = true;
   }
 
-  // Activar/Desactivar instantáneamente sin hacer request nuevamente
   if (dark) {
     if (darkLink) darkLink.disabled = false;
     if (lightLink) lightLink.disabled = true;
@@ -89,14 +85,15 @@ watch(isDark, (newValue) => {
   margin: 0;
   width: 100%;
 }
+
 .code-highlight-wrapper pre {
   margin: 0;
   padding: 1.5rem;
   background-color: var(--code-block-bg, #1e293b);
   border-radius: 8px;
   overflow-x: auto;
-  /* IMPORTANTE: Remover las transiciones en CodeHighlight evita efecto de parpadeo durante el cambio de tema */
 }
+
 .code-highlight-wrapper code {
   font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
   font-size: 0.9rem;

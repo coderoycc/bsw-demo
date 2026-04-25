@@ -1,11 +1,12 @@
 <template>
   <div class="doc-page home-doc">
     <div class="hero-section">
-      <h1>Bottom Sheet Wrappers</h1>
-      <p class="subtitle">
-        Una librería de Vue 3 flexible diseñada específicamente para <b>dispositivos móviles</b>
-        con soporte para gestos táctiles nativos y modos de visualización distintos.
-      </p>
+      <h1>{{ $t('home.hero.title') }}</h1>
+      <i18n-t keypath="home.hero.subtitle" tag="p" class="subtitle">
+        <template #mobile>
+          <b>{{ $t('home.hero.mobile_devices') }}</b>
+        </template>
+      </i18n-t>
 
       <div class="badges">
         <span class="badge badge-primary">Mobile</span>
@@ -16,53 +17,68 @@
     </div>
 
     <div class="title-modes">
-      <h2 class="title-elegant">Wrappers</h2>
+      <h2 class="title-elegant">{{ $t('home.wrappers.title') }}</h2>
     </div>
 
     <div class="doc-section row-2">
       <RouterLink class="card card-hover" to="/simple">
-        <h3 class="title-elegant">Simple</h3>
-        <p>Un <strong>panel de altura fija</strong> o que se ajusta al tamaño de su contenido. Simple de usar y para
-          cualquier tipo de componente.</p>
-        <div class="card-action">Ver Documentación ➔</div>
+        <h3 class="title-elegant">{{ $t('home.wrappers.simple.title') }}</h3>
+        <i18n-t keypath="home.wrappers.simple.description" tag="p">
+          <template #panel>
+            <strong>{{ $t('home.wrappers.simple.panel') }}</strong>
+          </template>
+        </i18n-t>
+        <div class="card-action">{{ $t('home.actions.view_docs') }}</div>
       </RouterLink>
       <RouterLink class="card card-hover" to="/dynamic">
-        <h3 class="title-elegant">Dynamic</h3>
-        <p>Un <strong>panel redimensionable y colapsable</strong>, ideal para contenido que requiere
-          interacción
-          táctil fluida.</p>
-        <div class="card-action">Ver Documentación ➔</div>
+        <h3 class="title-elegant">{{ $t('home.wrappers.dynamic.title') }}</h3>
+        <i18n-t keypath="home.wrappers.dynamic.description" tag="p">
+          <template #panel>
+            <strong>{{ $t('home.wrappers.dynamic.panel') }}</strong>
+          </template>
+        </i18n-t>
+        <div class="card-action">{{ $t('home.actions.view_docs') }}</div>
       </RouterLink>
     </div>
 
     <div class="doc-section">
-      <h2 class="title-elegant">Inicio Rápido</h2>
+      <h2 class="title-elegant">{{ $t('home.quick_start.title') }}</h2>
 
-      <h3 class="title-elegant">1. Instalación</h3>
+      <h3 class="title-elegant">{{ $t('home.quick_start.steps.install.title') }}</h3>
       <div style="margin-bottom: 1.5rem;">
         <CodeHighlight :code="installCode" language="bash" />
       </div>
 
-      <h3 class="title-elegant">2. Registro e Importación</h3>
-      <p>Paso <b>importante</b> para que el componente se vea y actúe correctamente en tu proyecto. Solo
-        necesitas
-        importar la hoja de estilos y los componentes que deseas usar. Puedes
-        importar y usar los componentes directamente en tu archivo <code>.vue</code>:</p>
+      <h3 class="title-elegant">{{ $t('home.quick_start.steps.register.title') }}</h3>
+      <i18n-t keypath="home.quick_start.steps.register.description" tag="p">
+        <template #important>
+          <b>{{ $t('home.quick_start.steps.register.important') }}</b>
+        </template>
+        <template #ext>
+          <code>.vue</code>
+        </template>
+      </i18n-t>
 
       <div style="margin-bottom: 1.5rem;">
         <CodeHighlight :code="registerCode1" language="vue" />
       </div>
 
-      <p>O puedes importar la hoja de estilos en <code>main.ts</code> para que esté disponible globalmente:</p>
+      <i18n-t keypath="home.quick_start.steps.register.alternative" tag="p">
+        <template #file>
+          <code>main.ts</code>
+        </template>
+      </i18n-t>
 
       <div style="margin-bottom: 1.5rem;">
         <CodeHighlight :code="registerCode2" language="typescript" />
       </div>
 
-      <h3 class="title-elegant">3. Uso del componente</h3>
-      <p>Ahora puedes usar el componente en tu proyecto. En este ejemplo, uso simple para el modo
-        <strong>Dynamic</strong>
-      </p>
+      <h3 class="title-elegant">{{ $t('home.quick_start.steps.usage.title') }}</h3>
+      <i18n-t keypath="home.quick_start.steps.usage.description" tag="p">
+        <template #mode>
+          <strong>Dynamic</strong>
+        </template>
+      </i18n-t>
       <div style="margin-bottom: 1.5rem; display: flex; justify-content: center;">
         <SimpleExample />
       </div>
@@ -70,30 +86,41 @@
         <CodeHighlight :code="simpleExampleCode" language="vue" />
       </div>
 
-      <h2 class="title-elegant">Personalización</h2>
-      <p>La librería utiliza un sistema de <b>variables CSS</b> con prefijo <code>--bsw-</code> diseñado para ser flexible y fácil de tematizar mediante herencia.</p>
+      <h2 class="title-elegant">{{ $t('home.customization.title') }}</h2>
+      <i18n-t keypath="home.customization.description" tag="p">
+        <template #vars>
+          <b>{{ $t('home.customization.vars_text') }}</b>
+        </template>
+        <template #prefix>
+          <code>--bsw-</code>
+        </template>
+      </i18n-t>
 
       <div class="vars-grid">
         <div class="var-card">
-          <h4>Principales (Base)</h4>
-          <p>Controlan múltiples elementos a la vez:</p>
+          <h4>{{ $t('home.customization.sections.base.title') }}</h4>
+          <p>{{ $t('home.customization.sections.base.description') }}</p>
           <ul>
-            <li><code>--bsw-text-color</code>: Fallback para todo el texto.</li>
-            <li><code>--bsw-muted-color</code>: Fallback para elementos secundarios.</li>
+            <li><code>--bsw-text-color</code>: {{ $t('home.customization.sections.base.vars.text') }}</li>
+            <li><code>--bsw-muted-color</code>: {{ $t('home.customization.sections.base.vars.muted') }}</li>
           </ul>
         </div>
         <div class="var-card">
-          <h4>Específicas</h4>
-          <p>Control detallado por propiedad:</p>
+          <h4>{{ $t('home.customization.sections.specific.title') }}</h4>
+          <p>{{ $t('home.customization.sections.specific.description') }}</p>
           <ul>
-            <li><code>--bsw-background</code>: Fondo del panel.</li>
-            <li><code>--bsw-border-radius</code>: Radio de esquinas.</li>
-            <li><code>--bsw-box-shadow</code>: Sombra superior.</li>
+            <li><code>--bsw-background</code>: {{ $t('home.customization.sections.specific.vars.bg') }}</li>
+            <li><code>--bsw-border-radius</code>: {{ $t('home.customization.sections.specific.vars.radius') }}</li>
+            <li><code>--bsw-box-shadow</code>: {{ $t('home.customization.sections.specific.vars.shadow') }}</li>
           </ul>
         </div>
       </div>
 
-      <p>Puedes aplicar estas variables globalmente en tu <code>:root</code> o específicamente en un contenedor para crear temas personalizados rápidamente:</p>
+      <i18n-t keypath="home.customization.footer" tag="p">
+        <template #root>
+          <code>:root</code>
+        </template>
+      </i18n-t>
       <div style="margin-bottom: 1.5rem;">
         <CodeHighlight :code="customVarsCode" language="css" />
       </div>
@@ -112,7 +139,7 @@ const installCode = `npm install @coderoycc/bottom-sheet-wrappers`;
 
 const registerCode1 = `<script setup>
 import { ref } from "vue";
-import { DynamicBottomSheet } from "@coderoycc/bottom-sheet-wrappers";
+import { BsDynamic } from "@coderoycc/bottom-sheet-wrappers";
 import "@coderoycc/bottom-sheet-wrappers/style.css";
 
 const isOpen = ref(false);

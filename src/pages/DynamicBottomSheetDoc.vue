@@ -7,17 +7,25 @@
       </p>
     </div>
 
-    <!-- ===== SECCIÓN DE USO ===== -->
     <div class="doc-section">
       <h2>Uso en el Proyecto</h2>
 
       <h3>Instalación e Importación</h3>
-      <CodeHighlight code='import { DynamicBottomSheet } from "@coderoycc/bottom-sheet-wrappers";
+      <CodeHighlight code='import { BsDynamic } from "@coderoycc/bottom-sheet-wrappers";
       // NO ES NECESARIO SI YA SE IMPORTO EN EL main.ts
 import "@coderoycc/bottom-sheet-wrappers/style.css";' language="javascript" />
     </div>
+    <div class="info-callout">
+      <span class="callout-icon">📌</span>
+      <div>
+        <strong>Diferencia clave con el modo Dynamic:</strong> el panel Simple <em>no se puede redimensionar ni cerrar
+          mediante gestos o swipe</em>. Su tamaño es determinado por el prop <code>height</code> o se ajusta
+        automáticamente al contenido, pero permanece fijo. Para cerrarlo, <strong>es obligatorio incluir un botón de
+          acción explícito</strong> dentro del contenido del panel que setee el <code>v-model</code> a
+        <code>false</code>.
+      </div>
+    </div>
 
-    <!-- ===== SECCIÓN DE API ===== -->
     <div class="doc-section">
       <h2>API de Propiedades</h2>
       <ApiTable title="Props" :columns="propsColumns" :rows="propsData" />
@@ -25,7 +33,6 @@ import "@coderoycc/bottom-sheet-wrappers/style.css";' language="javascript" />
       <ApiTable title="Slots" :columns="slotsColumns" :rows="slotsData" />
     </div>
 
-    <!-- ===== SECCIÓN DE EJEMPLOS ===== -->
     <div class="doc-section">
       <h2>Módulos y Ejemplos de Uso</h2>
 
@@ -109,7 +116,6 @@ import ApiTable from '../components/ApiTable.vue';
 import DocExample from '../components/DocExample.vue';
 import CodeHighlight from '../components/CodeHighlight.vue';
 
-// ===== IMPORTACIÓN DE COMPONENTES DE EJEMPLO AISLADOS =====
 import SimpleExample from '../examples/SimpleExample.vue';
 import simpleExampleCode from '../examples/SimpleExample.vue?raw';
 
@@ -125,7 +131,6 @@ import darkModeExampleCode from '../examples/DarkModeExample.vue?raw';
 import ComplexSlotsExample from '../examples/ComplexSlotsExample.vue';
 import complexSlotsExampleCode from '../examples/ComplexSlotsExample.vue?raw';
 
-// ThemeCustomizationExample (pendiente de activar - ver template comentado)
 
 import ZIndexExample from '../examples/ZIndexExample.vue';
 import zIndexExampleCode from '../examples/ZIndexExample.vue?raw';
@@ -133,7 +138,6 @@ import zIndexExampleCode from '../examples/ZIndexExample.vue?raw';
 import CustomHandleExample from '../examples/CustomHandleExample.vue';
 import customHandleExampleCode from '../examples/CustomHandleExample.vue?raw';
 
-// ======================== API TABLES DATA ========================
 const propsColumns = [
   { key: 'name', label: 'Nombre', isCode: true },
   { key: 'type', label: 'Tipo', isCode: true },
@@ -216,5 +220,34 @@ h3 {
 .separator {
   margin: 2rem 0;
   border-bottom: 1px solid var(--border-color, #e2e8f0);
+}
+
+.info-callout {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  background: var(--callout-bg, #f0f9ff);
+  border: 1px solid var(--callout-border, #bae6fd);
+  border-left: 4px solid var(--callout-border-left, #0ea5e9);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-top: 1.25rem;
+  font-size: 0.95rem;
+  color: var(--callout-color, #0c4a6e);
+  line-height: 1.6;
+}
+
+.callout-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.info-callout code {
+  background: var(--callout-code-bg, #e0f2fe);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: var(--callout-code-color, #0369a1);
 }
 </style>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { DynamicBottomSheet } from '@coderoycc/bottom-sheet-wrappers';
+import { BsDynamic } from '@coderoycc/bottom-sheet-wrappers';
 
 const isOpen = ref(false);
 </script>
@@ -8,12 +8,11 @@ const isOpen = ref(false);
   <div>
     <button @click="isOpen = true" class="btn-open-handle">Abrir con Handle Personalizado</button>
 
-    <!-- 1. Le das una clase única a tu Bottom Sheet -->
-    <DynamicBottomSheet class="custom-handle-sheet" v-model="isOpen" title="Handle modificado">
+    <bs-dynamic class="custom-handle-sheet" v-model="isOpen" title="Handle modificado">
       <div style="padding: 1.5rem;">
         <p>El indicador de la parte superior ahora es más ancho y grueso.</p>
       </div>
-    </DynamicBottomSheet>
+    </bs-dynamic>
   </div>
 </template>
 

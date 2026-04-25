@@ -1,4 +1,149 @@
 {
   "welcome": "Bienvenido",
-  "language": "Idioma"
+  "home_nav": "Inicio",
+  "language": "Idioma",
+  "change_language": "Cambiar idioma",
+  "simple": "Simple",
+  "dynamic": "Dinámico",
+  "changelog": "Registro de cambios",
+  "components": "Componentes",
+  "appearance": "Apariencia",
+  "dark": "Oscuro",
+  "light": "Claro",
+  "system": "Sistema",
+  "dark_mode": "modo oscuro",
+  "simple_docs": {
+    "header": {
+      "title": "Simple Bottom Sheet",
+      "description": "Un panel de uso común. Redimensionable, customizable según su uso, muy versátil para todo."
+    },
+    "sections": {
+      "usage": "Uso en el Proyecto",
+      "props": "API de Propiedades",
+      "events": "API de Eventos",
+      "slots": "API de Slots",
+      "examples": "Ejemplos de Configuración"
+    },
+    "examples": {
+      "basic": {
+        "title": "Uso Básico (Auto-ajustable)",
+        "description": "La implementación más sencilla. El panel se expande verticalmente hasta donde llegue su contenido interno."
+      },
+      "height": {
+        "title": "Con Altura Fija y Backdrop",
+        "description": "Usando el prop {height} se establece una altura estricta. Aunque el contenido sea más pequeño o grande, el panel respetará ese límite. Habilitar {backdrop} añade la capa oscura de fondo. Adicional a eso si quieres puedes agregar la propiedad {closeOnBackdrop} si quieres que al hacer cualquier gesto en el backdrop el panel se cierre."
+      },
+      "custom": {
+        "title": "Customización de Bordes y Colores (Local)",
+        "description": "Los componentes son altamente customizables, puedes sobreescribir las variables CSS pasando una clase al componente. Las variables afectarán localmente a este panel sin tocar otros. Nota el borde rojo y esquinas redondeadas.",
+        "dark_mode": "Esta misma técnica se puede usar para aplicar {dark_mode}. Agregando una clase con variables diferentes o cambiando directamente las variables globales CSS."
+      },
+      "persistent": {
+        "title": "Panel Persistente",
+        "description": "Panel que no se cierra con ningún gesto, ideal para información que requiere sí o sí del usuario. Para cerrar el panel es necesario cerrar mediante algún botón interno modificando el {vmodel}."
+      },
+      "header": {
+        "title": "Header Personalizado vía Slots",
+        "description": "Si el header nativo no es suficiente, puedes inyectar tu propio diseño. Esto permite agregar botones, iconos o layouts complejos."
+      },
+      "zindex": {
+        "title": "Apilamiento con zIndex",
+        "description": "El prop {zIndex} controla el orden de apilamiento cuando varios paneles están abiertos simultáneamente. El valor efectivo es {base}. Cada panel puede abrirse desde dentro de otro, y el de mayor {zIndex} siempre quedará al frente; ideal para asistentes paso a paso o confirmaciones modales en cascada."
+      }
+    },
+    "table": {
+      "columns": {
+        "prop": "Propiedad",
+        "type": "Tipo",
+        "default": "Default",
+        "desc": "Descripción",
+        "name": "Nombre",
+        "params": "Parámetros"
+      },
+      "props": {
+        "model": "Controla la visibilidad del panel fijo.",
+        "title": "Título básico que se imprime en el header nativo.",
+        "height": "Altura forzada del panel. Si se omite, el panel se ajusta automáticamente a la altura del contenido.",
+        "backdrop": "Muestra un overlay oscuro semitransparente detrás del panel.",
+        "zindex": "Índice de elevación (se suma a 9000 como base).",
+        "props_obj": "Objeto adicional para vincular payloads extra al componente si es necesario."
+      },
+      "events": {
+        "model": "Sincronización bidireccional del estado de visibilidad.",
+        "opened": "Se dispara cuando el panel ha terminado de aparecer en pantalla.",
+        "closed": "Se dispara cuando el panel ha terminado de ocultarse y es removido del DOM.",
+        "before_close": "Se emite justo antes de iniciar la animación de cierre."
+      },
+      "slots": {
+        "default": "Pinta el cuerpo completo del panel sin control del header.",
+        "header": "Reemplaza completamente el área del encabezado nativo, permitiendo layouts completamente personalizados."
+      }
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Bottom Sheet Wrappers",
+      "subtitle": "Una librería de Vue 3 flexible diseñada específicamente para {mobile} con soporte para gestos táctiles nativos y modos de visualización distintos.",
+      "mobile_devices": "dispositivos móviles"
+    },
+    "wrappers": {
+      "title": "Wrappers",
+      "simple": {
+        "title": "Simple",
+        "description": "Un {panel} o que se ajusta al tamaño de su contenido. Simple de usar y para cualquier tipo de componente.",
+        "panel": "panel de altura fija"
+      },
+      "dynamic": {
+        "title": "Dinámico",
+        "description": "Un {panel}, ideal para contenido que requiere interacción táctil fluida.",
+        "panel": "panel redimensionable y colapsable"
+      }
+    },
+    "actions": {
+      "view_docs": "Ver Documentación ➔"
+    },
+    "quick_start": {
+      "title": "Inicio Rápido",
+      "steps": {
+        "install": {
+          "title": "1. Instalación"
+        },
+        "register": {
+          "title": "2. Registro e Importación",
+          "description": "Paso {important} para que el componente se vea y actúe correctamente en tu proyecto. Solo necesitas importar la hoja de estilos y los componentes que deseas usar. Puedes importar y usar los componentes directamente en tu archivo {ext}:",
+          "important": "importante",
+          "alternative": "O puedes importar la hoja de estilos en {file} para que esté disponible globalmente:"
+        },
+        "usage": {
+          "title": "3. Uso del componente",
+          "description": "Ahora puedes usar el componente en tu proyecto. En este ejemplo, uso simple para el modo {mode}"
+        }
+      }
+    },
+    "customization": {
+      "title": "Personalización",
+      "description": "La librería utiliza un sistema de {vars} con prefijo {prefix} diseñado para ser flexible y fácil de tematizar mediante herencia.",
+      "vars_text": "variables CSS",
+      "sections": {
+        "base": {
+          "title": "Principales (Base)",
+          "description": "Controlan múltiples elementos a la vez:",
+          "vars": {
+            "text": "Fallback para todo el texto.",
+            "muted": "Fallback para elementos secundarios."
+          }
+        },
+        "specific": {
+          "title": "Específicas",
+          "description": "Control detallado por propiedad:",
+          "vars": {
+            "bg": "Fondo del panel.",
+            "radius": "Radio de esquinas.",
+            "shadow": "Sombra superior."
+          }
+        }
+      },
+      "footer": "Puedes aplicar estas variables globalmente en tu {root} o específicamente en un contenedor para crear temas personalizados rápidamente:"
+    }
+  }
 }

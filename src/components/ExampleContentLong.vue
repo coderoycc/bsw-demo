@@ -1,8 +1,11 @@
 <template>
   <div class="example-content-long">
-    <h3>Contenido Largo (Scrollable)</h3>
-    <p>Este contenido supera el límite máximo de altura (full), por lo tanto, el contenido interior se vuelve scrolleable. La barra indicadora del header intercepta eventos de touch para manejar el deslizamiento, mientras que el contenido mismo scrollea de forma nativa.</p>
-    
+    <h3>Long Content</h3>
+    <p>This content exceeds the maximum height limit (full), therefore, the internal content becomes scrollable. The
+      header indicator bar intercepts touch events to handle the sliding, while the content itself scrolls natively.</p>
+
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Necessitatibus veniam laudantium quam?</p>
+
     <div class="list">
       <div v-for="i in 15" :key="i" class="list-item">
         <div class="avatar">{{ i }}</div>
@@ -19,12 +22,14 @@
 .example-content-long {
   padding: 1rem;
 }
+
 .list {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   margin-top: 1rem;
 }
+
 .list-item {
   display: flex;
   align-items: center;
@@ -33,6 +38,7 @@
   border: 1px solid #e2e8f0;
   border-radius: 8px;
 }
+
 .avatar {
   flex-shrink: 0;
   width: 40px;
@@ -45,10 +51,12 @@
   justify-content: center;
   font-weight: bold;
 }
+
 .details h5 {
   margin: 0 0 0.25rem 0;
   color: #1e293b;
 }
+
 .details span {
   font-size: 0.85rem;
   color: #64748b;

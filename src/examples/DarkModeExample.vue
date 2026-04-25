@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { DynamicBottomSheet } from '@coderoycc/bottom-sheet-wrappers';
+import { BsDynamic } from '@coderoycc/bottom-sheet-wrappers';
 
 const isOpen = ref(false);
 </script>
@@ -9,7 +9,7 @@ const isOpen = ref(false);
   <div>
     <button class="btn-dark" @click="isOpen = true">Abrir Dark Mode Local</button>
 
-    <DynamicBottomSheet class="dark-mode-sheet" v-model="isOpen" initial-size="half" show-backdrop close-on-backdrop
+    <bs-dynamic class="dark-mode-sheet" v-model="isOpen" initial-size="half" show-backdrop close-on-backdrop
       title="Modo oscuro">
       <div class="dark-content">
         <h3>Modo Oscuro Integrado</h3>
@@ -17,14 +17,13 @@ const isOpen = ref(false);
           noche.</p>
         <p>Nota: el estilo CSS variables "dark-mode-sheet" usa la etiqueta &lt;style&gt; global.</p>
       </div>
-    </DynamicBottomSheet>
+    </bs-dynamic>
   </div>
 </template>
 
 <style>
-/* 
-  Utilizamos variables CSS. Se definen sin "scoped" para que 
-  la directiva Teleport encuentre la clase válida desde el DOM raíz.
+/**
+  The style is outside of style scoped to be accessible by the teleport directive
 */
 .dark-mode-sheet {
   --bsw-background: #1e1e2e;
@@ -50,7 +49,6 @@ const isOpen = ref(false);
   background-color: #0f172a;
 }
 
-/* El interior se mantiene en <style scoped> ya que pertenece a los slots hijos */
 .dark-content {
   padding: 1.5rem;
 }

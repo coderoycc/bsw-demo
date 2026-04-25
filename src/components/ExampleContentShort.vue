@@ -1,8 +1,8 @@
 <template>
   <div class="example-content-short">
-    <h3>Contenido Corto</h3>
+    <h3>Short Content</h3>
     <div class="info-box">
-      <p>💡 El Bottom sheet medirá como mínimo la altura de este bloque.</p>
+      <p>💡 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, maiores.</p>
     </div>
   </div>
 </template>
