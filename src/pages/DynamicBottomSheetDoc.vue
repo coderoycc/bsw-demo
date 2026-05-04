@@ -12,17 +12,15 @@
 
       <h3>Instalación e Importación</h3>
       <CodeHighlight code='import { BsDynamic } from "@coderoycc/bottom-sheet-wrappers";
-      // NO ES NECESARIO SI YA SE IMPORTO EN EL main.ts
+// optional
 import "@coderoycc/bottom-sheet-wrappers/style.css";' language="javascript" />
     </div>
     <div class="info-callout">
       <span class="callout-icon">📌</span>
       <div>
-        <strong>Diferencia clave con el modo Dynamic:</strong> el panel Simple <em>no se puede redimensionar ni cerrar
-          mediante gestos o swipe</em>. Su tamaño es determinado por el prop <code>height</code> o se ajusta
-        automáticamente al contenido, pero permanece fijo. Para cerrarlo, <strong>es obligatorio incluir un botón de
-          acción explícito</strong> dentro del contenido del panel que setee el <code>v-model</code> a
-        <code>false</code>.
+        <strong>Diferencia clave con el modo simple:</strong> este panel puede redimensionarse en tres diferentes
+        estados. <code>collapsed</code>, <code>half</code> y <code>full</code>.
+        Muy útil para acciones dinámicas que requieren una interacción sin perder el contexto de la página.
       </div>
     </div>
 
@@ -232,6 +230,7 @@ h3 {
   border-radius: 8px;
   padding: 1rem 1.25rem;
   margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
   font-size: 0.95rem;
   color: var(--callout-color, #0c4a6e);
   line-height: 1.6;
