@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { DynamicBottomSheet } from '@coderoycc/bottom-sheet-wrappers';
+import { BsDynamic } from '@coderoycc/bottom-sheet-wrappers';
 import ExampleContentMedium from '../components/ExampleContentMedium.vue';
 
 const isOpen = ref(false);
@@ -10,9 +10,9 @@ const isOpen = ref(false);
   <div>
     <button class="btn-primary" @click="isOpen = true">Abrir Uso Simple</button>
 
-    <DynamicBottomSheet v-model="isOpen" title="Uso Simple" initial-size="half">
+    <bs-dynamic v-model="isOpen" title="Uso Simple" initial-size="half">
       <ExampleContentMedium />
-    </DynamicBottomSheet>
+    </bs-dynamic>
   </div>
 </template>
 

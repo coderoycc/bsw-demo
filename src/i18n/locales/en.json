@@ -1,4 +1,149 @@
 {
   "welcome": "Welcome",
-  "language": "Language"
+  "home_nav": "Home",
+  "language": "Language",
+  "change_language": "Change language",
+  "simple": "Simple",
+  "dynamic": "Dynamic",
+  "changelog": "Changelog",
+  "components": "Components",
+  "appearance": "Appearance",
+  "dark": "Dark",
+  "light": "Light",
+  "system": "System",
+  "dark_mode": "dark mode",
+  "simple_docs": {
+    "header": {
+      "title": "Simple Bottom Sheet",
+      "description": "A commonly used panel. Resizable, customizable according to its use, very versatile for everything."
+    },
+    "sections": {
+      "usage": "Project Usage",
+      "props": "Properties API",
+      "events": "Events API",
+      "slots": "Slots API",
+      "examples": "Configuration Examples"
+    },
+    "examples": {
+      "basic": {
+        "title": "Basic Usage (Auto-adjusting)",
+        "description": "The simplest implementation. The panel expands vertically to fit its internal content."
+      },
+      "height": {
+        "title": "With Fixed Height and Backdrop",
+        "description": "Using the {height} prop establishes a strict height. Whether the content is smaller or larger, the panel will respect that limit. Enabling {backdrop} adds the dark background layer. Additionally, you can add the {closeOnBackdrop} property if you want the panel to close when making any gesture on the backdrop."
+      },
+      "custom": {
+        "title": "Border and Color Customization (Local)",
+        "description": "Components are highly customizable, you can overwrite CSS variables by passing a class to the component. The variables will locally affect this panel without touching others. Note the red border and rounded corners.",
+        "dark_mode": "This same technique can be used to apply {dark_mode}. Adding a class with different variables or directly changing the global CSS variables."
+      },
+      "persistent": {
+        "title": "Persistent Panel",
+        "description": "A panel that does not close with any gesture, ideal for information that strictly requires the user. To close the panel, it is necessary to close via an internal button by modifying the {vmodel}."
+      },
+      "header": {
+        "title": "Custom Header via Slots",
+        "description": "If the native header is not enough, you can inject your own design. This allows adding buttons, icons, or complex layouts."
+      },
+      "zindex": {
+        "title": "Stacking with zIndex",
+        "description": "The {zIndex} prop controls the stacking order when multiple panels are open simultaneously. The effective value is {base}. Each panel can be opened from within another, and the one with the highest {zIndex} will always stay at the front; ideal for step-by-step wizards or cascading modal confirmations."
+      }
+    },
+    "table": {
+      "columns": {
+        "prop": "Property",
+        "type": "Type",
+        "default": "Default",
+        "desc": "Description",
+        "name": "Name",
+        "params": "Parameters"
+      },
+      "props": {
+        "model": "Controls the visibility of the fixed panel.",
+        "title": "Basic title printed in the native header.",
+        "height": "Forced height of the panel. If omitted, the panel automatically adjusts to the content height.",
+        "backdrop": "Shows a semi-transparent dark overlay behind the panel.",
+        "zindex": "Elevation index (added to 9000 as base).",
+        "props_obj": "Additional object to bind extra payloads to the component if necessary."
+      },
+      "events": {
+        "model": "Bidirectional synchronization of the visibility state.",
+        "opened": "Triggered when the panel has finished appearing on screen.",
+        "closed": "Triggered when the panel has finished hiding and is removed from the DOM.",
+        "before_close": "Emitted just before starting the closing animation."
+      },
+      "slots": {
+        "default": "Renders the full body of the panel without header control.",
+        "header": "Completely replaces the native header area, allowing for fully custom layouts."
+      }
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Bottom Sheet Wrappers",
+      "subtitle": "A flexible Vue 3 library specifically designed for {mobile} with native touch gesture support and distinct display modes.",
+      "mobile_devices": "mobile devices"
+    },
+    "wrappers": {
+      "title": "Wrappers",
+      "simple": {
+        "title": "Simple",
+        "description": "A {panel} or one that adjusts to its content size. Simple to use for any type of component.",
+        "panel": "fixed height panel"
+      },
+      "dynamic": {
+        "title": "Dynamic",
+        "description": "A {panel}, ideal for content that requires fluid touch interaction.",
+        "panel": "resizable and collapsible panel"
+      }
+    },
+    "actions": {
+      "view_docs": "View Documentation ➔"
+    },
+    "quick_start": {
+      "title": "Quick Start",
+      "steps": {
+        "install": {
+          "title": "1. Installation"
+        },
+        "register": {
+          "title": "2. Registration and Import",
+          "description": "{important} step for the component to look and act correctly in your project. You only need to import the stylesheet and the components you want to use. You can import and use components directly in your {ext} file:",
+          "important": "Important",
+          "alternative": "Or you can import the stylesheet in {file} to make it available globally:"
+        },
+        "usage": {
+          "title": "3. Component Usage",
+          "description": "Now you can use the component in your project. In this example, simple usage for {mode} mode"
+        }
+      }
+    },
+    "customization": {
+      "title": "Customization",
+      "description": "The library uses a {vars} system with the {prefix} prefix designed to be flexible and easy to theme through inheritance.",
+      "vars_text": "CSS variables",
+      "sections": {
+        "base": {
+          "title": "Main (Base)",
+          "description": "They control multiple elements at once:",
+          "vars": {
+            "text": "Fallback for all text.",
+            "muted": "Fallback for secondary elements."
+          }
+        },
+        "specific": {
+          "title": "Specific",
+          "description": "Detailed control per property:",
+          "vars": {
+            "bg": "Panel background.",
+            "radius": "Corner radius.",
+            "shadow": "Top shadow."
+          }
+        }
+      },
+      "footer": "You can apply these variables globally in your {root} or specifically in a container to create custom themes quickly:"
+    }
+  }
 }

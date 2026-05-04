@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watchEffect, onUnmounted } from "vue";
-import { DynamicBottomSheet } from "@coderoycc/bottom-sheet-wrappers";
+import { BsDynamic } from "@coderoycc/bottom-sheet-wrappers";
 
 type ThemeKey = "default" | "rounded" | "dark" | "soft";
 
@@ -36,7 +36,7 @@ onUnmounted(() => {
     </div>
   </div>
 
-  <DynamicBottomSheet v-model="openDynamic" title="Dynamic con tema global" initial-size="half">
+  <bs-dynamic v-model="openDynamic" title="Dynamic con tema global" initial-size="half">
     <template #collapsed-content>
       <div>
         <p>Las variables CSS se aplican desde el body.</p>
@@ -51,9 +51,9 @@ onUnmounted(() => {
       <p>Cambia el tema pulsando fuera y seleccionando otro botón rojo.</p>
       <button class="secondary-btn" @click="openDynamic = false">Cerrar</button>
     </div>
-  </DynamicBottomSheet>
+  </bs-dynamic>
 
-  <DynamicBottomSheet v-model="openLocal" title="Override local" class="local-theme" initial-size="half">
+  <bs-dynamic v-model="openLocal" title="Override local" class="local-theme" initial-size="half">
     <div class="sheet-body">
       <h3>Override local</h3>
       <p>Solo este sheet modifica sus variables CSS mediante una clase inyectada directamente al componente.</p>
@@ -61,7 +61,7 @@ onUnmounted(() => {
       <button class="secondary-btn" style="background: rgba(255,255,255,0.2); color: inherit;"
         @click="openLocal = false">Cerrar</button>
     </div>
-  </DynamicBottomSheet>
+  </bs-dynamic>
 </template>
 
 <style scoped>

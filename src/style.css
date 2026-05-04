@@ -288,3 +288,23 @@ code {
 		border-color 0.3s ease,
 		color 0.3s ease;
 }
+
+.text-muted {
+	color: var(--text-muted);
+	font-size: 0.9rem;
+}
+
+.btn-primary {
+	background-color: #3b82f6;
+	color: white;
+	border: 1px solid transparent;
+	padding: 0.6rem 1.2rem;
+	border-radius: 6px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: filter 0.2s;
+}
+
+.btn-primary:hover {
+	filter: brightness(0.9);
+}

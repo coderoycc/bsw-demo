@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { DynamicBottomSheet } from '@coderoycc/bottom-sheet-wrappers';
+import { BsDynamic } from '@coderoycc/bottom-sheet-wrappers';
 
 const openSheet1 = ref(false);
 const openSheet2 = ref(false);
@@ -10,41 +10,31 @@ const openSheet2 = ref(false);
   <div>
     <button class="btn-primary" @click="openSheet1 = true">Abrir Panel Base (z-index: 1)</button>
 
-    <!-- Panel base: z-index 1 (por defecto) -->
-    <DynamicBottomSheet
-      v-model="openSheet1"
-      title="Panel Base · zIndex: 1"
-      initial-size="half"
-      show-backdrop
-      :z-index="1"
-    >
+    <bs-dynamic v-model="openSheet1" title="Panel Base · zIndex: 1" initial-size="half" show-backdrop :z-index="1">
       <div class="sheet-content">
         <p>Este panel tiene <code>:z-index="1"</code>, que internamente suma 9000. Es el primer nivel del stack.</p>
-        <p>Ahora abre un segundo panel encima. Aunque ambos comparten el mismo punto de montaje (<code>Teleport → body</code>), el de mayor <code>zIndex</code> se muestra al frente.</p>
+        <p>Ahora abre un segundo panel encima. Aunque ambos comparten el mismo punto de montaje
+          (<code>Teleport → body</code>), el de mayor <code>zIndex</code> se muestra al frente.</p>
         <button class="btn-secondary" @click="openSheet2 = true">
           Abrir Panel Superpuesto (z-index: 2)
         </button>
       </div>
-    </DynamicBottomSheet>
+    </bs-dynamic>
 
-    <!-- Panel superpuesto: z-index 2 (aparece sobre el anterior) -->
-    <DynamicBottomSheet
-      v-model="openSheet2"
-      title="Panel Superpuesto · zIndex: 2"
-      initial-size="half"
-      show-backdrop
-      :z-index="2"
-    >
+    <bs-dynamic v-model="openSheet2" title="Panel Superpuesto · zIndex: 2" initial-size="half" show-backdrop
+      :z-index="2">
       <div class="sheet-content sheet-content--top">
         <p>Este panel usa <code>:z-index="2"</code> (9002 efectivo) y aparece sobre el panel anterior.</p>
-        <p>Ciérralo para volver al panel base. El apilamiento es completamente controlado por el prop <code>zIndex</code>.</p>
+        <p>Ciérralo para volver al panel base. El apilamiento es completamente controlado por el prop
+          <code>zIndex</code>.
+        </p>
         <div class="stack-viz">
           <div class="stack-layer stack-layer--2">Panel zIndex: 2 ← estás aquí</div>
           <div class="stack-layer stack-layer--1">Panel zIndex: 1</div>
           <div class="stack-layer stack-layer--0">App / Página</div>
         </div>
       </div>
-    </DynamicBottomSheet>
+    </bs-dynamic>
   </div>
 </template>
 
@@ -59,6 +49,7 @@ const openSheet2 = ref(false);
   cursor: pointer;
   transition: filter 0.2s;
 }
+
 .btn-primary:hover {
   filter: brightness(0.9);
 }
@@ -74,6 +65,7 @@ const openSheet2 = ref(false);
   margin-top: 0.75rem;
   transition: filter 0.2s;
 }
+
 .btn-secondary:hover {
   filter: brightness(0.9);
 }
@@ -84,6 +76,7 @@ const openSheet2 = ref(false);
   flex-direction: column;
   gap: 0.5rem;
 }
+
 .sheet-content code {
   background: #eff6ff;
   color: #1d4ed8;
@@ -103,6 +96,7 @@ const openSheet2 = ref(false);
   flex-direction: column;
   gap: 6px;
 }
+
 .stack-layer {
   padding: 0.5rem 1rem;
   border-radius: 6px;
@@ -110,14 +104,17 @@ const openSheet2 = ref(false);
   font-weight: 500;
   text-align: center;
 }
+
 .stack-layer--2 {
   background: #6366f1;
   color: white;
 }
+
 .stack-layer--1 {
   background: #bfdbfe;
   color: #1e40af;
 }
+
 .stack-layer--0 {
   background: #f1f5f9;
   color: #64748b;
