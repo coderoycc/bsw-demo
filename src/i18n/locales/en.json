@@ -80,6 +80,93 @@
       }
     }
   },
+  "dynamic_docs": {
+    "header": {
+      "title": "Dynamic Bottom Sheet",
+      "description": "A dynamic bottom panel that allows a dynamic interaction with the content."
+    },
+    "sections": {
+      "usage": "Project Usage",
+      "installation": "Installation and Import",
+      "props": "Properties API",
+      "examples": "Modules and Usage Examples"
+    },
+    "callout": {
+      "key_diff": "Key difference with simple mode:",
+      "desc": " this panel can be resized into three different states. {collapsed}, {half} and {full}. Very useful for dynamic actions that require an interaction without losing page context."
+    },
+    "examples": {
+      "simple": {
+        "title": "Simple Usage",
+        "description": "A basic bottom sheet with only content and default close behavior. Uses the configured height."
+      },
+      "backdrop": {
+        "title": "Usage with Backdrop",
+        "description": "Enables a dark layer in the background by adding the {prop} property. Additionally, clicking on the backdrop collapses the container."
+      },
+      "slots": {
+        "title": "Slots (Header and Collapsed)",
+        "desc1": "The {collapsed} slot shows custom content when the container is in the {state_collapsed} state.",
+        "desc2": "The {header} slot shows custom content in the container's header."
+      },
+      "dark_mode": {
+        "title": "Integrated Dark Mode Usage",
+        "description": "Injecting variables to apply the respective local dark theme directly to a bottom sheet."
+      },
+      "custom_handle": {
+        "title": "Handle Customization",
+        "description": "You can override CSS variables by passing a class to the component. The variables will affect this sheet locally.",
+        "note": "Note: It is recommended to apply styles globally or in a component without using {scoped}."
+      },
+      "zindex": {
+        "title": "Stacking with zIndex",
+        "description": "The {zIndex} prop allows managing visual order when multiple panels are open at the same time. The effective final value is {base}, ensuring sheets are always above normal app content. Assign increasing values to define which panel stays in front."
+      }
+    },
+    "table": {
+      "title": {
+        "props": "Props",
+        "events": "Events",
+        "slots": "Slots"
+      },
+      "props": {
+        "model": "Controls the visibility of the dynamic modal.",
+        "title": "Basic title printed in the native header.",
+        "initialSize": "Initial size to show: 'collapsed', 'half', 'full'.",
+        "half": "Height dimension for the 'half' state.",
+        "full": "Height dimension for the maximum 'full' state.",
+        "showCloseButton": "Show or hide the cross close button.",
+        "showBackdrop": "Draws and shows a semi-transparent dark overlay.",
+        "hideDragHandle": "Hides the drag handle.",
+        "zIndex": "Elevation index (based on sum to 9000)."
+      },
+      "events": {
+        "model": "Changes component state and bidirectional sync.",
+        "close": "Triggered at the beginning of the close request.",
+        "opened": "Triggered when the CSS visual entrance animation ends.",
+        "closed": "Triggered when the CSS visual exit animation ends.",
+        "size_change": "Notifies when the size change has finished. The emitted values are of DynamicSize: 'collapsed' | 'half' | 'full'."
+      },
+      "slots": {
+        "default": "Slot for the bottomsheet content.",
+        "header": "Slot for the bottomsheet header. If this slot is used, the default header is lost.",
+        "collapsed_content": "Slot for the bottomsheet content in the 'collapsed' state."
+      }
+    }
+  },
+  "zindex_example": {
+    "btn_base": "Open Base Panel (z-index: 1)",
+    "title_base": "Base Panel · zIndex: 1",
+    "desc1_base": "This panel has {code}, which internally adds 9000. It is the first level of the stack.",
+    "desc2_base": "Now open a second panel on top. Although both share the same mount point ({code}), the one with higher {zIndex} is shown in front.",
+    "btn_top": "Open Top Panel (z-index: 2)",
+    "title_top": "Top Panel · zIndex: 2",
+    "desc1_top": "This panel uses {code} (effective 9002) and appears over the previous panel.",
+    "desc2_top": "Close it to return to the base panel. Stacking is fully controlled by the {zIndex} prop.",
+    "stack_2": "Panel zIndex: 2 ← you are here",
+    "stack_1": "Panel zIndex: 1",
+    "stack_0": "App / Page"
+  },
   "home": {
     "hero": {
       "title": "Bottom Sheet Wrappers",

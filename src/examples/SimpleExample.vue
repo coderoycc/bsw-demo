@@ -8,9 +8,9 @@ const isOpen = ref(false);
 
 <template>
   <div>
-    <button class="btn-primary" @click="isOpen = true">Abrir Uso Simple</button>
+    <button class="btn-primary" @click="isOpen = true">Open Simple Usage</button>
 
-    <bs-dynamic v-model="isOpen" title="Uso Simple" initial-size="half">
+    <bs-dynamic v-model="isOpen" title="Simple Usage" initial-size="half">
       <ExampleContentMedium />
     </bs-dynamic>
   </div>

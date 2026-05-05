@@ -8,9 +8,9 @@ const isOpen = ref(false);
 
 <template>
   <div>
-    <button class="btn-primary" @click="isOpen = true">Abrir con Backdrop</button>
+    <button class="btn-primary" @click="isOpen = true">Open</button>
 
-    <bs-dynamic v-model="isOpen" title="Con Backdrop" initial-size="half" show-backdrop>
+    <bs-dynamic v-model="isOpen" title="With Backdrop" initial-size="half" show-backdrop>
       <ExampleContentShort />
     </bs-dynamic>
   </div>
