@@ -8,30 +8,36 @@ const openSheet2 = ref(false);
 
 <template>
   <div>
-    <button class="btn-primary" @click="openSheet1 = true">Abrir Panel Base (z-index: 1)</button>
+    <button class="btn-primary" @click="openSheet1 = true">{{ $t('zindex_example.btn_base') }}</button>
 
-    <bs-dynamic v-model="openSheet1" title="Panel Base · zIndex: 1" initial-size="half" show-backdrop :z-index="1">
+    <bs-dynamic v-model="openSheet1" :title="$t('zindex_example.title_base')" initial-size="half" show-backdrop :z-index="1">
       <div class="sheet-content">
-        <p>Este panel tiene <code>:z-index="1"</code>, que internamente suma 9000. Es el primer nivel del stack.</p>
-        <p>Ahora abre un segundo panel encima. Aunque ambos comparten el mismo punto de montaje
-          (<code>Teleport → body</code>), el de mayor <code>zIndex</code> se muestra al frente.</p>
+        <i18n-t keypath="zindex_example.desc1_base" tag="p">
+          <template #code><code>:z-index="1"</code></template>
+        </i18n-t>
+        <i18n-t keypath="zindex_example.desc2_base" tag="p">
+          <template #code><code>Teleport → body</code></template>
+          <template #zIndex><code>zIndex</code></template>
+        </i18n-t>
         <button class="btn-secondary" @click="openSheet2 = true">
-          Abrir Panel Superpuesto (z-index: 2)
+          {{ $t('zindex_example.btn_top') }}
         </button>
       </div>
     </bs-dynamic>
 
-    <bs-dynamic v-model="openSheet2" title="Panel Superpuesto · zIndex: 2" initial-size="half" show-backdrop
+    <bs-dynamic v-model="openSheet2" :title="$t('zindex_example.title_top')" initial-size="half" show-backdrop
       :z-index="2">
       <div class="sheet-content sheet-content--top">
-        <p>Este panel usa <code>:z-index="2"</code> (9002 efectivo) y aparece sobre el panel anterior.</p>
-        <p>Ciérralo para volver al panel base. El apilamiento es completamente controlado por el prop
-          <code>zIndex</code>.
-        </p>
+        <i18n-t keypath="zindex_example.desc1_top" tag="p">
+          <template #code><code>:z-index="2"</code></template>
+        </i18n-t>
+        <i18n-t keypath="zindex_example.desc2_top" tag="p">
+          <template #zIndex><code>zIndex</code></template>
+        </i18n-t>
         <div class="stack-viz">
-          <div class="stack-layer stack-layer--2">Panel zIndex: 2 ← estás aquí</div>
-          <div class="stack-layer stack-layer--1">Panel zIndex: 1</div>
-          <div class="stack-layer stack-layer--0">App / Página</div>
+          <div class="stack-layer stack-layer--2">{{ $t('zindex_example.stack_2') }}</div>
+          <div class="stack-layer stack-layer--1">{{ $t('zindex_example.stack_1') }}</div>
+          <div class="stack-layer stack-layer--0">{{ $t('zindex_example.stack_0') }}</div>
         </div>
       </div>
     </bs-dynamic>

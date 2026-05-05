@@ -10,12 +10,13 @@ const isOpen = ref(false);
     <button class="btn-dark" @click="isOpen = true">Abrir Dark Mode Local</button>
 
     <bs-dynamic class="dark-mode-sheet" v-model="isOpen" initial-size="half" show-backdrop close-on-backdrop
-      title="Modo oscuro">
+      title="Dark mode Local">
       <div class="dark-content">
-        <h3>Modo Oscuro Integrado</h3>
-        <p>Este sheet modificó localmente las variables CSS del fondo y sobrescribió colores de encabezados para modo
-          noche.</p>
-        <p>Nota: el estilo CSS variables "dark-mode-sheet" usa la etiqueta &lt;style&gt; global.</p>
+        <h3>Dark Mode Local</h3>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Inventore nesciunt aliquam nulla!</p>
+        <p>
+          The style is outside of style scoped to be accessible by the teleport directive
+        </p>
       </div>
     </bs-dynamic>
   </div>

@@ -80,6 +80,93 @@
       }
     }
   },
+  "dynamic_docs": {
+    "header": {
+      "title": "Dynamic Bottom Sheet",
+      "description": "Un panel inferior dinámico que permite una interacción dinámica con el contenido."
+    },
+    "sections": {
+      "usage": "Uso en el Proyecto",
+      "installation": "Instalación e Importación",
+      "props": "API de Propiedades",
+      "examples": "Módulos y Ejemplos de Uso"
+    },
+    "callout": {
+      "key_diff": "Diferencia clave con el modo simple:",
+      "desc": " este panel puede redimensionarse en tres diferentes estados. {collapsed}, {half} y {full}. Muy útil para acciones dinámicas que requieren una interacción sin perder el contexto de la página."
+    },
+    "examples": {
+      "simple": {
+        "title": "Uso Simple",
+        "description": "Un bottom sheet básico con solo el contenido y el comportamiento de cerrado predeterminado. Utiliza la altura configurada."
+      },
+      "backdrop": {
+        "title": "Uso con Backdrop",
+        "description": "Habilita la aparición de una capa oscura en el fondo agregando la propiedad {prop}. Adicionalmente, cuando se hace click en el backdrop se colapsa el contendor."
+      },
+      "slots": {
+        "title": "Slots (Header y Collapsed)",
+        "desc1": "El slot {collapsed} muestra el contenido personalizado cuando el contenedor se encuentra en estado {state_collapsed}.",
+        "desc2": "El slot {header} muestra el contenido personalizado en el header del contenedor."
+      },
+      "dark_mode": {
+        "title": "Uso en Modo Oscuro Integrado",
+        "description": "Inyectando variables para aplicar el respectivo tema oscuro local directamente a un bottom sheet."
+      },
+      "custom_handle": {
+        "title": "Customización de Handle",
+        "description": "Puedes sobreescribir las variables CSS pasándole una clase a componente. Las variables afectarán localmente a este sheet.",
+        "note": "Nota: Es recomendado aplicar los estilos globalmente o en un componente sin usar {scoped}."
+      },
+      "zindex": {
+        "title": "Apilamiento con zIndex",
+        "description": "La prop {zIndex} permite manejar el orden visual cuando varios panels están abiertos al mismo tiempo. El valor final efectivo es {base}, lo que asegura que los sheets siempre estén por encima del contenido normal de la app. Asigna valores crecientes para definir cuál panel queda al frente."
+      }
+    },
+    "table": {
+      "title": {
+        "props": "Props",
+        "events": "Eventos",
+        "slots": "Slots"
+      },
+      "props": {
+        "model": "Controla la visibilidad del modal dinámico.",
+        "title": "Título básico que se imprime en el header nativo.",
+        "initialSize": "Tamaño inicial a mostrar: 'collapsed', 'half', 'full'.",
+        "half": "Dimensión en alto para el estado 'half'.",
+        "full": "Dimensión en alto para el estado máximo 'full'.",
+        "showCloseButton": "Mostrar u ocultar botón con cruz de cierre.",
+        "showBackdrop": "Saca y muestra un overlay oscuro semitransparente.",
+        "hideDragHandle": "Oculta el handle de arrastre.",
+        "zIndex": "Índice de elevación (es baseada sobre suma a 9000)."
+      },
+      "events": {
+        "model": "Cambia estado de componente y sync bidireccional.",
+        "close": "Se gatilla al inicio del pedido de cerrado.",
+        "opened": "Se dispara cuando acaba la animación visual de entrada CSS.",
+        "closed": "Se dispara cuando acaba la animación visual de retirada CSS.",
+        "size_change": "Avisa cuando se ha terminado de cambiar el tamaño. Los valores que se emiten son de DynamicSize: 'collapsed' | 'half' | 'full'."
+      },
+      "slots": {
+        "default": "Slot para el contenido del bottomsheet.",
+        "header": "Slot para el header del bottomsheet. Si se usa este slot, se pierde el header por defecto.",
+        "collapsed_content": "Slot para el contenido del bottomsheet en estado 'collapsed'."
+      }
+    }
+  },
+  "zindex_example": {
+    "btn_base": "Abrir Panel Base (z-index: 1)",
+    "title_base": "Panel Base · zIndex: 1",
+    "desc1_base": "Este panel tiene {code}, que internamente suma 9000. Es el primer nivel del stack.",
+    "desc2_base": "Ahora abre un segundo panel encima. Aunque ambos comparten el mismo punto de montaje ({code}), el de mayor {zIndex} se muestra al frente.",
+    "btn_top": "Abrir Panel Superpuesto (z-index: 2)",
+    "title_top": "Panel Superpuesto · zIndex: 2",
+    "desc1_top": "Este panel usa {code} (9002 efectivo) y aparece sobre el panel anterior.",
+    "desc2_top": "Ciérralo para volver al panel base. El apilamiento es completamente controlado por el prop {zIndex}.",
+    "stack_2": "Panel zIndex: 2 ← estás aquí",
+    "stack_1": "Panel zIndex: 1",
+    "stack_0": "App / Página"
+  },
   "home": {
     "hero": {
       "title": "Bottom Sheet Wrappers",

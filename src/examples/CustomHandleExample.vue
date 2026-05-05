@@ -6,11 +6,12 @@ const isOpen = ref(false);
 </script>
 <template>
   <div>
-    <button @click="isOpen = true" class="btn-open-handle">Abrir con Handle Personalizado</button>
+    <button @click="isOpen = true" class="btn-open-handle">Open custom handle</button>
 
-    <bs-dynamic class="custom-handle-sheet" v-model="isOpen" title="Handle modificado">
+    <bs-dynamic class="custom-handle-sheet" v-model="isOpen" title="Custom handle">
       <div style="padding: 1.5rem;">
-        <p>El indicador de la parte superior ahora es más ancho y grueso.</p>
+        <p>The handle is customized.</p>
+        <p>The styles are applied globally. See the styles section.</p>
       </div>
     </bs-dynamic>
   </div>

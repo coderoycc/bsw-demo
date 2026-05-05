@@ -1,16 +1,16 @@
 <template>
   <div class="doc-page">
     <div class="header-banner">
-      <h1>Dynamic Bottom Sheet</h1>
+      <h1>{{ $t('dynamic_docs.header.title') }}</h1>
       <p class="description">
-        Un panel inferior dinámico que ajusta su tamaño interactuando para interfaces móviles o web modernas.
+        {{ $t('dynamic_docs.header.description') }}
       </p>
     </div>
 
     <div class="doc-section">
-      <h2>Uso en el Proyecto</h2>
+      <h2>{{ $t('dynamic_docs.sections.usage') }}</h2>
 
-      <h3>Instalación e Importación</h3>
+      <h3>{{ $t('dynamic_docs.sections.installation') }}</h3>
       <CodeHighlight code='import { BsDynamic } from "@coderoycc/bottom-sheet-wrappers";
 // optional
 import "@coderoycc/bottom-sheet-wrappers/style.css";' language="javascript" />
@@ -18,44 +18,51 @@ import "@coderoycc/bottom-sheet-wrappers/style.css";' language="javascript" />
     <div class="info-callout">
       <span class="callout-icon">📌</span>
       <div>
-        <strong>Diferencia clave con el modo simple:</strong> este panel puede redimensionarse en tres diferentes
-        estados. <code>collapsed</code>, <code>half</code> y <code>full</code>.
-        Muy útil para acciones dinámicas que requieren una interacción sin perder el contexto de la página.
+        <strong>{{ $t('dynamic_docs.callout.key_diff') }} </strong>
+        <i18n-t keypath="dynamic_docs.callout.desc" tag="span">
+          <template #collapsed><code>collapsed</code></template>
+          <template #half><code>half</code></template>
+          <template #full><code>full</code></template>
+        </i18n-t>
       </div>
     </div>
 
     <div class="doc-section">
-      <h2>API de Propiedades</h2>
-      <ApiTable title="Props" :columns="propsColumns" :rows="propsData" />
-      <ApiTable title="Eventos" :columns="eventsColumns" :rows="eventsData" />
-      <ApiTable title="Slots" :columns="slotsColumns" :rows="slotsData" />
+      <h2>{{ $t('dynamic_docs.sections.props') }}</h2>
+      <ApiTable :title="$t('dynamic_docs.table.title.props')" :columns="propsColumns" :rows="propsData" />
+      <ApiTable :title="$t('dynamic_docs.table.title.events')" :columns="eventsColumns" :rows="eventsData" />
+      <ApiTable :title="$t('dynamic_docs.table.title.slots')" :columns="slotsColumns" :rows="slotsData" />
     </div>
 
     <div class="doc-section">
-      <h2>Módulos y Ejemplos de Uso</h2>
+      <h2>{{ $t('dynamic_docs.sections.examples') }}</h2>
 
-      <h3>Uso Simple</h3>
-      <p>Un bottom sheet básico con solo el contenido y el comportamiento de cerrado predeterminado. Utiliza la altura
-        configurada.</p>
+      <h3>{{ $t('dynamic_docs.examples.simple.title') }}</h3>
+      <p>{{ $t('dynamic_docs.examples.simple.description') }}</p>
       <DocExample :codeString="simpleExampleCode">
         <template #result>
           <SimpleExample />
         </template>
       </DocExample>
 
-      <h3>Uso con Backdrop</h3>
-      <p>Habilita la aparición de una capa oscura en el fondo agregando la propiedad <code>show-backdrop</code>.
-        Adicionalmente, cuando se hace click en el backdrop se colapsa el contendor.</p>
+      <h3>{{ $t('dynamic_docs.examples.backdrop.title') }}</h3>
+      <i18n-t keypath="dynamic_docs.examples.backdrop.description" tag="p">
+        <template #prop><code>show-backdrop</code></template>
+      </i18n-t>
       <DocExample :codeString="backdropExampleCode">
         <template #result>
           <BackdropExample />
         </template>
       </DocExample>
 
-      <h3>Slots (Header y Collapsed)</h3>
-      <p>El slot <code>collapsed-content</code> muestra el contenido personalizado cuando el contenedor se encuentra en
-        estado <code>collapsed</code>.</p>
-      <p>El slot <code>header</code> muestra el contenido personalizado en el header del contenedor.</p>
+      <h3>{{ $t('dynamic_docs.examples.slots.title') }}</h3>
+      <i18n-t keypath="dynamic_docs.examples.slots.desc1" tag="p">
+        <template #state_collapsed><code>collapsed</code></template>
+        <template #collapsed><code>collapsed-content</code></template>
+      </i18n-t>
+      <i18n-t keypath="dynamic_docs.examples.slots.desc2" tag="p">
+        <template #header><code>header</code></template>
+      </i18n-t>
       <DocExample :codeString="complexSlotsExampleCode">
         <template #result>
           <ComplexSlotsExample />
@@ -64,41 +71,31 @@ import "@coderoycc/bottom-sheet-wrappers/style.css";' language="javascript" />
 
       <div class="separator" />
 
-      <h3>Customización de Bordes y Colores (Local)</h3>
-      <p>Puedes sobreescribir las variables CSS pasándole una clase a componente. Las variables afectarán localmente a
-        este
-        sheet. Nota el uso de color de <b>fondo rosado</b> y <b>bordes cuadrados</b>.</p>
-      <DocExample :codeString="customBorderExampleCode">
-        <template #result>
-          <CustomBorderExample />
-        </template>
-      </DocExample>
 
-      <h3>Uso en Modo Oscuro Integrado</h3>
-      <p>Inyectando variables para aplicar el respectivo tema oscuro local directamente a un bottom sheet.</p>
+      <h3>{{ $t('dynamic_docs.examples.dark_mode.title') }}</h3>
+      <p>{{ $t('dynamic_docs.examples.dark_mode.description') }}</p>
       <DocExample :codeString="darkModeExampleCode">
         <template #result>
           <DarkModeExample />
         </template>
       </DocExample>
 
-      <h3>Customización de Handle</h3>
-      <p>Puedes sobreescribir las variables CSS pasándole una clase a componente. Las variables afectarán localmente a
-        este
-        sheet.
-      </p>
-      <p><i>Nota: Mejor si los estilos se aplican globalmente o en un componente sin usar <code>scoped</code>.</i></p>
+      <h3>{{ $t('dynamic_docs.examples.custom_handle.title') }}</h3>
+      <p>{{ $t('dynamic_docs.examples.custom_handle.description') }}</p>
+      <i18n-t keypath="dynamic_docs.examples.custom_handle.note" tag="p">
+        <template #scoped><code>scoped</code></template>
+      </i18n-t>
       <DocExample :codeString="customHandleExampleCode">
         <template #result>
           <CustomHandleExample />
         </template>
       </DocExample>
 
-      <h3>Apilamiento con zIndex</h3>
-      <p>El prop <code>zIndex</code> permite manejar el orden visual cuando varios panels están abiertos al mismo
-        tiempo. El
-        valor final efectivo es <code>9000 + zIndex</code>, lo que asegura que los sheets siempre estén por encima del
-        contenido normal de la app. Asigna valores crecientes para definir cuál panel queda al frente.</p>
+      <h3>{{ $t('dynamic_docs.examples.zindex.title') }}</h3>
+      <i18n-t keypath="dynamic_docs.examples.zindex.description" tag="p">
+        <template #zIndex><code>zIndex</code></template>
+        <template #base><code>9000 + zIndex</code></template>
+      </i18n-t>
       <DocExample :codeString="zIndexExampleCode">
         <template #result>
           <ZIndexExample />
@@ -110,6 +107,8 @@ import "@coderoycc/bottom-sheet-wrappers/style.css";' language="javascript" />
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
+import { computed } from 'vue';
 import ApiTable from '../components/ApiTable.vue';
 import DocExample from '../components/DocExample.vue';
 import CodeHighlight from '../components/CodeHighlight.vue';
@@ -120,8 +119,7 @@ import simpleExampleCode from '../examples/SimpleExample.vue?raw';
 import BackdropExample from '../examples/BackdropExample.vue';
 import backdropExampleCode from '../examples/BackdropExample.vue?raw';
 
-import CustomBorderExample from '../examples/CustomBorderExample.vue';
-import customBorderExampleCode from '../examples/CustomBorderExample.vue?raw';
+
 
 import DarkModeExample from '../examples/DarkModeExample.vue';
 import darkModeExampleCode from '../examples/DarkModeExample.vue?raw';
@@ -136,49 +134,51 @@ import zIndexExampleCode from '../examples/ZIndexExample.vue?raw';
 import CustomHandleExample from '../examples/CustomHandleExample.vue';
 import customHandleExampleCode from '../examples/CustomHandleExample.vue?raw';
 
-const propsColumns = [
-  { key: 'name', label: 'Nombre', isCode: true },
-  { key: 'type', label: 'Tipo', isCode: true },
-  { key: 'default', label: 'Por Defecto', isCode: true },
-  { key: 'desc', label: 'Descripción' }
-];
+const { t } = useI18n();
 
-const propsData = [
-  { name: 'modelValue (v-model)', type: 'boolean', default: 'false', desc: 'Controla la visibilidad del modal dinámico.' },
-  { name: 'title', type: 'string', default: "''", desc: 'Título básico que se imprime en el header nativo.' },
-  { name: 'initialSize', type: 'DynamicSize', default: "'half'", desc: "Tamaño inicial a mostrar: 'collapsed', 'half', 'full'." },
-  { name: 'half', type: 'string', default: "'45dvh'", desc: 'Dimensión en alto para el estado "half".' },
-  { name: 'full', type: 'string', default: "'95dvh'", desc: 'Dimensión en alto para el estado máximo "full".' },
-  { name: 'showCloseButton', type: 'boolean', default: 'true', desc: 'Mostrar u ocultar botón con cruz de cierre.' },
-  { name: 'showBackdrop', type: 'boolean', default: 'false', desc: 'Saca y muestra un overlay oscuro semitransparente.' },
-  { name: 'hideDragHandle', type: 'boolean', default: 'false', desc: 'Oculta el handle de arrastre.' },
-  { name: 'zIndex', type: 'number', default: '1', desc: 'Índice de elevación (es baseada sobre suma a 9000).' }
-];
+const propsColumns = computed(() => [
+  { key: 'name', label: t('simple_docs.table.columns.name'), isCode: true },
+  { key: 'type', label: t('simple_docs.table.columns.type'), isCode: true },
+  { key: 'default', label: t('simple_docs.table.columns.default'), isCode: true },
+  { key: 'desc', label: t('simple_docs.table.columns.desc') }
+]);
 
-const eventsColumns = [
-  { key: 'name', label: 'Nombre', isCode: true },
-  { key: 'params', label: 'Parámetros', isCode: true },
-  { key: 'desc', label: 'Descripción' }
-];
+const propsData = computed(() => [
+  { name: 'modelValue (v-model)', type: 'boolean', default: 'false', desc: t('dynamic_docs.table.props.model') },
+  { name: 'title', type: 'string', default: "''", desc: t('dynamic_docs.table.props.title') },
+  { name: 'initialSize', type: 'DynamicSize', default: "'half'", desc: t('dynamic_docs.table.props.initialSize') },
+  { name: 'half', type: 'string', default: "'45dvh'", desc: t('dynamic_docs.table.props.half') },
+  { name: 'full', type: 'string', default: "'95dvh'", desc: t('dynamic_docs.table.props.full') },
+  { name: 'showCloseButton', type: 'boolean', default: 'true', desc: t('dynamic_docs.table.props.showCloseButton') },
+  { name: 'showBackdrop', type: 'boolean', default: 'false', desc: t('dynamic_docs.table.props.showBackdrop') },
+  { name: 'hideDragHandle', type: 'boolean', default: 'false', desc: t('dynamic_docs.table.props.hideDragHandle') },
+  { name: 'zIndex', type: 'number', default: '1', desc: t('dynamic_docs.table.props.zIndex') }
+]);
 
-const eventsData = [
-  { name: 'update:modelValue', params: 'value: boolean', desc: 'Cambia estado de componente y sync bidireccional.' },
-  { name: 'close', params: '-', desc: 'Se gatilla al inicio del pedido de cerrado.' },
-  { name: 'opened', params: '-', desc: 'Se dispara cuando acaba la animación visual de entrada CSS.' },
-  { name: 'closed', params: '-', desc: 'Se dispara cuando acaba la animación visual de retirada CSS.' },
-  { name: 'size-change', params: 'size: DynamicSize', desc: 'Avisa cuando se ha terminado de cambiar el tamaño. Los valores que se emiten son de DynamicSize: "collapsed" | "half" | "full".' }
-];
+const eventsColumns = computed(() => [
+  { key: 'name', label: t('simple_docs.table.columns.name'), isCode: true },
+  { key: 'params', label: t('simple_docs.table.columns.params'), isCode: true },
+  { key: 'desc', label: t('simple_docs.table.columns.desc') }
+]);
 
-const slotsColumns = [
-  { key: 'name', label: 'Nombre', isCode: true },
-  { key: 'desc', label: 'Descripción' }
-];
+const eventsData = computed(() => [
+  { name: 'update:modelValue', params: 'value: boolean', desc: t('dynamic_docs.table.events.model') },
+  { name: 'close', params: '-', desc: t('dynamic_docs.table.events.close') },
+  { name: 'opened', params: '-', desc: t('dynamic_docs.table.events.opened') },
+  { name: 'closed', params: '-', desc: t('dynamic_docs.table.events.closed') },
+  { name: 'size-change', params: 'size: DynamicSize', desc: t('dynamic_docs.table.events.size_change') }
+]);
 
-const slotsData = [
-  { name: 'default', desc: 'Slot para el contenido del bottomsheet.' },
-  { name: 'header', desc: 'Slot para el header del bottomsheet. Si se usa este slot, se pierde el header por defecto.' },
-  { name: 'collapsed-content', desc: 'Slot para el contenido del bottomsheet en estado "collapsed".' }
-];
+const slotsColumns = computed(() => [
+  { key: 'name', label: t('simple_docs.table.columns.name'), isCode: true },
+  { key: 'desc', label: t('simple_docs.table.columns.desc') }
+]);
+
+const slotsData = computed(() => [
+  { name: 'default', desc: t('dynamic_docs.table.slots.default') },
+  { name: 'header', desc: t('dynamic_docs.table.slots.header') },
+  { name: 'collapsed-content', desc: t('dynamic_docs.table.slots.collapsed_content') }
+]);
 
 </script>
 

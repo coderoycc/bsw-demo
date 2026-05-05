@@ -8,13 +8,13 @@ const isOpen = ref(false);
 
 <template>
   <div>
-    <button class="btn-primary" @click="isOpen = true">Abrir Vista Compleja</button>
+    <button class="btn-primary" @click="isOpen = true">Customslots</button>
 
     <bs-dynamic v-model="isOpen" initial-size="collapsed" hide-close-button>
       <!-- HEADER SLOT -->
       <template #header>
         <div class="custom-header">
-          <span class="custom-title">Panel Deslizable</span>
+          <span class="custom-title">My custom header</span>
           <span class="custom-badge">Info</span>
         </div>
       </template>
@@ -22,7 +22,7 @@ const isOpen = ref(false);
       <!-- COLLAPSED SLOT -->
       <template #collapsed-content>
         <div class="hint-box">
-          🔥 Desliza hacia arriba para más detalles e información.
+          🔥 Slide up for more information.
         </div>
       </template>
 
@@ -69,11 +69,9 @@ const isOpen = ref(false);
 }
 
 .hint-box {
-  padding: 15px;
-  background: #fef08a;
+  padding: 10px;
   text-align: center;
   color: #854d0e;
   font-weight: 500;
-  border-top: 1px solid #fde047;
 }
 </style>
