@@ -8,7 +8,7 @@ const isOpen = ref(false);
 
 <template>
   <div>
-    <button class="btn-primary" @click="isOpen = true">Open Panel (50dvh)</button>
+    <button class="btn-primary" @click="isOpen = true">Open Panel (30dvh)</button>
 
     <bs-simple v-model="isOpen" title="Height Panel" height="30dvh" show-backdrop>
       <ExampleContentMedium />

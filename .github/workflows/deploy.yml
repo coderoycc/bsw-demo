@@ -3,17 +3,15 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main
-  # Permite ejecutar el workflow manualmente desde la pestaña Actions
+      - master
+
   workflow_dispatch:
 
-# Permisos necesarios para publicar en GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Solo permite un deploy a la vez; cancela el anterior si hay uno en progreso
 concurrency:
   group: pages
   cancel-in-progress: true
@@ -29,7 +27,6 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          # Node 22 es Maintenance LTS — versión recomendada actualmente
           node-version: 22
           cache: npm
 

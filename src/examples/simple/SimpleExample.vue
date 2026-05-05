@@ -10,7 +10,7 @@ const isOpen = ref(false);
   <div>
     <button class="btn-primary" @click="isOpen = true">Open</button>
 
-    <bs-simple v-model="isOpen" title="Panel Fijo Simple">
+    <bs-simple v-model="isOpen" title="Base Panel">
       <ExampleContentShort />
     </bs-simple>
   </div>
